@@ -27,7 +27,7 @@
                 <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=services">Servizi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Prodotti</a>
+                <a class="nav-link" href="<?php echo ROOT_URL; ?>shop?page=products-list">Prodotti</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=contacts">Contatti</a>
