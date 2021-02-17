@@ -11,3 +11,11 @@
 .cart-total span {
     font-size: 20px;
 }
+
+/* media query */
+
+@media (min-width: 1200px) { 
+    #main {
+        max-width: 1500px !important;
+    }
+}
