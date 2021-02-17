@@ -1,1 +1,13 @@
 /* style.css */
+
+/* cart */
+
+.cart-buttons span {
+    width: 50px;
+    text-align: center;
+    border: 1px solid;
+}
+
+.cart-total span {
+    font-size: 20px;
+}
