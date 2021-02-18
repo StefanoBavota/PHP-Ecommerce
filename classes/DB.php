@@ -18,8 +18,8 @@ class DB {
 
     public function query($sql) {
         $q = $this->pdo->query($sql);
-        if(!$q) {
-            die("Execute query error, because: ". print_r($this->pdo->errorInfo(),true) );
+        if (!$q){
+            return;
         }
         
         $data = $q->fetchAll(); 

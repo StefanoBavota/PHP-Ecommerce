@@ -15,7 +15,7 @@
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-<div class="container-fluid">
+<div class="container">
     <a class="navbar-brand" href="<?php echo ROOT_URL; ?>public?page=homepage">PHP E-commerce</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,16 +46,44 @@
             </li>
         </ul>
 
+        <?php if (!$loggedInUser) : ?>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Area Riservata</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul> 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Area Riservata
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">        
+              <a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=login">Login</a>
+            </div>
+          </li>
+        </ul>
+      <?php endif; ?>
+
+      <?php if ($loggedInUser) : ?>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php echo $loggedInUser->email ?>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">        
+              <a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a>
+            </div>
+          </li>
+        </ul>
+      <?php endif; ?>
+
+      <?php if ($loggedInUser && $loggedInUser->is_admin) : ?>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">        
+              <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin">Dashboard</a>
+            </div>
+          </li>
+        </ul>
+      <?php endif; ?>
 
     </div>
 </div>
