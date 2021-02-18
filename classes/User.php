@@ -9,7 +9,28 @@ class UserManager extends DBManager {
     }
 
     // publics Method
+    public function passwordMatch($password, $confirm_password){
+        return $password == $confirm_password;
+    }
+
+    public function register($email, $password){
+
+        $result = $this->db->query("SELECT * FROM user WHERE email = '$email'");
+        if (count($result) > 0) {
+            return false;
+        }
+
+        $userId = $this->create([
+            'email' => $email,
+            'password' => md5($password),
+            'user_type_id' => 2
+        ]);
+
+        return $userId;
+    }
+
     public function login($email, $password) {
+
         $result = $this->db->query(
         "SELECT * 
         FROM user
@@ -29,6 +50,7 @@ class UserManager extends DBManager {
 
     // private Methods
     private function _setUser($user) {    
+
         $userToStore = (object) [
           'id' => $user->id,
           'email' => $user->email,

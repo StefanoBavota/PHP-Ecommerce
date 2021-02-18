@@ -25,6 +25,8 @@
 
 ?>
 
+<h2>Login</h2>
+
 <form method="post">
 
         <div class="form-group">
@@ -43,3 +45,5 @@
 
     <button class="btn btn-primary" type="submit" name="login">Login</button>
 </form>
+
+Non hai un account? <a href="<?php echo ROOT_URL ?>auth?page=register">Registrati! &raquo;</a>
