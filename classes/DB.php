@@ -13,20 +13,22 @@ class DB {
             echo 'Failed to connect to MySql ' . mysqli_connect_errno();
         }
         $this->pdo = new PDO('mysql:dbname='. DB_NAME .';host=' . DB_HOST, DB_USER, DB_PASS);
+        $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     }
 
     public function query($sql) {
-        try {
-            $q = $this->pdo->query($sql);
-            if(!$q){
-                throw new Exception("Error executing query...");
-                return;
-            }
-            $data = $q->fetchAll(); 
-            return $data;
-        } catch(Exception $e) {
-            throw $e;
+        $q = $this->pdo->query($sql);
+        if(!$q) {
+            die("Execute query error, because: ". print_r($this->pdo->errorInfo(),true) );
         }
+        
+        $data = $q->fetchAll(); 
+        return $data;
+    }
+
+    public function execute($sql){
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
     }
 
     public function select_all($tableName, $columns = array()) {

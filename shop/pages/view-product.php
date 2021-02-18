@@ -12,6 +12,20 @@
         exit;
     }
 
+    if (isset($_POST['add_to_cart'])) {
+
+        $productId = htmlspecialchars(trim($_POST['id']));
+        // addToCart logic
+        $cm = new CartManager();
+        $cartId = $cm->getCurrentCartId();
+
+        // aggiungi al carrello "cartId" il prodotto "productId"
+        $cm->addToCart($productId, $cartId);
+
+        // stampato un messaggio per l'utente es. ellem aggiunto al carrello
+        // echo 'ok';
+    }
+
     $id = htmlspecialchars(trim($_GET['id']));
 
     $pm = new ProductManager();
