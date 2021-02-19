@@ -1,6 +1,4 @@
 <?php
-    $errMsg = '';
-
     //evitare manipolazioni
     if (!defined('ROOT_URL')){
         die;
@@ -8,6 +6,8 @@
 
     $productMgr = new ProductManager();
     $product = new Product(0, '', '', 0, '', 0);
+
+    global $alertMsg;
 
     if (isset($_GET['id'])) {
 
