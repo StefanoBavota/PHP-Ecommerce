@@ -60,3 +60,11 @@ INSERT INTO user (
   MD5('password'),
   2
 );
+
+CREATE TABLE wish_list
+(
+  id INT NOT NULL AUTO_INCREMENT,
+  product_id INT NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (product_id) REFERENCES product(id)
+);

@@ -1,44 +1,54 @@
 <?php
 
-class DB {
+class DB
+{
 
     private $conn;
     public $pdo;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         global $conn;
-        $this->conn = $conn;    
+        $this->conn = $conn;
         if (mysqli_connect_errno()) {
             echo 'Failed to connect to MySql ' . mysqli_connect_errno();
         }
-        $this->pdo = new PDO('mysql:dbname='. DB_NAME .';host=' . DB_HOST, DB_USER, DB_PASS);
-        $this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        $this->pdo = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST, DB_USER, DB_PASS);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function query($sql) {
+    public function query($sql)
+    {
         $q = $this->pdo->query($sql);
-        if (!$q){
+        if (!$q) {
             return;
         }
-        
-        $data = $q->fetchAll(); 
+
+        $data = $q->fetchAll();
         return $data;
     }
 
-    public function execute($sql){
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
+    public function execute($sql)
+    {
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
-    public function select_all($tableName, $columns = array()) {
+    public function select_all($tableName, $columns = array())
+    {
 
         $query = 'SELECT ';
 
         $strCol = '';
         //var_dump($columns); die;
-        foreach($columns as $colName) {
-            $strCol .= ' '. esc($colName) . ',';
+        foreach ($columns as $colName) {
+            $strCol .= ' ' . esc($colName) . ',';
         }
         $strCol = substr($strCol, 0, -1);
 
@@ -52,10 +62,11 @@ class DB {
         return $resultArray;
     }
 
-    public function select_one($tableName, $columns = array(), $id) {
+    public function select_one($tableName, $columns = array(), $id)
+    {
 
         $strCol = '';
-        foreach($columns as $colName) {
+        foreach ($columns as $colName) {
             $colName = esc($colName);
             $strCol .= ' ' . $colName . ',';
         }
@@ -71,7 +82,8 @@ class DB {
         return $resultArray;
     }
 
-    public function delete_one($tableName, $id) {
+    public function delete_one($tableName, $id)
+    {
 
         $id = esc($id);
         $query = "DELETE FROM $tableName WHERE id = $id";
@@ -86,11 +98,12 @@ class DB {
         }
     }
 
-    public function update_one($tableName, $columns = array(), $id) {
+    public function update_one($tableName, $columns = array(), $id)
+    {
 
         $id = esc($id);
         $strCol = '';
-        foreach($columns as $colName => $colValue) {
+        foreach ($columns as $colName => $colValue) {
             $colName = esc($colName);
             $strCol .= " " . $colName . " = '$colValue' ,";
         }
@@ -108,17 +121,18 @@ class DB {
         }
     }
 
-    public function insert_one ($tableName, $columns = array()) {
+    public function insert_one($tableName, $columns = array())
+    {
 
         $strCol = '';
-        foreach($columns as $colName => $colValue) {
+        foreach ($columns as $colName => $colValue) {
             $colName = esc($colName);
             $strCol .= ' ' . $colName . ',';
         }
         $strCol = substr($strCol, 0, -1);
 
         $strColValues = '';
-        foreach($columns as $colName => $colValue) {
+        foreach ($columns as $colName => $colValue) {
             $colValue = esc($colValue);
             $strColValues .= " '" . $colValue . "' ,";
         }
@@ -137,41 +151,54 @@ class DB {
     }
 }
 
-class DBManager {
+class DBManager
+{
 
     protected $db;
     protected $columns;
     protected $tableName;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new DB();
     }
 
-    public function get($id) {
+    public function get($id)
+    {
         $resultArr = $this->db->select_one($this->tableName, $this->columns, (int)$id);
         return (object) $resultArr;
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         $results = $this->db->select_all($this->tableName, $this->columns);
         $objects = array();
-        foreach($results as $result) {
-        array_push($objects, (object)$result);
+        foreach ($results as $result) {
+            array_push($objects, (object)$result);
         }
         return $objects;
     }
 
-    public function create($obj) {
+    public function create($obj)
+    {
         $newId = $this->db->insert_one($this->tableName, (array) $obj);
         return $newId;
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $rowsDeleted = $this->db->delete_one($this->tableName, (int)$id);
         return (int) $rowsDeleted;
     }
 
-    public function update($obj, $id) {
+    public function delete_wish($id)
+    {
+        $rowsDeleted = $this->db->delete_one("wish_list", (int)$id);
+        return (int) $rowsDeleted;
+    }
+
+    public function update($obj, $id)
+    {
         $rowsUpdated = $this->db->update_one($this->tableName, (array) $obj, (int)$id);
         return (int) $rowsUpdated;
     }

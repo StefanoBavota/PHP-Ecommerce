@@ -12,6 +12,39 @@
     font-size: 20px;
 }
 
+.background-red {
+    text-align: center;
+    font-weight: bolder;
+    background-color: rgba(180, 0,0,0.4);
+    margin: 10px auto;
+    width: 45vw;
+    border-radius: 5px;
+    
+}
+
+.large-icon {
+    font-size: 7rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer {
+    /*position: absolute;*/
+    bottom: 0;
+    height: 4.5rem;
+    background-color: royalblue !important;
+    color: white !important;
+    width: 100vw;
+}
+
+.delete-container {
+    margin: 15px -10px 0 -10px;
+    color: lightgrey;
+}
+
+.delete-container:hover {
+    color: darkslategray;
+}
+
 /* media query */
 
 @media (min-width: 1200px) { 
