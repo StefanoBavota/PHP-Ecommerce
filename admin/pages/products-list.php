@@ -5,9 +5,17 @@
         die;
     }
 
+    global $alertMsg;
     $productMgr = new ProductManager();
-    $products = $productMgr->getAll();
 
+    if (isset($_POST['remove'])){
+        // rimuovo prodotto dal db
+        $productId = htmlspecialchars(trim($_POST['id']));
+        $productMgr->delete($productId);
+        $alertMsg = 'deleted';
+    }
+
+    $products = $productMgr->getAll();
 ?>
 <div class="row">
 
@@ -20,7 +28,11 @@
                     <h5 class="card-title"><?php echo $product->name ?></h5>
                     <h5 class="card-title"><?php echo $product->price ?> €</h5>
                     <p class="card-text"><?php echo $product->description ?></p>
-                    <button class="btn btn-primary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'admin?page=product'?>'">Modifica Articolo</button>
+                    <form method="post" class="right">
+                        <button class="btn btn-primary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'admin?page=product'?>'">Modifica Articolo</button>
+                        <input type="hidden" name="id" value="<?php echo esc_html($product->id); ?>">
+                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block rounded-0" value="Rimuovi Articolo">
+                    </form>
                 </div>
             </div>
 
