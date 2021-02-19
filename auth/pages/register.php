@@ -10,13 +10,15 @@
     if (isset($_POST['register'])) {
 
         $email = htmlspecialchars(trim($_POST['email']));
+        $nome = htmlspecialchars(trim($_POST['nome']));
+        $cognome = htmlspecialchars(trim($_POST['cognome']));
         $password = htmlspecialchars(trim($_POST['password']));
         $confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
         
         $userMgr = new UserManager();
         if ($userMgr->passwordMatch($password, $confirm_password)) {
 
-            $result = $userMgr->register($email, $password);
+            $result = $userMgr->register($nome, $cognome, $email, $password);
     
             if ($result) {
                 echo '<script>location.href="'.ROOT_URL.'auth?page=login"</script>';
@@ -38,6 +40,16 @@
         <div class="form-group">
             <label for="email">Email</label>
             <input name="email" id="email" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input name="nome" id="nome" type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="cognome">Cognome</label>
+            <input name="cognome" id="cognome" type="text" class="form-control">
         </div>
 
         <div class="form-group">
