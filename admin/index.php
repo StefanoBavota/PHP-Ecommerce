@@ -13,7 +13,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "dashboard";
             <?php include ROOT_PATH . 'admin/pages/' . $page . '.php' ?>
         </div>
 
-        <?php include ROOT_PATH . 'public/template-parts/sidebar.php' ?>
+        <?php include ROOT_PATH . 'admin/pages/sidebar.php' ?>
 
     </div>
 </div>

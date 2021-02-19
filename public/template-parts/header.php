@@ -76,10 +76,12 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin
+            Amministrazione
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">        
               <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin">Dashboard</a>
+              <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=products-list">Gestione Prodotti</a>
+              <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=users-list">Gestione Utenti</a>
             </div>
           </li>
         </ul>
