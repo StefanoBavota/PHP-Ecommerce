@@ -23,13 +23,13 @@
         <?php foreach($products as $product) : ?>
 
             <div class="card" style="width: 18rem;">
-                <img src="<?php echo $product->image ?>" class="card-img-top" alt="...">
+                <img src="<?php echo $product->image ?>" class="card-img-top" alt="..." style="width:300px;height:300px;">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $product->name ?></h5>
                     <h5 class="card-title"><?php echo $product->price ?> €</h5>
                     <p class="card-text"><?php echo $product->description ?></p>
+                    <a class="btn btn-primary btn-sm btn-block rounded-0" href="<?php echo ROOT_URL . 'admin?page=edit-product'; ?>&id=<?php echo esc_html($product->id); ?>">Modifica Articolo</a>
                     <form method="post" class="right">
-                        <button class="btn btn-primary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'admin?page=product'?>'">Modifica Articolo</button>
                         <input type="hidden" name="id" value="<?php echo esc_html($product->id); ?>">
                         <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block rounded-0" value="Rimuovi Articolo">
                     </form>

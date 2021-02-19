@@ -1,5 +1,24 @@
 <?php 
 
+class Product {
+
+    public $id;
+    public $image;
+    public $name;
+    public $price;
+    public $description;
+    public $category_id;
+
+    public function __construct($id, $image, $name, $price, $description, $category_id){
+        $this->id = (int)$id;
+        $this->image = $image;
+        $this->name = $name;
+        $this->price = (float)$price;
+        $this->description = $description;
+        $this->category_id = (int)$category_id;
+    }
+}
+
 class ProductManager extends DBManager {
 
     public function __construct(){
@@ -9,17 +28,4 @@ class ProductManager extends DBManager {
     }
 
     // public Methods
-
-    public function insert($image, $name, $price, $description, $category_id){
-
-        $product = $this->create([
-            'image' => $image,
-            'name' => $name,
-            'price' => $price,
-            'description' => $description,
-            'category_id' => $category_id
-        ]);
-
-        return $product;
-    }
 }

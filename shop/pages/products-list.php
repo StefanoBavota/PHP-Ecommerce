@@ -31,7 +31,7 @@ $products = $productMgr->getAll();
     <?php foreach($products as $product) : ?>
     
     <div class="card" style="width: 18rem;">
-        <img src="<?php echo $product->image ?>" class="card-img-top" alt="...">
+        <img src="<?php echo $product->image ?>" class="card-img-top" alt="Card image cap" style="width:300px;height:300px;">
             <div class="card-body">
                 <h5 class="card-title"><?php echo $product->name ?></h5>
                 <h5 class="card-title"><?php echo $product->price ?> €</h5>
