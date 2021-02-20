@@ -1,7 +1,8 @@
 <?php
 
-if (isset($_SESSION['user']))
+if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
+}
 
 $productMgr = new ProductManager();
 $products = $productMgr->getAll();
@@ -50,6 +51,8 @@ if (isset($_POST['add_to_cart'])) {
                     <p class="card-text"><?php echo $product->description ?></p>
                     <div class="mb-2">
                         <button class="btn btn-secondary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'shop?page=view-product&id=' . $product->id; ?>'">Vedi</button>
+                    </div>
+                    <div class="mb-2">
                         <form method="post">
                             <input type="hidden" name="id" value="<?php echo $product->id; ?>">
                             <input type="hidden" name="add_to_wish_list">

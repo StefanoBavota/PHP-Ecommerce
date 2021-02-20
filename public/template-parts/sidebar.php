@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
 
-if (isset($_POST['remove'])){
+if (isset($_POST['remove'])) {
     // rimuovo prodotto dal db
     $productId = htmlspecialchars(trim($_POST['id']));
     $productMgr->delete_wish($productId);
@@ -28,7 +28,7 @@ if (isset($user)) {
 <div class="row">
     <?php if (isset($user)) : ?>
         <div>
-            <div>
+            <div class="jumbotron">
 
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Lista dei desideri</span>
@@ -55,8 +55,6 @@ if (isset($user)) {
                                 </div>
                             </li>
                         </ul>
-
-
                     <?php endforeach; ?>
                 <?php else : ?>
                     <p>Nessun prodotto disponibile...</p>
