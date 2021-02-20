@@ -4,14 +4,10 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
-
 $messageId = $_GET['id'];
-
 $messageService = new UserManager();
-
 $msg = $messageService->getMessage($messageId)[0];
 
-die(mail('cristianobombardo@hotmail.it',"lorem ipsump" ," solro sit amet"));
 ?>
 
 <a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline">&laquo; Lista Messaggi</a>
