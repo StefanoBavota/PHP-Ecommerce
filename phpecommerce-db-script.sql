@@ -65,8 +65,11 @@ CREATE TABLE wish_list
 (
   id INT NOT NULL AUTO_INCREMENT,
   product_id INT NOT NULL,
+  user_id INT NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY (product_id) REFERENCES product(id)
+  FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  CONSTRAINT unique_user_product UNIQUE (product_id, user_id)
 );
 
 CREATE TABLE orders (
@@ -86,7 +89,7 @@ CREATE TABLE address (
   city varchar(50) DEFAULT NULL,
   cap varchar(50) DEFAULT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 )
 
 CREATE TABLE contact_us (

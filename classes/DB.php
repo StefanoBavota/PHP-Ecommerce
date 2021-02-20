@@ -22,7 +22,7 @@ class DB
     {
         $q = $this->pdo->query($sql);
         if (!$q) {
-            return;
+            return $this->pdo->errorInfo();
         }
 
         $data = $q->fetchAll();
@@ -90,10 +90,8 @@ class DB
 
         if (mysqli_query($this->conn, $query)) {
             $rowsAffected = mysqli_affected_rows($this->conn);
-
             return $rowsAffected;
         } else {
-
             return -1;
         }
     }
@@ -194,6 +192,12 @@ class DBManager
     public function delete_wish($id)
     {
         $rowsDeleted = $this->db->delete_one("wish_list", (int)$id);
+        return (int) $rowsDeleted;
+    }
+
+    public function delete_msg($id)
+    {
+        $rowsDeleted = $this->db->delete_one("contact_us", (int)$id);
         return (int) $rowsDeleted;
     }
 

@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
 
         $result = $userMgr->register($nome, $cognome, $email, $password);
 
-        if ($result) {
+        if ($result > 0) {
             $userMgr->createAddress($result, $street, $city, $cap);
             echo '<script>location.href="' . ROOT_URL . 'auth?page=login"</script>';
             exit;

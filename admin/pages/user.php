@@ -18,11 +18,11 @@ if (isset($_GET['id'])) {
 // Submit update
 if (isset($_POST['update'])) {
 
-    $nome   = trim($_POST['nome']);
-    $cognome    = trim($_POST['cognome']);
-    $email        = trim($_POST['email']);
-    $user_type_id    = trim($_POST['user_type_id']);
-    $id           = trim($_POST['id']);
+    $nome = trim($_POST['nome']);
+    $cognome = trim($_POST['cognome']);
+    $email = trim($_POST['email']);
+    $user_type_id = trim($_POST['user_type_id']);
+    $id = trim($_POST['id']);
 
     if ($id != '' && $id != '0' && $nome != '' && $cognome != '' && $email != '' && $user_type_id != '') {
 

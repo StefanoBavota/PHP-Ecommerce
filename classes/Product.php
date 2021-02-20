@@ -37,7 +37,7 @@ class ProductManager extends DBManager {
     }
 
     public function getCurrentUserWishlist($userId) {
-        $sql = "SELECT image, name, description, price, wish_list.id AS wish_list_id FROM product INNER JOIN wish_list ON wish_list.product_id = product.id AND wish_list.user_id = $userId";
+        $sql = "SELECT image, name, description, price, product_id, wish_list.id AS wish_list_id FROM product INNER JOIN wish_list ON wish_list.product_id = product.id AND wish_list.user_id = $userId";
         return $this->db->query($sql);
     }
 

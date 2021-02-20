@@ -39,9 +39,8 @@ class Order
     public $user_id;
     public $status;
 
-    public function __construct($id, $user_id, $status)
+    public function __construct($user_id, $status)
     {
-        $this->id = $id > 0 ? $id : 0;
         $this->user_id = $user_id;
         $this->status = $status;
     }
@@ -92,22 +91,66 @@ class OrderManager extends DBManager
 
     public function createOrderFromCart($cartId, $userId)
     {
-        $orderId = $this->create(new Order(0, $userId, 'pending'));
-        $this->db->query("CALL cart_to_order ($cartId, $orderId)");
+        $orderId = $this->create(new Order($userId, 'pending'));
+
+        $sql = "INSERT INTO order_items (order_id, product_id, quantity) SELECT $orderId, ci.product_id, ci.quantity
+            FROM cart c
+            INNER JOIN cart_item ci
+            ON c.id = ci.cart_id
+        WHERE
+            c.id = $cartId;
+
+        DELETE cart, cart_item
+            FROM cart
+            INNER JOIN cart_item
+            ON cart.id = cart_item.cart_id
+        WHERE
+            cart.id = $cartId;";
+
+        $this->db->execute($sql);
         return $orderId;
     }
 
     public function getOrderTotal($orderId)
     {
-        $result = $this->db->query("CALL order_total ($orderId)");
+        $result = $this->db->query("SELECT 
+        o.id as order_id
+        , o.user_id as user_id
+          , SUM(ifnull(oi.quantity, 0)) as num_products
+          , SUM(ifnull(oi.quantity, 0) * ifnull(p.price, 0)) as total
+       FROM 
+        orders as o
+        INNER JOIN order_items as oi
+          ON o.id = oi.order_id
+        INNER JOIN product as p
+          ON oi.product_id = p.id
+        WHERE
+          $orderId = o.id;");
         //var_dump($result); die;
         return $result;
     }
 
     public function getOrderItems($orderId)
     {
-        $result = $this->db->query("CALL order_items ($orderId)");
-        //var_dump($result); die;
+        $result = $this->db->query(" SELECT 
+        o.id as order_id
+            , o.status as order_status
+            , oi.id as order_item_id
+            , p.name as product_name
+            , p.id as product_id
+            , p.description as product_description
+            , ifnull(oi.quantity, 0) as quantity
+            , ifnull(p.price, 0) as single_price
+            , ifnull(oi.quantity,0) * ifnull(p.price, 0) as total_price
+        FROM
+        orders as o
+            INNER JOIN order_items as oi
+          ON o.id = oi.order_id
+            INNER JOIN product as p
+          ON p.id = oi.product_id
+         WHERE
+        ifnull($orderId, 0) = 0
+            OR $orderId = o.id;");
         return $result;
     }
 
@@ -140,7 +183,7 @@ class CartManager extends DBManager
         parent::__construct();
         $this->columns = array('id', 'client_id');
         $this->tableName = 'cart';
-
+        $this->cartItemMgr = new CartItemManager();
         $this->_initializeClientIdFromSession();
     }
 
@@ -175,13 +218,13 @@ class CartManager extends DBManager
     private function incrementByOne($productId, $cartId, $quantityInCart)
     {
         $quantityInCart++;
-        $this->db->query("UPDATE cart_item SET quantity = $quantityInCart WHERE cart_id = '$cartId' AND product_id = '$productId'");
+        $this->db->execute("UPDATE cart_item SET quantity = $quantityInCart WHERE cart_id = '$cartId' AND product_id = '$productId'");
     }
 
     private function decrementOne($productId, $cartId, $quantityInCart)
     {
         $quantityInCart--;
-        $this->db->query("UPDATE cart_item SET quantity = $quantityInCart WHERE cart_id = '$cartId' AND product_id = '$productId'");
+        $this->db->execute("UPDATE cart_item SET quantity = $quantityInCart WHERE cart_id = '$cartId' AND product_id = '$productId'");
     }
 
     private function createItem($productId, $cartId)
@@ -206,13 +249,13 @@ class CartManager extends DBManager
 
     private function removeItem($productId, $cartId)
     {
-        return $this->db->query("DELETE FROM cart_item WHERE cart_id = '$cartId' AND product_id = '$productId'");
+        return $this->db->execute("DELETE FROM cart_item WHERE cart_id = '$cartId' AND product_id = '$productId'");
     }
 
     private function clearUserCart()
     {
         if ($this->userId) {
-            $this->db->query('DELETE cart, cart_item FROM cart INNER JOIN cart_item ON cart.id = cart_item.cart_id WHERE cart.user_id = ' . $this->userId);
+            $this->db->execute('DELETE cart, cart_item FROM cart INNER JOIN cart_item ON cart.id = cart_item.cart_id WHERE cart.user_id = ' . $this->userId);
         }
     }
 

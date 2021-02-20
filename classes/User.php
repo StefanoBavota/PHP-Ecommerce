@@ -25,23 +25,6 @@ class User
     }
 }
 
-class Message {
-
-    public $id;
-    public $nome;
-    public $cognome;
-    public $email;
-    public $msg;
-
-    public function __construct($id, $nome, $cognome, $email, $msg){
-        $this->id = (int)$id;
-        $this->nome = $nome;
-        $this->cognome = $cognome;
-        $this->email = $email;
-        $this->user_type_id = $msg;
-    }
-}
-
 class UserManager extends DBManager
 {
 
@@ -56,6 +39,10 @@ class UserManager extends DBManager
     public function passwordMatch($password, $confirm_password)
     {
         return $password == $confirm_password;
+    }
+
+    public function deleteMessage($id) {
+        $this->delete_msg($id);
     }
 
     public function register($nome, $cognome, $email, $password)
@@ -77,12 +64,22 @@ class UserManager extends DBManager
         return $userId;
     }
 
+    public function getMessage($id) {
+        $sql = "SELECT * FROM contact_us WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
     public function addToContactUs($nome, $cognome, $email, $msg) {
         $resultSet = $this->db->execute("INSERT INTO contact_us (nome, cognome, email, msg) VALUES ('$nome', '$cognome', '$email', '$msg')");
         if(!$resultSet) {
-            return array('error' => 'Hai già inserito l\'oggetto nella wishlist');
+            return array('error' => 'Hai già inivato il messaggio');
         }
         return array('error' => '');
+    }
+
+    public function getCurrentContactUs() {
+        $sql = "SELECT nome, cognome, email, msg, contact_us.id AS msg_id FROM contact_us";
+        return $this->db->query($sql);
     }
 
     public function createAddress($userId, $street, $city, $cap)
@@ -91,9 +88,9 @@ class UserManager extends DBManager
         $result = $this->db->query($query);
 
         if ($result[0]['has_address'] > 0) {
-            $this->db->query("UPDATE address SET street = '$street', city = '$city', cap = '$cap' WHERE user_id = $userId");
+            $this->db->execute("UPDATE address SET street = '$street', city = '$city', cap = '$cap' WHERE user_id = $userId");
         } else {
-            $this->db->query("INSERT INTO address (user_id, street, city, cap) VALUES ($userId, '$street', '$city', '$cap' )");
+            $this->db->execute("INSERT INTO address (user_id, street, city, cap) VALUES ($userId, '$street', '$city', '$cap' )");
         }
     }
 

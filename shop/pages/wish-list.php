@@ -27,6 +27,12 @@ if (isset($_POST['add_to_cart'])) {
     // echo 'ok aggiunto';
 }
 
+if (isset($_POST['remove'])) {
+    // rimuovo prodotto dal db
+    $productId = htmlspecialchars(trim($_POST['id']));
+    $productMgr->delete_wish($productId);
+}
+
 if (isset($user)) {
     $wishlist = $productMgr->getCurrentUserWishlist($user->id);
     $productsCount = $productMgr->countCurrentUserWishlistProductsAmount($user->id)[0]['amount'];
@@ -45,12 +51,20 @@ if (isset($user)) {
                         <h5 class="card-title"><?php echo $product['price']; ?> €</h5>
                         <p class="card-text"><?php echo $product['description']; ?></p>
                         <div class="mb-2">
-                            <button class="btn btn-secondary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'shop?page=view-product&id=' . $product->id; ?>'">Vedi</button>
+                            <button class="btn btn-secondary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'shop?page=view-product&id=' . $product['product_id']; ?>'">Vedi</button>
                         </div>
-                        <form method="post">
-                            <input type="hidden" name="id" value="<?php echo $product->id ?>">
-                            <input name="add_to_cart" type="submit" class="btn btn-primary btn-sm btn-block rounded-0" value="Aggiungi al carrello">
-                        </form>
+                        <div class="mb-2">
+                            <form method="post">
+                                <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
+                                <input name="add_to_cart" type="submit" class="btn btn-primary btn-sm btn-block rounded-0" value="Aggiungi al carrello">
+                            </form>
+                        </div>
+                        <div class="mb-2">
+                            <form method="post" class="right">
+                                <input type="hidden" name="id" value="<?php echo esc_html($product['wish_list_id']); ?>">
+                                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block rounded-0" value="Rimuovi Articolo">
+                            </form>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
