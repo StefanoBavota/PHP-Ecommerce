@@ -1,26 +1,26 @@
 <?php
 
-    //evitare manipolazioni
-    if (!defined('ROOT_URL')){
-        die;
-    }
+//evitare manipolazioni
+if (!defined('ROOT_URL')) {
+    die;
+}
 
-    global $alertMsg;
-    $productMgr = new ProductManager();
+global $alertMsg;
+$productMgr = new ProductManager();
 
-    if (isset($_POST['remove'])){
-        // rimuovo prodotto dal db
-        $productId = htmlspecialchars(trim($_POST['id']));
-        $productMgr->delete($productId);
-        $alertMsg = 'deleted';
-    }
+if (isset($_POST['remove'])) {
+    // rimuovo prodotto dal db
+    $productId = htmlspecialchars(trim($_POST['id']));
+    $productMgr->delete($productId);
+    $alertMsg = 'deleted';
+}
 
-    $products = $productMgr->getAll();
+$products = $productMgr->getAll();
 ?>
 <div class="row">
 
-    <?php if($products) : ?>
-        <?php foreach($products as $product) : ?>
+    <?php if ($products) : ?>
+        <?php foreach ($products as $product) : ?>
 
             <div class="card" style="width: 18rem;">
                 <img src="<?php echo $product->image ?>" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: cover;">

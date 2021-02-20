@@ -68,3 +68,32 @@ CREATE TABLE wish_list
   PRIMARY KEY(id),
   FOREIGN KEY (product_id) REFERENCES product(id)
 );
+
+CREATE TABLE orders (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  user_id int(11) NOT NULL,
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NULL DEFAULT NULL,
+  status varchar(50) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (user_id) REFERENCES user(id)
+)
+
+CREATE TABLE address (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  user_id int(11) NOT NULL,
+  street varchar(255) DEFAULT NULL,
+  city varchar(50) DEFAULT NULL,
+  cap varchar(50) DEFAULT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (user_id) REFERENCES user(id)
+)
+
+CREATE TABLE contact_us (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(50) NOT NULL,
+  cognome VARCHAR(50) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  msg text CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY(id)
+)

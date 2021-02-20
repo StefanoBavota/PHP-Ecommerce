@@ -25,6 +25,23 @@ class User
     }
 }
 
+class Message {
+
+    public $id;
+    public $nome;
+    public $cognome;
+    public $email;
+    public $msg;
+
+    public function __construct($id, $nome, $cognome, $email, $msg){
+        $this->id = (int)$id;
+        $this->nome = $nome;
+        $this->cognome = $cognome;
+        $this->email = $email;
+        $this->user_type_id = $msg;
+    }
+}
+
 class UserManager extends DBManager
 {
 
@@ -58,6 +75,26 @@ class UserManager extends DBManager
         ]);
 
         return $userId;
+    }
+
+    public function addToContactUs($nome, $cognome, $email, $msg) {
+        $resultSet = $this->db->execute("INSERT INTO contact_us (nome, cognome, email, msg) VALUES ('$nome', '$cognome', '$email', '$msg')");
+        if(!$resultSet) {
+            return array('error' => 'Hai già inserito l\'oggetto nella wishlist');
+        }
+        return array('error' => '');
+    }
+
+    public function createAddress($userId, $street, $city, $cap)
+    {
+        $query = "SELECT count(1) as has_address FROM address WHERE user_id = $userId";
+        $result = $this->db->query($query);
+
+        if ($result[0]['has_address'] > 0) {
+            $this->db->query("UPDATE address SET street = '$street', city = '$city', cap = '$cap' WHERE user_id = $userId");
+        } else {
+            $this->db->query("INSERT INTO address (user_id, street, city, cap) VALUES ($userId, '$street', '$city', '$cap' )");
+        }
     }
 
     public function login($email, $password)

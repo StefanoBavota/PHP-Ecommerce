@@ -56,7 +56,9 @@ if (isset($_POST['add_to_cart'])) {
                         <form method="post">
                             <input type="hidden" name="id" value="<?php echo $product->id; ?>">
                             <input type="hidden" name="add_to_wish_list">
+                            <?php if ($loggedInUser) : ?>
                             <button class="btn btn-info btn-sm btn-block rounded-0">Aggiungi alla Lista</button>
+                            <?php endif; ?>
                         </form>
                     </div>
                     <form method="post">
@@ -74,8 +76,8 @@ if (isset($_POST['add_to_cart'])) {
 <script>
     window.onload = () => {
         <?php
-            if($errorMessage)
-                echo "alert(\"$errorMessage\");";
+        if ($errorMessage)
+            echo "alert(\"$errorMessage\");";
         ?>
     }
 </script>

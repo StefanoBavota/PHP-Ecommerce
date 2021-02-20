@@ -7,3 +7,4 @@
     define('DB_USER', 'root');
     define('DB_PASS', '');
     define('DB_NAME', 'phpecommerce');
+    define('SITE_NAME', 'PHP-Ecommerce');

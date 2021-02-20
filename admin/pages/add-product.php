@@ -1,35 +1,35 @@
 <?php
-    $errMsg = '';
+$errMsg = '';
 
-    //evitare manipolazioni
-    if (!defined('ROOT_URL')){
-        die;
-    }
+//evitare manipolazioni
+if (!defined('ROOT_URL')) {
+    die;
+}
 
-    $productMgr = new ProductManager();
+$productMgr = new ProductManager();
 
-    if (isset($_POST['add'])) {
+if (isset($_POST['add'])) {
 
-        $image = htmlspecialchars(trim($_POST['image']));
-        $name = htmlspecialchars(trim($_POST['name']));
-        $price = htmlspecialchars(trim($_POST['price']));
-        $description = htmlspecialchars(trim($_POST['description']));
-        $category_id = htmlspecialchars(trim($_POST['category_id']));
-      
-        if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '') {
-      
-            $id = $productMgr->create(new Product(0, $image, $name, $price, $description, $category_id));
+    $image = htmlspecialchars(trim($_POST['image']));
+    $name = htmlspecialchars(trim($_POST['name']));
+    $price = htmlspecialchars(trim($_POST['price']));
+    $description = htmlspecialchars(trim($_POST['description']));
+    $category_id = htmlspecialchars(trim($_POST['category_id']));
 
-            if ($id > 0) {
-                echo "<script>location.href='".ROOT_URL."admin?page=products-list&msg=created';</script>";
-                exit;
-            } else {
-                $alertMsg = 'err';
-            }
+    if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '') {
+
+        $id = $productMgr->create(new Product(0, $image, $name, $price, $description, $category_id));
+
+        if ($id > 0) {
+            echo "<script>location.href='" . ROOT_URL . "admin?page=products-list&msg=created';</script>";
+            exit;
         } else {
-            $alertMsg = 'mandatory_fields';
+            $alertMsg = 'err';
         }
+    } else {
+        $alertMsg = 'mandatory_fields';
     }
+}
 ?>
 
 <h2>Aggiungi Prodotto</h2>
@@ -47,14 +47,14 @@
     </div>
 
     <div class="form-group">
-    <label for="price">Prezzo</label>
+        <label for="price">Prezzo</label>
         <div class="form-group">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">€</span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">€</span>
+                </div>
+                <input type="text" class="form-control" name="price" id="price">
             </div>
-            <input type="text" class="form-control" name="price" id="price">
-        </div>
         </div>
     </div>
 
