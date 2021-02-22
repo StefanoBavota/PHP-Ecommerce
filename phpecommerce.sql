@@ -503,3 +503,10 @@ CREATE TABLE answer
  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
  FOREIGN KEY (contact_us_id) REFERENCES contact_us(id) ON DELETE CASCADE
 );
+
+CREATE TABLE newsletter
+(
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(255) NOT NULL,
+  PRIMARY KEY(id)
+);

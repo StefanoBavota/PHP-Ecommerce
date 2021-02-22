@@ -34,7 +34,7 @@
           </li>
           <?php if ($loggedInUser && !($loggedInUser->is_admin)) : ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=message-list">Assistenza</a>
+              <a class="nav-link" href="<?php echo ROOT_URL; ?>user?page=message-list">Assistenza</a>
             </li>
           <?php endif; ?>
         </ul>
@@ -70,8 +70,9 @@
               <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a>
                 <?php if ($loggedInUser && !($loggedInUser->is_admin)) : ?>
-                  <a class="dropdown-item" href="<?php echo ROOT_URL; ?>public?page=message-list">Assistenza</a>
+                  <a class="dropdown-item" href="<?php echo ROOT_URL; ?>user?page=message-list">Assistenza</a>
                 <?php endif; ?>
+                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>shop?page=my-orders">Ordini</a>
               </div>
             </li>
           </ul>

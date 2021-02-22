@@ -23,9 +23,13 @@ if (isset($_POST['register'])) {
     if ($userMgr->passwordMatch($password, $confirm_password)) {
 
         $result = $userMgr->register($nome, $cognome, $email, $password);
+        if(isset($_POST['newsletter_checked']) && $_POST['newsletter_checked'] === 'on'){
+            $userMgr->addToNewletter($email);
+        }
 
         if ($result > 0) {
             $userMgr->createAddress($result, $street, $city, $cap);
+
             echo '<script>location.href="' . ROOT_URL . 'auth?page=login"</script>';
             exit;
         } else {
@@ -35,7 +39,6 @@ if (isset($_POST['register'])) {
         $errMsg = "Le password non corrsipondono...";
     }
 }
-
 ?>
 
 <h2>Registrazione</h2>
@@ -81,7 +84,19 @@ if (isset($_POST['register'])) {
         </div>
     </div>
 
-    <button class="btn btn-primary" type="submit" name="register">Register</button>
+    <hr>
+
+    <h5 class="mb-3 mt-3">Newsletter</h5>
+    <div class="form-check">
+        <input class="form-check-input" name="newsletter_checked" type="checkbox" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            <h5>Iscrivti alla Newsletter</h5>
+        </label>
+    </div>
+
+    <hr>
+
+    <button class="btn btn-primary mb-5 mt-3" type="submit" name="register">Register</button>
 </form>
 
 Hai già un account? <a href="<?php echo ROOT_URL ?>auth?page=login">Effettua il Login! &raquo;</a>

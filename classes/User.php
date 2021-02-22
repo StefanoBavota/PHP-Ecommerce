@@ -99,6 +99,14 @@ class UserManager extends DBManager
         return $this->db->query($sql);
     }
 
+    public function addToNewletter($email) {
+        $resultSet = $this->db->execute("INSERT INTO newsletter (email) VALUES ('$email')");
+        if(!$resultSet) {
+            return array('error' => '');
+        }
+        return array('error' => '');
+    }
+
     public function createAddress($userId, $street, $city, $cap)
     {
         $query = "SELECT count(1) as has_address FROM address WHERE user_id = $userId";

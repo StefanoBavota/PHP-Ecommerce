@@ -75,7 +75,18 @@ class OrderManager extends DBManager
 
     public function getOrdersOfUser($userId, $status)
     {
-        $query = "CALL user_orders ($userId, '$status')";
+        $query = "SELECT 
+            o.id as order_id
+                ,o.created_at as created_date
+                ,o.updated_at as shipped_date
+                ,o.status as status
+            FROM orders o
+        WHERE
+            o.user_id = $userId AND status = '$status' 
+                AND (status is NULL OR status = o.status)
+            ORDER BY
+            o.created_at DESC;";
+
         //var_dump($query); die;
         $result = $this->db->query($query);
         //var_dump($result); die;
@@ -84,7 +95,12 @@ class OrderManager extends DBManager
 
     public function getEmailAndName($orderId)
     {
-        $result = $this->db->query("CALL get_order_email ($orderId)");
+        $result = $this->db->query("SELECT u.email, u.first_name
+            FROM orders as o
+            INNER JOIN user as u
+            ON o.user_id = u.id
+        WHERE 
+            o.id = $orderId;");
         //var_dump($result); die;
         return $result[0];
     }
@@ -163,7 +179,20 @@ class OrderManager extends DBManager
 
     public function getAllOrders($status)
     {
-        $result = $this->db->query("CALL all_orders ('$status')");
+        $result = $this->db->query("SELECT 
+            o.id as order_id
+                , o.created_at as created_date
+                , o.updated_at as shipped_date
+                , o.status as status
+                , o.user_id as user_id
+                , u.email as user_descr
+            FROM orders o
+            INNER JOIN user u
+            ON o.user_id = u.id
+        WHERE
+                ($status is NULL OR $status = o.status)
+            ORDER BY
+            o.created_at DESC;");
         //var_dump($result); die;
         return $result;
     }
