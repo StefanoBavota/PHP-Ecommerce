@@ -45,6 +45,10 @@ class UserManager extends DBManager
         $this->delete_msg($id);
     }
 
+    public function deleteAnswer($id) {
+        $this->delete_answer($id);
+    }
+
     public function register($nome, $cognome, $email, $password)
     {
 
@@ -77,6 +81,11 @@ class UserManager extends DBManager
         return array('error' => '');
     }
 
+    public function getCurrentContactUs() {
+        $sql = "SELECT nome, cognome, email, msg, user_id, contact_us.id AS msg_id FROM contact_us";
+        return $this->db->query($sql);
+    }
+
     public function addToAnswer($msg, $userId, $contacUsId) {
         $resultSet = $this->db->execute("INSERT INTO answer (msg, user_id, contact_us_id) VALUES ('$msg', $userId, $contacUsId)");
         if(!$resultSet) {
@@ -85,8 +94,8 @@ class UserManager extends DBManager
         return array('error' => '');
     }
 
-    public function getCurrentContactUs() {
-        $sql = "SELECT nome, cognome, email, msg, user_id, contact_us.id AS msg_id FROM contact_us";
+    public function getCurrentUserAnswer($userId) {
+        $sql = "SELECT * FROM answer WHERE user_id = $userId";
         return $this->db->query($sql);
     }
 

@@ -32,9 +32,9 @@
           <li class="nav-item">
             <a class="nav-link" href="<?php echo ROOT_URL; ?>shop?page=products-list">Prodotti</a>
           </li>
-          <?php if ($loggedInUser) : ?>
+          <?php if ($loggedInUser && !($loggedInUser->is_admin)) : ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=contacts">Contattattaci</a>
+              <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=message-list">Assistenza</a>
             </li>
           <?php endif; ?>
         </ul>
@@ -69,6 +69,9 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a>
+                <?php if ($loggedInUser && !($loggedInUser->is_admin)) : ?>
+                  <a class="dropdown-item" href="<?php echo ROOT_URL; ?>public?page=message-list">Assistenza</a>
+                <?php endif; ?>
               </div>
             </li>
           </ul>

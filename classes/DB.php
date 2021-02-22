@@ -201,6 +201,12 @@ class DBManager
         return (int) $rowsDeleted;
     }
 
+    public function delete_answer($id)
+    {
+        $rowsDeleted = $this->db->delete_one("answer", (int)$id);
+        return (int) $rowsDeleted;
+    }
+
     public function update($obj, $id)
     {
         $rowsUpdated = $this->db->update_one($this->tableName, (array) $obj, (int)$id);
