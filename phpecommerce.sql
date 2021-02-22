@@ -287,7 +287,7 @@ CREATE TABLE `wish_list` (
 INSERT INTO `wish_list` (`id`, `product_id`, `user_id`) VALUES
 (5, 2, 1),
 (1, 11, 1),
-(9, 20, 1);
+(9, 20, 1);vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
 --
 -- Indici per le tabelle scaricate
@@ -492,3 +492,14 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE answer
+(
+ id int NOT NULL AUTO_INCREMENT,
+ msg text CHARACTER SET latin1 NOT NULL,
+ user_id int NOT NULL,
+ contact_us_id int NOT NULL,
+ PRIMARY KEY(id),
+ FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+ FOREIGN KEY (contact_us_id) REFERENCES contact_us(id) ON DELETE CASCADE
+);

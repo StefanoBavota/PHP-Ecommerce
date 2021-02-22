@@ -18,6 +18,8 @@ if (isset($_POST['remove'])) {
 
 $users = $userMgr->getAll();
 $message = $userMgr->getCurrentContactUs();
+
+// $msg['msg'] qui mi da l'id di chi ha inviato il messaggio
 ?>
 
 <h1>Elenco Utenti</h1>

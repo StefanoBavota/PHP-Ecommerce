@@ -69,8 +69,16 @@ class UserManager extends DBManager
         return $this->db->query($sql);
     }
 
-    public function addToContactUs($nome, $cognome, $email, $msg) {
-        $resultSet = $this->db->execute("INSERT INTO contact_us (nome, cognome, email, msg) VALUES ('$nome', '$cognome', '$email', '$msg')");
+    public function addToContactUs($nome, $cognome, $email, $msg, $userId) {
+        $resultSet = $this->db->execute("INSERT INTO contact_us (nome, cognome, email, msg, user_id) VALUES ('$nome', '$cognome', '$email', '$msg', $userId)");
+        if(!$resultSet) {
+            return array('error' => 'Hai già inivato il messaggio');
+        }
+        return array('error' => '');
+    }
+
+    public function addToAnswer($msg, $userId, $contacUsId) {
+        $resultSet = $this->db->execute("INSERT INTO answer (msg, user_id, contact_us_id) VALUES ('$msg', $userId, $contacUsId)");
         if(!$resultSet) {
             return array('error' => 'Hai già inivato il messaggio');
         }
@@ -78,7 +86,7 @@ class UserManager extends DBManager
     }
 
     public function getCurrentContactUs() {
-        $sql = "SELECT nome, cognome, email, msg, contact_us.id AS msg_id FROM contact_us";
+        $sql = "SELECT nome, cognome, email, msg, user_id, contact_us.id AS msg_id FROM contact_us";
         return $this->db->query($sql);
     }
 

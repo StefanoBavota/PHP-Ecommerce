@@ -7,6 +7,12 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+
+$userMgr = new UserManager();
+
 if (isset($_POST['send'])) {
 
     $nome = htmlspecialchars(trim($_POST['nome']));
@@ -14,9 +20,7 @@ if (isset($_POST['send'])) {
     $email = htmlspecialchars(trim($_POST['email']));
     $msg = htmlspecialchars(trim($_POST['msg']));
 
-    $userMgr = new UserManager();
-
-    $id = $userMgr->addToContactUs($nome, $cognome, $email, $msg);
+    $id = $userMgr->addToContactUs($nome, $cognome, $email, $msg, $user->id);
 
     if ($id > 0) {
         echo '<script>location.href="' . ROOT_URL . 'public"</script>';

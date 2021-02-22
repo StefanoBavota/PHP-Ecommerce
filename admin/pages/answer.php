@@ -4,9 +4,28 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+
 $messageId = $_GET['id'];
 $messageService = new UserManager();
-$msg = $messageService->getMessage($messageId)[0];
+$msge = $messageService->getMessage($messageId)[0];
+
+if (isset($_POST['answer'])) {
+
+    $msg = htmlspecialchars(trim($_POST['msg']));
+
+    
+    $id = $messageService->addToAnswer($msg, $user->id, $msge['user_id']);
+
+    if ($id > 0) {
+        echo "<script>location.href='" . ROOT_URL . "admin?page=users-list&msg=updated';</script>";
+        exit;
+    } else {
+        $alertMsg = 'err';
+    }
+}
 
 ?>
 
@@ -16,12 +35,8 @@ $msg = $messageService->getMessage($messageId)[0];
 
 <form method="post" class="mt-5">
     <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text" class="form-control" value="<?php echo $msg['email']; ?>">
-    </div>
-    <div class="form-group">
-        <label for="msge">Descrizione</label>
-        <textarea rows="7" name="msge" id="msge" type="text" class="form-control"></textarea>
+        <label for="msg">Risposta</label>
+        <textarea rows="7" name="msg" id="msg" type="text" class="form-control"></textarea>
     </div>
     <input type="hidden" name="id" value="<?php echo esc_html($user->id); ?>">
     <input name="answer" type="submit" class="btn btn-primary" value="Rispondi">
