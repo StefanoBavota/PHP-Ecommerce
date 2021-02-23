@@ -3,13 +3,14 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 23, 2021 alle 14:25
+-- Creato il: Feb 23, 2021 alle 16:55
 -- Versione del server: 10.4.14-MariaDB
 -- Versione PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,7 +41,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `user_id`, `street`, `city`, `cap`) VALUES
 (3, 1, 'Strada Colle Renazzo, 25', 'Pescara', '65129'),
-(5, 9, 'strada', 'Pescara', '65129'),
+(5, 9, 'stradaa', 'Pescara', '65129'),
 (6, 19, 'Strada Colle Renazzo, 26', 'Pescara', '65129');
 
 -- --------------------------------------------------------
@@ -158,6 +159,27 @@ INSERT INTO `contact_us` (`id`, `nome`, `cognome`, `email`, `msg`, `user_id`) VA
 (2, 'stefano', 'bavota', 'lol@gmail.it', 'asdgfgadfgadgfag', 9),
 (5, 'Stefano', 'Bavota', 'cristianobombardo@hotmail.it', 'asfasdfadfsagdga', 1),
 (6, 'Stefano', 'Bavota', 'test3@test.com', 'adsfagdaggafdgadgfghsfghdfghjdj', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `faq`
+--
+
+CREATE TABLE `faq` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `text` text CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `faq`
+--
+
+INSERT INTO `faq` (`id`, `title`, `text`) VALUES
+(5, 'FAQ-3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales nibh a tempus dignissim. Donec aliquam mi vitae tellus varius, at lacinia erat porta. Quisque vel turpis luctus, dapibus mi sit amet, laoreet augue. Donec feugiat, lacus at rutrum luctus, erat tellus ultrices nisl, eu pretium risus massa at ante. Nulla turpis metus, ultrices nec dui vel, lacinia varius tortor. Ut ac sem eget massa dapibus ornare. Duis a tempus ex, vel rhoncus elit. Ut vulputate dignissim est, id fermentum quam porttitor sed.'),
+(6, 'FAQ-4', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales nibh a tempus dignissim. Donec aliquam mi vitae tellus varius, at lacinia erat porta. Quisque vel turpis luctus, dapibus mi sit amet, laoreet augue. Donec feugiat, lacus at rutrum luctus, erat tellus ultrices nisl, eu pretium risus massa at ante. Nulla turpis metus, ultrices nec dui vel, lacinia varius tortor. Ut ac sem eget massa dapibus ornare. Duis a tempus ex, vel rhoncus elit. Ut vulputate dignissim est, id fermentum quam porttitor sed.'),
+(7, 'FAQ-5', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales nibh a tempus dignissim. Donec aliquam mi vitae tellus varius, at lacinia erat porta. Quisque vel turpis luctus, dapibus mi sit amet, laoreet augue. Donec feugiat, lacus at rutrum luctus, erat tellus ultrices nisl, eu pretium risus massa at ante. Nulla turpis metus, ultrices nec dui vel, lacinia varius tortor. Ut ac sem eget massa dapibus ornare. Duis a tempus ex, vel rhoncus elit. Ut vulputate dignissim est, id fermentum quam porttitor sed.');
 
 -- --------------------------------------------------------
 
@@ -343,7 +365,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `Nome`, `Cognome`, `email`, `password`, `user_type_id`) VALUES
-(1, 'Stefano', 'Bavota', 'cristianobombardo@hotmail.it', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(1, 'Stefano', 'Bavota', 'admin@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
 (2, 'Matteo ', 'Del Papa', 'regular@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (9, 'Luca', 'Evangelista', 'test2@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (11, 'Stefano', 'Bavota', 'test6@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
@@ -435,6 +457,12 @@ ALTER TABLE `category`
 ALTER TABLE `contact_us`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indici per le tabelle `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `newsletter`
@@ -531,6 +559,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `contact_us`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT per la tabella `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `newsletter`
