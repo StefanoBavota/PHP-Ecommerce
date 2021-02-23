@@ -533,3 +533,24 @@ CREATE TABLE faq
   text text CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY(id)
 );
+
+CREATE TABLE merchants 
+(
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(50) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE brand 
+(
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(50) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE payment
+(
+  id int NOT NULL AUTO_INCREMENT,
+  type varchar(50) NOT NULL,
+  PRIMARY KEY(id)
+);

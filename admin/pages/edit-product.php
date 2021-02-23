@@ -79,5 +79,5 @@
     </select>
 
     <input type="hidden" name="id" value="<?php echo esc_html($product->id); ?>">
-    <input name="update" type="submit" class="btn btn-primary" value="Modifica Articolo">
+    <input name="update" type="submit" class="btn btn-primary mt-5" value="Modifica Articolo">
 </form>

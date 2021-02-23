@@ -12,7 +12,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "dashboard";
         <div class = "col-md-9 col-xs-12">
             <?php include ROOT_PATH . 'admin/pages/' . $page . '.php' ?>
         </div>
-
+    
         <?php include ROOT_PATH . 'admin/pages/sidebar.php' ?>
 
     </div>

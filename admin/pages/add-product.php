@@ -7,6 +7,7 @@ if (!defined('ROOT_URL')) {
 }
 
 $productMgr = new ProductManager();
+global $loggedInUser;
 
 if (isset($_POST['add'])) {
 
@@ -15,10 +16,12 @@ if (isset($_POST['add'])) {
     $price = htmlspecialchars(trim($_POST['price']));
     $description = htmlspecialchars(trim($_POST['description']));
     $category_id = htmlspecialchars(trim($_POST['category_id']));
+    $merchants = htmlspecialchars(trim($_POST['merchants']));
 
     if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '') {
 
         $id = $productMgr->create(new Product(0, $image, $name, $price, $description, $category_id));
+        $merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=products-list&msg=created';</script>";
@@ -70,5 +73,5 @@ if (isset($_POST['add'])) {
         <option value="2">Categoria 2</option>
     </select>
 
-    <button class="btn btn-primary" type="submit" name="add">Aggiungi</button>
+    <button class="btn btn-primary mt-3" type="submit" name="add">Aggiungi</button>
 </form>

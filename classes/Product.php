@@ -46,4 +46,35 @@ class ProductManager extends DBManager {
         return $this->db->query($sql);
     }
 
+    public function addBrand($brand){
+        $resultSet = $this->db->execute("INSERT INTO brand (name) VALUES ('$brand')");
+        if(!$resultSet) {
+            return array('error' => 'Hai già inserito il Brand');
+        }
+        return array('error' => '');
+    }
+
+    public function addCategory($category){
+        $resultSet = $this->db->execute("INSERT INTO category (name) VALUES ('$category')");
+        if(!$resultSet) {
+            return array('error' => 'Hai già inserito la Categoria');
+        }
+        return array('error' => '');
+    }
+
+    public function addPayment($payment){
+        $resultSet = $this->db->execute("INSERT INTO payment (type) VALUES ('$payment')");
+        if(!$resultSet) {
+            return array('error' => 'Hai già inserito il Metodo di pagamento');
+        }
+        return array('error' => '');
+    }
+
+    public function addMerchant($merchant){
+        $resultSet = $this->db->execute("INSERT INTO merchants (name) VALUES ('$merchant')");
+        if(!$resultSet) {
+            return array('error' => 'Hai già inserito il Fornitore');
+        }
+        return array('error' => '');
+    }
 }
