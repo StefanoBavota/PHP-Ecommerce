@@ -68,11 +68,12 @@
                 <?php echo $loggedInUser->email ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdown01">
-                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a>
+                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>user?page=profile">Account</a>
                 <?php if ($loggedInUser && !($loggedInUser->is_admin)) : ?>
                   <a class="dropdown-item" href="<?php echo ROOT_URL; ?>user?page=message-list">Assistenza</a>
                 <?php endif; ?>
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>shop?page=my-orders">Ordini</a>
+                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>auth?page=logout">Logout</a>
               </div>
             </li>
           </ul>

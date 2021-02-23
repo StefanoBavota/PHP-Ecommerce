@@ -44,7 +44,7 @@ if (isset($_POST['update'])) {
 
 <h1>Modifica Utente</h1>
 
-<form method="post" class="mt-5">
+<form method="post" class="mt-4">
     <div class="form-group">
         <label for="nome">Nome</label>
         <input name="nome" id="nome" type="text" class="form-control" value="<?php echo esc_html($user->nome); ?>">

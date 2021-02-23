@@ -25,6 +25,25 @@ class User
     }
 }
 
+class Address
+{
+
+    public $id;
+    public $user_id;
+    public $street;
+    public $city;
+    public $cap;
+
+    public function __construct($id, $user_id, $street, $city, $cap)
+    {
+        $this->id = (int)$id;
+        $this->nome = $user_id;
+        $this->cognome = $street;
+        $this->email = $city;
+        $this->user_type_id = $cap;
+    }
+}
+
 class UserManager extends DBManager
 {
 
@@ -104,6 +123,22 @@ class UserManager extends DBManager
     {
         $sql = "SELECT * FROM answer WHERE user_id = $userId";
         return $this->db->query($sql);
+    }
+
+    public function getAddress($userId)
+    {
+        $sql = "SELECT * FROM address WHERE user_id = $userId";
+        return $this->db->query($sql);
+    }
+
+    public function updateAddress($userId, $street, $city, $cap)
+    {
+        return $this->db->execute("UPDATE address SET street = '$street', city = '$city', cap = '$cap' WHERE user_id = $userId");
+    }
+
+    public function updateUser($userId, $nome, $cognome, $email)
+    {
+        return $this->db->execute("UPDATE user SET nome = '$nome', cognome = '$cognome', email = '$email' WHERE id = $userId");
     }
 
     public function addToNewletter($email)

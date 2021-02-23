@@ -166,7 +166,7 @@ class DBManager
         $resultArr = $this->db->select_one($this->tableName, $this->columns, (int)$id);
         return (object) $resultArr;
     }
-
+    
     public function getAll()
     {
         $results = $this->db->select_all($this->tableName, $this->columns);
