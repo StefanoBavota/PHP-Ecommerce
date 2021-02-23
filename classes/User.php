@@ -44,6 +44,47 @@ class Address
     }
 }
 
+class UserManager2 extends DBManager
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->tableName = 'user';
+        $this->columns = ['id', 'nome', 'cognome', 'email', 'password', 'user_type_id'];
+    }
+
+    public function deleteFaq($id)
+    {
+        $this->delete_faq($id);
+    }
+
+    public function addToFaq($title, $text)
+    {
+        $resultSet = $this->db->execute("INSERT INTO faq (title, text) VALUES ('$title', '$text')");
+        if (!$resultSet) {
+            return array('error' => 'Hai già inserito questa FAQ');
+        }
+        return array('error' => '');
+    }
+
+    public function getFaq()
+    {
+        $sql = "SELECT * FROM faq";
+        return $this->db->query($sql);
+    }
+
+    public function getFaqById($id)
+    {
+        $sql = "SELECT * FROM faq WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function updateFaq($id, $title, $text)
+    {
+        return $this->db->execute("UPDATE faq SET title = '$title', text = '$text' WHERE id = $id");
+    }
+}
+
 class UserManager extends DBManager
 {
 

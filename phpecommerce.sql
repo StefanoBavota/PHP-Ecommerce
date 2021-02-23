@@ -526,3 +526,10 @@ CREATE TABLE points
   PRIMARY KEY(id),
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
+
+CREATE TABLE faq
+(
+  id int NOT NULL AUTO_INCREMENT,
+  text text CHARACTER SET latin1 NOT NULL,
+  PRIMARY KEY(id)
+);

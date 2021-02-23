@@ -46,7 +46,6 @@ $message = $userMgr->getCurrentContactUs();
                             <input name="delete" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
                         </form>
                     </td>
-
                 </tr>
             <?php endforeach; ?>
         </tbody>

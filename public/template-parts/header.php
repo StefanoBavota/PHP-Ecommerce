@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=about">Chi Siamo</a>
+            <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=faq">FAQ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo ROOT_URL; ?>public?page=services">Servizi</a>
@@ -88,6 +88,7 @@
               <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=products-list">Gestione Prodotti</a>
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=users-list">Gestione Utenti</a>
+                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=admin-faq">Gestione FAQ</a>
               </div>
             </li>
           </ul>

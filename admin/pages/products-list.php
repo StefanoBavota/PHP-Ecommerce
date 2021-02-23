@@ -17,6 +17,7 @@ if (isset($_POST['remove'])) {
 
 $products = $productMgr->getAll();
 ?>
+
 <div class="row">
 
     <?php if ($products) : ?>
