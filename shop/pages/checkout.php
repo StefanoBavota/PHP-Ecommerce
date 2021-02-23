@@ -32,6 +32,7 @@ if (!$error && !$address) {
 
 if (!$error) {
     $orderId = $orderMgr->createOrderFromCart($cartId, $loggedInUser->id);
+    $orderMgr->addToPoints($loggedInUser->id);
 
     $orderItems = $orderMgr->getOrderItems($orderId);
     $orderTotal = $orderMgr->getOrderTotal($orderId)[0];
@@ -43,8 +44,7 @@ if (!$error) {
 ?>
 
 <h1>Grazie per aver effettuato l'acquisto</h1>
-<p class="lead">Di seguito un riepilogo. Riceverà una mail con i dettagli dell'ordine</p>
+<p class="lead">Hai gudagnato 5 punti!</p>
 <br>
-
 
 <a class="back underline" href="<?php echo ROOT_URL; ?>">&laquo; Torna alla Home</a>

@@ -29,6 +29,7 @@ if (isset($_POST['register'])) {
 
         if ($result > 0) {
             $userMgr->createAddress($result, $street, $city, $cap);
+            $userMgr->initializePoints($result);
 
             echo '<script>location.href="' . ROOT_URL . 'auth?page=login"</script>';
             exit;

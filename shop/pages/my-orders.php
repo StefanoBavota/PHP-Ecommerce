@@ -17,9 +17,25 @@ $status = 'pending';
 $pendingOrders = $orderMgr->getOrdersOfUser($userId, 'pending');
 $status = 'shipped';
 $shippedOrders = $orderMgr->getOrdersOfUser($userId, $status);
+$points = $orderMgr->totalInPoints($userId);
 
 $count = 0;
 ?>
+
+<h1 cass="mb-4">
+    I miei punti:
+    <?php if ((int)$points > 0) :  ?>
+        <span class="badge bg-info rounded-pill text-white">
+            <?php echo $points; ?>
+        </span>
+    <?php else : ?>
+        <span class="badge bg-info rounded-pill text-white">0</span>
+    <?php endif; ?>
+</h1>
+
+<h5 class="card-title mb-4">Ogni volta che completi un acquisto il tuo punteggio incrementa di 5 punti!</h5>
+
+<hr>
 
 <h1 cass="mb-4">I miei ordini</h1>
 

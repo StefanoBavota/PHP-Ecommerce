@@ -41,11 +41,13 @@ class UserManager extends DBManager
         return $password == $confirm_password;
     }
 
-    public function deleteMessage($id) {
+    public function deleteMessage($id)
+    {
         $this->delete_msg($id);
     }
 
-    public function deleteAnswer($id) {
+    public function deleteAnswer($id)
+    {
         $this->delete_answer($id);
     }
 
@@ -68,43 +70,54 @@ class UserManager extends DBManager
         return $userId;
     }
 
-    public function getMessage($id) {
+    public function getMessage($id)
+    {
         $sql = "SELECT * FROM contact_us WHERE id = $id";
         return $this->db->query($sql);
     }
 
-    public function addToContactUs($nome, $cognome, $email, $msg, $userId) {
+    public function addToContactUs($nome, $cognome, $email, $msg, $userId)
+    {
         $resultSet = $this->db->execute("INSERT INTO contact_us (nome, cognome, email, msg, user_id) VALUES ('$nome', '$cognome', '$email', '$msg', $userId)");
-        if(!$resultSet) {
+        if (!$resultSet) {
             return array('error' => 'Hai già inivato il messaggio');
         }
         return array('error' => '');
     }
 
-    public function getCurrentContactUs() {
+    public function getCurrentContactUs()
+    {
         $sql = "SELECT nome, cognome, email, msg, user_id, contact_us.id AS msg_id FROM contact_us";
         return $this->db->query($sql);
     }
 
-    public function addToAnswer($msg, $userId, $contacUsId) {
+    public function addToAnswer($msg, $userId, $contacUsId)
+    {
         $resultSet = $this->db->execute("INSERT INTO answer (msg, user_id, contact_us_id) VALUES ('$msg', $userId, $contacUsId)");
-        if(!$resultSet) {
+        if (!$resultSet) {
             return array('error' => 'Hai già inivato il messaggio');
         }
         return array('error' => '');
     }
 
-    public function getCurrentUserAnswer($userId) {
+    public function getCurrentUserAnswer($userId)
+    {
         $sql = "SELECT * FROM answer WHERE user_id = $userId";
         return $this->db->query($sql);
     }
 
-    public function addToNewletter($email) {
+    public function addToNewletter($email)
+    {
         $resultSet = $this->db->execute("INSERT INTO newsletter (email) VALUES ('$email')");
-        if(!$resultSet) {
+        if (!$resultSet) {
             return array('error' => '');
         }
         return array('error' => '');
+    }
+
+    public function initializePoints($userId)
+    {
+        $this->db->execute("INSERT INTO points (user_id, total) VALUES ($userId, 0)");
     }
 
     public function createAddress($userId, $street, $city, $cap)

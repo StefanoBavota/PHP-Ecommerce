@@ -510,3 +510,19 @@ CREATE TABLE newsletter
   email varchar(255) NOT NULL,
   PRIMARY KEY(id)
 );
+
+CREATE TABLE newsletter
+(
+  id int NOT NULL AUTO_INCREMENT,
+  email varchar(255) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE points
+(
+  id int NOT NULL AUTO_INCREMENT,
+  user_id int NOT NULL,
+  total int NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+);

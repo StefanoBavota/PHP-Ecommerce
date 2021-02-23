@@ -73,6 +73,31 @@ class OrderManager extends DBManager
         return $result;
     }
 
+    public function addToPoints($userId)
+    {
+        $total = $this->totalInPoints($userId);
+        $this->incrementTotal($total, $userId);
+
+    }
+
+    public function totalInPoints($userId)
+    {
+        //$total = 0;
+        $results = $this->db->query("SELECT total FROM points WHERE user_id = $userId");
+        if (count($results) > 0) {
+            $total = (int)$results[0]['total'];
+        }else{
+            $total = 0;
+        }
+        return $total;
+    }
+
+    private function incrementTotal($total, $userId)
+    {
+        $total = $total + 5;
+        $this->db->execute("UPDATE points SET total = $total WHERE user_id = $userId");
+    }
+
     public function getOrdersOfUser($userId, $status)
     {
         $query = "SELECT 
