@@ -9,7 +9,7 @@ $mgr = new UserManager2();
 if (isset($_GET['id'])) {
 
     $id = trim($_GET['id']);
-    $faq = $mgr->getFaqById($id);
+    $faq = $mgr->getFaqById($id)[0];
 }
 
 // Submit update
@@ -36,11 +36,11 @@ if (isset($_POST['update'])) {
 <form method="post" class="mt-4">
     <div class="form-group">
         <label for="title">Titolo</label>
-        <input name="title" id="title" type="text" class="form-control" value="<?php echo $faq[0]['title'] ?>">
+        <input name="title" id="title" type="text" class="form-control" value="<?php echo $faq['title'] ?>">
     </div>
     <div class="form-group">
         <label for="text">Testo</label>
-        <textarea rows="7" name="text" id="text" type="text" class="form-control"><?php echo $faq[0]['text'] ?></textarea>
+        <textarea rows="7" name="text" id="text" type="text" class="form-control"><?php echo $faq['text'] ?></textarea>
     </div>
     <input type="hidden" name="id" value="<?php echo $faq['id'] ?>">
     <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica FAQ">

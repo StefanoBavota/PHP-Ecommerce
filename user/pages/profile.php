@@ -15,7 +15,7 @@ $userId = $loggedInUser->id;
 
 $mgr = new UserManager();
 $user = $mgr->get($userId);
-$address = $mgr->getAddress($userId);
+$address = $mgr->getAddress($userId)[0];
 
 // Submit update
 if (isset($_POST['update'])) {
@@ -60,15 +60,15 @@ if (isset($_POST['update'])) {
     </div>
     <div class="form-group">
         <label for="street">Indirizzo</label>
-        <input name="street" id="street" type="text" class="form-control" value="<?php echo $address[0]['street']; ?>">
+        <input name="street" id="street" type="text" class="form-control" value="<?php echo $address['street']; ?>">
     </div>
     <div class="form-group">
         <label for="city">Città</label>
-        <input name="city" id="city" type="text" class="form-control" value="<?php echo $address[0]['city']; ?>">
+        <input name="city" id="city" type="text" class="form-control" value="<?php echo $address['city']; ?>">
     </div>
     <div class="form-group">
         <label for="cap">Cap</label>
-        <input name="cap" id="cap" type="text" class="form-control" value="<?php echo $address[0]['cap']; ?>">
+        <input name="cap" id="cap" type="text" class="form-control" value="<?php echo $address['cap']; ?>">
     </div>
     <input type="hidden" name="id" value="<?php echo esc_html($userId); ?>">
     <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica Utente">

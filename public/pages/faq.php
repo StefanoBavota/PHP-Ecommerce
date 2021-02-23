@@ -24,10 +24,10 @@ $faqs = $mgr->getFaq();
 
             <div class="accordion" id="accordionExample">
                 <div class="card">
-                    <div class="card-header" id="headingOne">
+                    <div class="card-header" id="heading<?php echo $faq['id']; ?>">
 
                         <h5 class="mb-0"></h5>
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><?php echo $faq['title'] ?></button>
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?php echo $faq['id']; ?>" aria-expanded="true" aria-controls="collapse<?php echo $faq['id']; ?>"><?php echo $faq['title'] ?></button>
 
                         <?php if ($loggedInUser && $loggedInUser->is_admin) : ?>
 
@@ -40,7 +40,7 @@ $faqs = $mgr->getFaq();
                         <?php endif; ?>
                     </div>
 
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id="collapse<?php echo $faq['id']; ?>" class="collapse" aria-labelledby="heading<?php echo $faq['id']; ?>" data-parent="#accordionExample">
                         <div class="card-body">
                             <?php echo $faq['text'] ?>
                         </div>
