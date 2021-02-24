@@ -287,7 +287,7 @@ CREATE TABLE `wish_list` (
 INSERT INTO `wish_list` (`id`, `product_id`, `user_id`) VALUES
 (5, 2, 1),
 (1, 11, 1),
-(9, 20, 1);vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+(9, 20, 1);
 
 --
 -- Indici per le tabelle scaricate
