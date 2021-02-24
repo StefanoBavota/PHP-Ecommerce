@@ -18,15 +18,16 @@ if (isset($_POST['update'])) {
 
     $name = esc($_POST['name']);
 
-    $productMgr2->updateBrand($id, $name);
+    $res = $productMgr2->updateBrand($id, $name);
 
-    if (($name) > 0) {
+    if (($res) > 0) {
         echo "<script>location.href='" . ROOT_URL . "admin?page=others-list';</script>";
         exit;
     } else {
         $alertMsg = 'err';
     }
 }
+
 ?>
 
 <a href="<?php echo ROOT_URL . 'admin?page=others-list'; ?>" class="back underline">&laquo; Torna alla lista delle specifiche</a>

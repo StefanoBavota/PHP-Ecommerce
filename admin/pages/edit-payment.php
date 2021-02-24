@@ -18,9 +18,9 @@ if (isset($_POST['update'])) {
 
     $type = esc($_POST['type']);
 
-    $productMgr2->updatePayment($id, $type);
+    $res = $productMgr2->updatePayment($id, $type);
 
-    if (($type) > 0) {
+    if (($res) > 0) {
         echo "<script>location.href='" . ROOT_URL . "admin/?page=others-list';</script>";
         exit;
     } else {

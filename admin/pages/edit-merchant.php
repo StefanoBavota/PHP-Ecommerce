@@ -18,9 +18,9 @@ if (isset($_POST['update'])) {
 
     $name = esc($_POST['name']);
 
-    $productMgr2->updateMerchant($id, $name);
+    $res = $productMgr2->updateMerchant($id, $name);
 
-    if (($name) > 0) {
+    if (($res) > 0) {
         echo "<script>location.href='" . ROOT_URL . "admin/?page=others-list';</script>";
         exit;
     } else {
