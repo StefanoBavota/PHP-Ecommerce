@@ -63,7 +63,7 @@ $allMerchant = $productMgr->getAllMerchant();
                                     <tr>
                                         <td class="big-screen"><?php echo $brand['name']; ?></td>
                                         <td>
-                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=others'; ?>&id=<?php echo $brand['id']; ?>">Modifica</a>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=edit-brand'; ?>&id=<?php echo $brand['id']; ?>">Modifica</a>
                                             <form method="post" class="right">
                                                 <input type="hidden" name="id" value="<?php echo $brand['id']; ?>">
                                                 <input name="delete1" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
@@ -105,7 +105,7 @@ $allMerchant = $productMgr->getAllMerchant();
                                     <tr>
                                         <td class="big-screen"><?php echo $category['name']; ?></td>
                                         <td>
-                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=others'; ?>&id=<?php echo $category['id']; ?>">Modifica</a>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=edit-category'; ?>&id=<?php echo $category['id']; ?>">Modifica</a>
                                             <form method="post" class="right">
                                                 <input type="hidden" name="id" value="<?php echo $category['id']; ?>">
                                                 <input name="delete2" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
@@ -147,7 +147,7 @@ $allMerchant = $productMgr->getAllMerchant();
                                     <tr>
                                         <td class="big-screen"><?php echo $payment['type']; ?></td>
                                         <td>
-                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=others'; ?>&id=<?php echo $payment['id']; ?>">Modifica</a>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=edit-payment'; ?>&id=<?php echo $payment['id']; ?>">Modifica</a>
                                             <form method="post" class="right">
                                                 <input type="hidden" name="id" value="<?php echo $payment['id']; ?>">
                                                 <input name="delete3" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
@@ -189,7 +189,7 @@ $allMerchant = $productMgr->getAllMerchant();
                                     <tr>
                                         <td class="big-screen"><?php echo $merchant['name']; ?></td>
                                         <td>
-                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=others'; ?>&id=<?php echo $merchant['id']; ?>">Modifica</a>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=edit-merchant'; ?>&id=<?php echo $merchant['id']; ?>">Modifica</a>
                                             <form method="post" class="right">
                                                 <input type="hidden" name="id" value="<?php echo $merchant['id']; ?>">
                                                 <input name="delete4" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">

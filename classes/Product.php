@@ -21,6 +21,35 @@ class Product
     }
 }
 
+class ProductManager2 extends DBManager {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->columns = array('id', 'image', 'name', 'price', 'description', 'category_id');
+        $this->tableName = 'product';
+    }
+
+    public function updateBrand($id, $name)
+    {
+        return $this->db->execute("UPDATE brand SET name = '$name' WHERE id = $id");
+    }
+
+    public function updateCategory($id, $name)
+    {
+        return $this->db->execute("UPDATE category SET name = '$name' WHERE id = $id");
+    }
+
+    public function updatePayment($id, $type)
+    {
+        return $this->db->execute("UPDATE payment SET type = '$type' WHERE id = $id");
+    }
+
+    public function updateMerchant($id, $name)
+    {
+        return $this->db->execute("UPDATE merchants SET name = '$name' WHERE id = $id");
+    }
+}
+
 class ProductManager extends DBManager
 {
 
@@ -135,5 +164,29 @@ class ProductManager extends DBManager
     {
         $rowsDeleted = $this->db->delete_one("merchants", (int)$id);
         return (int) $rowsDeleted;
+    }
+
+    public function getBrandById($id)
+    {
+        $sql = "SELECT * FROM brand WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function getCategoryById($id)
+    {
+        $sql = "SELECT * FROM category WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function getPaymentById($id)
+    {
+        $sql = "SELECT * FROM payment WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function getMerchantById($id)
+    {
+        $sql = "SELECT * FROM merchants WHERE id = $id";
+        return $this->db->query($sql);
     }
 }
