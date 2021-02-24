@@ -35,7 +35,7 @@ $allMerchant = $productMgr->getAllMerchant();
 
 ?>
 
-<h2 class="mb-5">Scegli cosa editare</h2>
+<h2 class="mb-5">Modifica Specifiche</h2>
 
 <div class="accordion" id="accordionExample">
     <div class="card">

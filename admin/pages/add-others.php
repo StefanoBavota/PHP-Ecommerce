@@ -20,7 +20,7 @@ if (isset($_POST['add1'])) {
         //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
-            echo "<script>location.href='" . ROOT_URL . "admin?page=set-others&msg=created';</script>";
+            echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
             exit;
         } else {
             $alertMsg = 'err';
@@ -40,7 +40,7 @@ if (isset($_POST['add2'])) {
         //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
-            echo "<script>location.href='" . ROOT_URL . "admin?page=set-others&msg=created';</script>";
+            echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
             exit;
         } else {
             $alertMsg = 'err';
@@ -60,7 +60,7 @@ if (isset($_POST['add3'])) {
         //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
-            echo "<script>location.href='" . ROOT_URL . "admin?page=set-others&msg=created';</script>";
+            echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
             exit;
         } else {
             $alertMsg = 'err';
@@ -80,7 +80,7 @@ if (isset($_POST['add4'])) {
         //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
-            echo "<script>location.href='" . ROOT_URL . "admin?page=set-others&msg=created';</script>";
+            echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
             exit;
         } else {
             $alertMsg = 'err';
