@@ -89,7 +89,8 @@
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=products-list">Gestione Prodotti</a>
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=users-list">Gestione Utenti</a>
                 <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=admin-faq">Gestione FAQ</a>
-                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=set-others">Miscellanea</a>
+                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=set-others">Aggiungi specifiche</a>
+                <a class="dropdown-item" href="<?php echo ROOT_URL; ?>admin?page=edit-others">Modifica specifiche</a>
               </div>
             </li>
           </ul>
