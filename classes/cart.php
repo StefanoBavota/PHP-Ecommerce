@@ -55,6 +55,38 @@ class CartItemManager extends DBManager
         $this->columns = array('id', 'cart_id', 'product_id', 'quantity');
         $this->tableName = 'cart_item';
     }
+
+    public function updatePayment($id, $type)
+    {
+        return $this->db->execute("UPDATE payment SET type = '$type' WHERE id = $id");
+    }
+
+    public function addPayment($payment)
+    {
+        $resultSet = $this->db->execute("INSERT INTO payment (type) VALUES ('$payment')");
+        if (!$resultSet) {
+            return array('error' => 'Hai già inserito il Metodo di pagamento');
+        }
+        return array('error' => '');
+    }
+
+    public function getAllPayment()
+    {
+        $sql = "SELECT * FROM payment";
+        return $this->db->query($sql);
+    }
+
+    public function deletePayment($id)
+    {
+        $rowsDeleted = $this->db->delete_one("payment", (int)$id);
+        return (int) $rowsDeleted;
+    }
+
+    public function getPaymentById($id)
+    {
+        $sql = "SELECT * FROM payment WHERE id = $id";
+        return $this->db->query($sql);
+    }
 }
 
 class OrderManager extends DBManager
@@ -77,7 +109,6 @@ class OrderManager extends DBManager
     {
         $total = $this->totalInPoints($userId);
         $this->incrementTotal($total, $userId);
-
     }
 
     public function totalInPoints($userId)
@@ -86,7 +117,7 @@ class OrderManager extends DBManager
         $results = $this->db->query("SELECT total FROM points WHERE user_id = $userId");
         if (count($results) > 0) {
             $total = (int)$results[0]['total'];
-        }else{
+        } else {
             $total = 0;
         }
         return $total;

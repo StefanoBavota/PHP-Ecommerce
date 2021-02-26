@@ -7,6 +7,7 @@ if (!defined('ROOT_URL')) {
 }
 
 $productMgr = new ProductManager();
+$cartMgr = new CartItemManager();
 global $loggedInUser;
 
 if (isset($_POST['add1'])) {
@@ -16,8 +17,6 @@ if (isset($_POST['add1'])) {
     $id = $productMgr->addBrand($brand);
 
     if ($brand != '') {
-
-        //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
@@ -37,8 +36,6 @@ if (isset($_POST['add2'])) {
 
     if ($category != '') {
 
-        //$merch = $productMgr->addMerchant($merchants, $productId);
-
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
             exit;
@@ -53,11 +50,9 @@ if (isset($_POST['add3'])) {
 
     $payment = htmlspecialchars(trim($_POST['payment']));
 
-    $id = $productMgr->addPayment($payment);
+    $id = $cartMgr->addPayment($payment);
 
     if ($payment != '') {
-
-        //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
@@ -76,8 +71,6 @@ if (isset($_POST['add4'])) {
     $id = $productMgr->addMerchant($merchant);
 
     if ($merchant != '') {
-
-        //$merch = $productMgr->addMerchant($merchants, $productId);
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";

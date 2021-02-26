@@ -6,11 +6,12 @@ if (!defined('ROOT_URL')) {
 
 $productMgr = new ProductManager();
 $productMgr2 = new ProductManager2();
+$cartMgr = new CartItemManager();
 
 if (isset($_GET['id'])) {
 
     $id = trim($_GET['id']);
-    $payment = $productMgr->getPaymentById($id)[0];
+    $payment = $cartMgr->getPaymentById($id)[0];
 }
 
 // Submit update
@@ -18,7 +19,7 @@ if (isset($_POST['update'])) {
 
     $type = esc($_POST['type']);
 
-    $res = $productMgr2->updatePayment($id, $type);
+    $res = $cartMgr->updatePayment($id, $type);
 
     if (($res) > 0) {
         echo "<script>location.href='" . ROOT_URL . "admin/?page=others-list';</script>";

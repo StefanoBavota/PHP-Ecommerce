@@ -21,7 +21,8 @@ class Product
     }
 }
 
-class ProductManager2 extends DBManager {
+class ProductManager2 extends DBManager
+{
     public function __construct()
     {
         parent::__construct();
@@ -39,14 +40,23 @@ class ProductManager2 extends DBManager {
         return $this->db->execute("UPDATE category SET name = '$name' WHERE id = $id");
     }
 
-    public function updatePayment($id, $type)
-    {
-        return $this->db->execute("UPDATE payment SET type = '$type' WHERE id = $id");
-    }
-
     public function updateMerchant($id, $name)
     {
         return $this->db->execute("UPDATE merchants SET name = '$name' WHERE id = $id");
+    }
+    
+    public function updateProduct($id, $image, $name, $price, $description, $category_id, $brand, $merchant)
+    {
+        return $this->db->execute("UPDATE product SET image = '$image', name = '$name', price = $price, description = '$description', category_id = $category_id, brand_id = $brand, merchant_id = $merchant WHERE id = $id");
+    }
+
+    public function addToProduct($image, $name, $price, $description, $category_id, $brand, $merchant)
+    {
+        $resultSet = $this->db->execute("INSERT INTO product (image, name, price, description, category_id, brand_id, merchant_id) VALUES ('$image', '$name', $price, '$description', $category_id, $brand, $merchant)");
+        if (!$resultSet) {
+            return array('error' => 'Hai già inserito l\'oggetto nella wishlist');
+        }
+        return array('error' => '');
     }
 }
 
@@ -100,14 +110,6 @@ class ProductManager extends DBManager
         return array('error' => '');
     }
 
-    public function addPayment($payment)
-    {
-        $resultSet = $this->db->execute("INSERT INTO payment (type) VALUES ('$payment')");
-        if (!$resultSet) {
-            return array('error' => 'Hai già inserito il Metodo di pagamento');
-        }
-        return array('error' => '');
-    }
 
     public function addMerchant($merchant)
     {
@@ -130,11 +132,6 @@ class ProductManager extends DBManager
         return $this->db->query($sql);
     }
 
-    public function getAllPayment()
-    {
-        $sql = "SELECT * FROM payment";
-        return $this->db->query($sql);
-    }
 
     public function getAllMerchant()
     {
@@ -147,16 +144,10 @@ class ProductManager extends DBManager
         $rowsDeleted = $this->db->delete_one("brand", (int)$id);
         return (int) $rowsDeleted;
     }
-    
+
     public function deleteCategory($id)
     {
         $rowsDeleted = $this->db->delete_one("category", (int)$id);
-        return (int) $rowsDeleted;
-    }
-    
-    public function deletePayment($id)
-    {
-        $rowsDeleted = $this->db->delete_one("payment", (int)$id);
         return (int) $rowsDeleted;
     }
 
@@ -178,15 +169,15 @@ class ProductManager extends DBManager
         return $this->db->query($sql);
     }
 
-    public function getPaymentById($id)
-    {
-        $sql = "SELECT * FROM payment WHERE id = $id";
-        return $this->db->query($sql);
-    }
-
     public function getMerchantById($id)
     {
         $sql = "SELECT * FROM merchants WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function getProductById($id)
+    {
+        $sql = "SELECT * FROM product WHERE id = $id";
         return $this->db->query($sql);
     }
 }

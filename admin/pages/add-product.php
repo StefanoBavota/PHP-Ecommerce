@@ -7,6 +7,7 @@ if (!defined('ROOT_URL')) {
 }
 
 $productMgr = new ProductManager();
+$productMgr2 = new ProductManager2();
 global $loggedInUser;
 
 if (isset($_POST['add'])) {
@@ -16,12 +17,13 @@ if (isset($_POST['add'])) {
     $price = htmlspecialchars(trim($_POST['price']));
     $description = htmlspecialchars(trim($_POST['description']));
     $category_id = htmlspecialchars(trim($_POST['category_id']));
-    $merchants = htmlspecialchars(trim($_POST['merchants']));
+    $merchant = htmlspecialchars(trim($_POST['merchant']));
+    $brand = htmlspecialchars(trim($_POST['brand']));
+    $merchant = htmlspecialchars(trim($_POST['merchant']));
 
-    if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '') {
+    if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '' && $brand != '' && $brand != '0' && $merchant != '' && $merchant != '0') {
 
-        $id = $productMgr->create(new Product(0, $image, $name, $price, $description, $category_id));
-        $merch = $productMgr->addMerchant($merchants, $productId);
+        $id = $productMgr2->addToProduct($image, $name, $price, $description, $category_id, $brand, $merchant);
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=products-list&msg=created';</script>";
@@ -33,7 +35,13 @@ if (isset($_POST['add'])) {
         $alertMsg = 'mandatory_fields';
     }
 }
+
+$categorys = $productMgr->getAllCategory();
+$brands = $productMgr->getAllBrand();
+$merchants = $productMgr->getAllMerchant();
 ?>
+
+<a href="<?php echo ROOT_URL . "admin/?page=products-list"; ?>" class="back underline">&laquo; Lista Prodotti</a>
 
 <h2>Aggiungi Prodotto</h2>
 
@@ -67,11 +75,46 @@ if (isset($_POST['add'])) {
     </div>
 
     <label for="category_id">Categoria</label>
-    <select name="category_id" id="category_id" type="text" class="form-control" value="<?php echo esc_html($product->category_id); ?>">
+    <select name="category_id" id="category_id" type="text" class="form-control" value="<?php echo $category['id']; ?>">
         <option value="0"> - Scegli una categoria - </option>
-        <option value="1">Categoria 1</option>
-        <option value="2">Categoria 2</option>
+        <?php if ($categorys) : ?>
+            <?php foreach ($categorys as $category) : ?>
+
+                <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+
+            <?php endforeach; ?>
+        <?php else : ?>
+            <p>Nessuna categoria disponibile</p>
+        <?php endif; ?>
     </select>
 
-    <button class="btn btn-primary mt-3" type="submit" name="add">Aggiungi</button>
+    <label for="brand" class="mt-3">Brand</label>
+    <select name="brand" id="brand" type="text" class="form-control" value="<?php echo $brand['id']; ?>">
+        <option value="0"> - Scegli un Brand - </option>
+        <?php if ($brands) : ?>
+            <?php foreach ($brands as $brand) : ?>
+
+                <option value="<?php echo $brand['id']; ?>"><?php echo $brand['name']; ?></option>
+
+            <?php endforeach; ?>
+        <?php else : ?>
+            <p>Nessuna Brand disponibile</p>
+        <?php endif; ?>
+    </select>
+
+    <label for="merchant" class="mt-3">Fornitore</label>
+    <select name="merchant" id="merchant" type="text" class="form-control" value="<?php echo $merchant['id']; ?>">
+        <option value="0"> - Scegli un Fornitore - </option>
+        <?php if ($merchants) : ?>
+            <?php foreach ($merchants as $merchant) : ?>
+
+                <option value="<?php echo $merchant['id']; ?>"><?php echo $merchant['name']; ?></option>
+
+            <?php endforeach; ?>
+        <?php else : ?>
+            <p>Nessun Fornitore disponibile</p>
+        <?php endif; ?>
+    </select>
+
+    <button class="btn btn-primary mt-4" type="submit" name="add">Aggiungi</button>
 </form>

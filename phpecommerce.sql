@@ -554,3 +554,11 @@ CREATE TABLE payment
   type varchar(50) NOT NULL,
   PRIMARY KEY(id)
 );
+
+ALTER TABLE product
+ADD brand_id int,
+ADD FOREIGN KEY (brand_id) REFERENCES brand(id) ON DELETE CASCADE;
+
+ALTER TABLE product
+ADD merchant_id int,
+ADD FOREIGN KEY (merchant_id) REFERENCES merchants(id) ON DELETE CASCADE;

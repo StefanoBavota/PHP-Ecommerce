@@ -7,6 +7,7 @@ if (!defined('ROOT_URL')) {
 }
 
 $productMgr = new ProductManager();
+$cartMgr = new CartItemManager();
 
 if (isset($_POST['delete1'])) {
     $id = trim($_POST['id']);
@@ -20,7 +21,7 @@ if (isset($_POST['delete2'])) {
 
 if (isset($_POST['delete3'])) {
     $id = trim($_POST['id']);
-    $productMgr->deletePayment($id);
+    $cartMgr->deletePayment($id);
 }
 
 if (isset($_POST['delete4'])) {
@@ -30,7 +31,7 @@ if (isset($_POST['delete4'])) {
 
 $allBrand = $productMgr->getAllBrand();
 $allCategory = $productMgr->getAllCategory();
-$allPayment = $productMgr->getAllPayment();
+$allPayment = $cartMgr->getAllPayment();
 $allMerchant = $productMgr->getAllMerchant();
 
 ?>
