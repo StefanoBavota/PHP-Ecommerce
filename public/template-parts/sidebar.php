@@ -25,10 +25,10 @@ if (isset($user)) {
 
 ?>
 
-<div class="row">
+<div class="row col-md-3">
     <?php if (isset($user)) : ?>
         <div>
-            <div class="jumbotron">
+            <div class="jumbotron" style="width: 18rem;">
 
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Lista dei desideri</span>
@@ -49,7 +49,6 @@ if (isset($user)) {
                                 <div class="col-10">
                                     <div>
                                         <h6 class="my-0"><?php echo $product['name'] ?></h6>
-                                        <small class="text-muted"><?php echo $product['description']; ?></small>
                                     </div>
                                     <span class="text-muted"><?php echo $product['price']; ?> €</span>
                                 </div>

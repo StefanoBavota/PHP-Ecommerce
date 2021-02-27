@@ -23,7 +23,6 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
-// è colpa di team viewer si loro mi sentono
 if (isset($_POST['add_to_cart'])) {
     // aggiungi al carrello
     $productId = htmlspecialchars(trim($_POST['id']));
@@ -38,7 +37,7 @@ if (isset($_POST['add_to_cart'])) {
 }
 ?>
 
-
+<h2>Tutti i nostri prodotti</h2>
 
 <div class="row">
     <?php if ($products) : ?>
@@ -57,7 +56,7 @@ if (isset($_POST['add_to_cart'])) {
                             <input type="hidden" name="id" value="<?php echo $product->id; ?>">
                             <input type="hidden" name="add_to_wish_list">
                             <?php if ($loggedInUser) : ?>
-                            <button class="btn btn-info btn-sm btn-block rounded-0">Aggiungi alla Lista</button>
+                                <button class="btn btn-info btn-sm btn-block rounded-0">Aggiungi alla Lista</button>
                             <?php endif; ?>
                         </form>
                     </div>

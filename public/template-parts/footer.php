@@ -22,6 +22,14 @@ $cart_total = $cm->getCartTotal($cartId);
 <script>
     $(document).ready(function() {
         $('.js-totCartItems').html('<?php echo $cart_total['num_products'] ?>');
+        $(window).on('scroll', function() {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 50) {
+                $('#header').addClass('fixed');
+            } else {
+                $('#header').removeClass('fixed');
+            }
+        });
     });
 </script>
 </body>

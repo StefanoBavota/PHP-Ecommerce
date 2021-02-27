@@ -19,7 +19,6 @@
     margin: 10px auto;
     width: 45vw;
     border-radius: 5px;
-    
 }
 
 .large-icon {
@@ -45,10 +44,54 @@
     color: darkslategray;
 }
 
+.nav-link {
+    color: black !important;
+}
+
+.bg-dark {
+    background-color: black !important;
+}
+
+.banner {
+    background-image: url(../img/banner.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 650px;
+    top: 0;
+}
+
+#header {
+    background-color: transparent !important;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+#header.fixed {
+    background-color: rgba(255, 255, 255, 1) !important;
+    position: fixed;
+    z-index: 10000;
+}
+
+.navbar-toggler {
+    background-color: black !important;
+}
+.navbar-toggler-icon {
+    color: white !important;
+}
 /* media query */
 
 @media (min-width: 1200px) { 
     #main {
         max-width: 1500px !important;
     }
+}
+
+.hamburger-icon {
+    margin-top: 2px;
+    font-size: 1.7rem;
+}
+
+.navbar-button-collapse {
 }
