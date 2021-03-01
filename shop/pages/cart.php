@@ -81,7 +81,7 @@ $cart_items = $cm->getCartItems($cartId);
         <?php endif; ?>
 
     <?php else : ?>
-        <p class="lead">Nessun elemento nel carrello... </p>
+        <p class="lead" style="margin-top: 100px;">Nessun elemento nel carrello... </p>
         <a href="<?php echo ROOT_URL ?>shop/?page=products-list" class="btn btn-primary">Torna a fare acquisti &raquo;</a>
     <?php endif; ?>
 
