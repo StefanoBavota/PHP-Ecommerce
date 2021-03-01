@@ -16,7 +16,7 @@ if (isset($_POST['answer'])) {
 
     $msg = htmlspecialchars(trim($_POST['msg']));
 
-    
+
     $id = $messageService->addToAnswer($msg, $user->id, $msge['user_id']);
 
     if ($id > 0) {
@@ -29,7 +29,9 @@ if (isset($_POST['answer'])) {
 
 ?>
 
-<a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline">&laquo; Lista Messaggi</a>
+<div class="mt-5 mb-4">
+    <a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline scuro">&laquo; Lista Messaggi</a>
+</div>
 
 <h1>Rispondi al Messaggio</h1>
 

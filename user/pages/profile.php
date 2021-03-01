@@ -41,35 +41,39 @@ if (isset($_POST['update'])) {
 }
 ?>
 
-<a href="<?php echo ROOT_URL; ?>" class="back underline">&laquo; Home</a>
+<div style="margin-top: 70px;">
+    <div class="mb-4">
+    <a href="<?php echo ROOT_URL; ?>" class="back underline separate-top">&laquo; Home</a>
+    </div>
 
-<h1>Modifica dati personali</h1>
+    <h1>Modifica dati personali</h1>
 
-<form method="post" class="mt-4">
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input name="nome" id="nome" type="text" class="form-control" value="<?php echo esc_html($user->nome); ?>">
-    </div>
-    <div class="form-group">
-        <label for="cognome">Cognome</label>
-        <input name="cognome" id="cognome" type="text" class="form-control" value="<?php echo esc_html($user->cognome); ?>">
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text" class="form-control" value="<?php echo esc_html($user->email); ?>">
-    </div>
-    <div class="form-group">
-        <label for="street">Indirizzo</label>
-        <input name="street" id="street" type="text" class="form-control" value="<?php echo $address['street']; ?>">
-    </div>
-    <div class="form-group">
-        <label for="city">Città</label>
-        <input name="city" id="city" type="text" class="form-control" value="<?php echo $address['city']; ?>">
-    </div>
-    <div class="form-group">
-        <label for="cap">Cap</label>
-        <input name="cap" id="cap" type="text" class="form-control" value="<?php echo $address['cap']; ?>">
-    </div>
-    <input type="hidden" name="id" value="<?php echo esc_html($userId); ?>">
-    <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica Utente">
-</form>
+    <form method="post" class="mt-4">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input name="nome" id="nome" type="text" class="form-control" value="<?php echo esc_html($user->nome); ?>">
+        </div>
+        <div class="form-group">
+            <label for="cognome">Cognome</label>
+            <input name="cognome" id="cognome" type="text" class="form-control" value="<?php echo esc_html($user->cognome); ?>">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input name="email" id="email" type="text" class="form-control" value="<?php echo esc_html($user->email); ?>">
+        </div>
+        <div class="form-group">
+            <label for="street">Indirizzo</label>
+            <input name="street" id="street" type="text" class="form-control" value="<?php echo $address['street']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="city">Città</label>
+            <input name="city" id="city" type="text" class="form-control" value="<?php echo $address['city']; ?>">
+        </div>
+        <div class="form-group">
+            <label for="cap">Cap</label>
+            <input name="cap" id="cap" type="text" class="form-control" value="<?php echo $address['cap']; ?>">
+        </div>
+        <input type="hidden" name="id" value="<?php echo esc_html($userId); ?>">
+        <input name="update" type="submit" class="btn btn-primary mt-4 mb-5" value="Modifica Utente">
+    </form>
+</div>

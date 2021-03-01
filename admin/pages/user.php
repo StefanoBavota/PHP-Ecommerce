@@ -40,7 +40,9 @@ if (isset($_POST['update'])) {
 }
 ?>
 
-<a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline">&laquo; Lista Utenti</a>
+<div class="mt-5 mb-4">
+    <a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline scuro">&laquo; Lista Utenti</a>
+</div>
 
 <h1>Modifica Utente</h1>
 

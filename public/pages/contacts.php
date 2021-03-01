@@ -32,7 +32,7 @@ if (isset($_POST['send'])) {
 
 ?>
 
-<h1>Contattaci</h1>
+<h1 class="separate-top">Contattaci</h1>
 
 <form method="post">
     <div class="form-group">

@@ -23,7 +23,7 @@ $products = $productMgr->getAll();
     <?php if ($products) : ?>
         <?php foreach ($products as $product) : ?>
 
-            <div class="card" style="width: 18rem;">
+            <div class="card ml-3 mb-3" style="width: 18rem;">
                 <img src="<?php echo $product->image ?>" class="card-img-top" alt="..." style="width:100%; height: 20rem; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $product->name ?></h5>

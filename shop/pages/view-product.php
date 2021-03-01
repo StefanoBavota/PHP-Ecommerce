@@ -5,6 +5,9 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
 
 // in caso l'id non ci fosse reindirizza alla home page
 if (!isset($_GET['id'])) {
@@ -12,23 +15,31 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
+$pm = new ProductManager();
+$cm = new CartManager();
+$errorMessage = null;
+
 if (isset($_POST['add_to_cart'])) {
 
     $productId = htmlspecialchars(trim($_POST['id']));
-    // addToCart logic
-    $cm = new CartManager();
+    
     $cartId = $cm->getCurrentCartId();
 
-    // aggiungi al carrello "cartId" il prodotto "productId"
     $cm->addToCart($productId, $cartId);
+}
 
-    // stampato un messaggio per l'utente es. ellem aggiunto al carrello
-    // echo 'ok';
+if (isset($_POST['add_to_wish_list'])) {
+    $productId = htmlspecialchars(trim($_POST['id']));
+
+    // ($product_id, $user->id) -> DB ( wish_list )
+    $addToWishlistOutcome = $pm->addToWishList($productId, $user->id);
+
+    if (isset($addToWishlistOutcome)) {
+        $errorMessage = $addToWishlistOutcome['error'];
+    }
 }
 
 $id = htmlspecialchars(trim($_GET['id']));
-
-$pm = new ProductManager();
 $product = $pm->get($id);
 
 // in caso l'id fosse errato reindirizza alla home page
@@ -38,7 +49,7 @@ if (!(property_exists($product, 'id'))) {
 }
 ?>
 
-<div class="jumbotron" style="margin-top:100px;">
+<div class="jumbotron separate-top">
     <img src="<?php echo $product->image ?>" class="card-img-top" style="width:100%; height: 25rem; object-fit: cover;">
     <div class="card-body">
         <h1 class="display-5"><?php echo $product->name ?></h1>
@@ -46,7 +57,7 @@ if (!(property_exists($product, 'id'))) {
         <hr class="my-4">
         <p class="lead">Prezzo: <?php echo $product->price ?> €</p>
         <form method="post">
-            <input name="id" type="hidden" value="26">
+            <input name="id" type="hidden" value="<?php echo $product->id ?>">
             <input name="add_to_cart" type="submit" class="btn btn-primary right mb-2" value="Aggiungi al carrello">
         </form>
 

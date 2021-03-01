@@ -41,7 +41,9 @@ $brands = $productMgr->getAllBrand();
 $merchants = $productMgr->getAllMerchant();
 ?>
 
-<a href="<?php echo ROOT_URL . "admin/?page=products-list"; ?>" class="back underline">&laquo; Lista Prodotti</a>
+<div class="mt-5 mb-4">
+    <a href="<?php echo ROOT_URL . "admin/?page=products-list"; ?>" class="back underline scuro">&laquo; Lista Prodotti</a>
+</div>
 
 <h2>Aggiungi Prodotto</h2>
 

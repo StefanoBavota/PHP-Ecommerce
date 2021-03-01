@@ -100,9 +100,17 @@ body {
     text-align: center;
 }
 
+.scuro {
+    color: black;
+}
+
 .table {
     background-color: white;
     border-radius: 5px;
+}
+
+.separate-top {
+    margin-top: 100px;
 }
 /* media query */
 

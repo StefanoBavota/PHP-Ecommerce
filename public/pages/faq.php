@@ -51,6 +51,6 @@ $faqs = $mgr->getFaq();
 
         <?php endforeach; ?>
     <?php else : ?>
-        <p>Nessuna FAQ presente</p>
+        <p class="separate-top">Nessuna FAQ presente</p>
     <?php endif; ?>
 </div>

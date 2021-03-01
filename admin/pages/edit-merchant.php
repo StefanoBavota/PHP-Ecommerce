@@ -29,7 +29,9 @@ if (isset($_POST['update'])) {
 }
 ?>
 
-<a href="<?php echo ROOT_URL . 'admin?page=others-list'; ?>" class="back underline">&laquo; Torna alla lista delle specifiche</a>
+<div class="mt-5 mb-4">
+    <a href="<?php echo ROOT_URL . 'admin?page=others-list'; ?>" class="back underline">&laquo; Torna alla lista delle specifiche</a>
+</div>
 
 <h1 class="mt-3">Modifica Fornitore</h1>
 
