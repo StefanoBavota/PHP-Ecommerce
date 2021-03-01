@@ -10,7 +10,7 @@ $cart_total = $cm->getCartTotal($cartId);
 <!-- FOOTER -->
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted color-text-footer">Place sticky footer content here.</span>
     </div>
 </footer>
 <!-- END FOOTER -->

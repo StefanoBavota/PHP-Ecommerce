@@ -28,7 +28,7 @@ if (isset($user)) {
 <div class="row col-md-3">
     <?php if (isset($user)) : ?>
         <div>
-            <div class="jumbotron" style="width: 18rem;">
+            <div class="jumbotron" style="width: 18rem; margin-top:100px;">
 
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Lista dei desideri</span>
@@ -59,13 +59,12 @@ if (isset($user)) {
                     <p>Nessun prodotto disponibile...</p>
                 <?php endif; ?>
 
+                <form class="card p-2">
+                    <div class="input-group">
+                        <a href="<?php echo ROOT_URL . 'shop/?page=wish-list'; ?>" class="btn btn-primary btn-sm btn-block rounded-0">Visualizza Lista</a>
+                    </div>
+                </form>
             </div>
-
-            <form class="card p-2">
-                <div class="input-group">
-                    <a href="<?php echo ROOT_URL . 'shop/?page=wish-list'; ?>" class="btn btn-primary btn-sm btn-block rounded-0">Visualizza Lista</a>
-                </div>
-            </form>
         </div>
     <?php endif; ?>
 </div>

@@ -17,8 +17,8 @@
 	<nav id="header" class="navbar navbar-expand-md bg-secondary fixed-top">
 		<div class="container-fluid ml-5 mr-5">
 			<a class="navbar-brand" href="<?php echo ROOT_URL; ?>shop?page=products-list"><img src="<?php echo ROOT_URL; ?>assets/img/prova_logo_4.png" alt="Home" width="160" height="65" /></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"><i class="fa fa-bars hamburger-icon" aria-hidden="true"></i></span>
+			<button class="navbar-toggler navbar-button-collapse" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"> <i class="fa fa-bars hamburger-icon" aria-hidden="true"></i> </span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarToggleExternalContent">

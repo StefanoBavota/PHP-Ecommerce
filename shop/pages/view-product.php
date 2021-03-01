@@ -38,7 +38,7 @@ if (!(property_exists($product, 'id'))) {
 }
 ?>
 
-<div class="jumbotron">
+<div class="jumbotron" style="margin-top:100px;">
     <img src="<?php echo $product->image ?>" class="card-img-top" style="width:100%; height: 25rem; object-fit: cover;">
     <div class="card-body">
         <h1 class="display-5"><?php echo $product->name ?></h1>
@@ -47,7 +47,15 @@ if (!(property_exists($product, 'id'))) {
         <p class="lead">Prezzo: <?php echo $product->price ?> €</p>
         <form method="post">
             <input name="id" type="hidden" value="26">
-            <input name="add_to_cart" type="submit" class="btn btn-primary right" value="Aggiungi al carrello">
+            <input name="add_to_cart" type="submit" class="btn btn-primary right mb-2" value="Aggiungi al carrello">
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="id" value="<?php echo $product->id; ?>">
+            <input type="hidden" name="add_to_wish_list">
+            <?php if ($loggedInUser) : ?>
+                <button class="btn btn-info">Aggiungi alla Lista</button>
+            <?php endif; ?>
         </form>
     </div>
 </div>
