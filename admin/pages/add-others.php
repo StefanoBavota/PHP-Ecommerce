@@ -114,7 +114,7 @@ if (isset($_POST['add4'])) {
     <div class="card">
         <div class="card-header" id="heading3">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                     Nuova Categoria
                 </button>
             </h5>
@@ -135,7 +135,7 @@ if (isset($_POST['add4'])) {
     <div class="card">
         <div class="card-header" id="heading5">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                     Nuovo Metodo di pagamento
                 </button>
             </h5>
@@ -156,7 +156,7 @@ if (isset($_POST['add4'])) {
     <div class="card">
         <div class="card-header" id="heading7">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
                     Nuovo Fornitore
                 </button>
             </h5>
