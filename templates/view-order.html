@@ -1,0 +1,34 @@
+<div class="separate-top">
+    <a href="{{  ROOT_URL }}?page=my-orders" class="back underline scuro">&laquo; I miei Ordini</a>
+</div>
+
+<h1 cass="mb-4">Ordine #{{  orderId }}</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th class="big-screen">#</th>
+        <th>Prodotto</th>
+        <th>Quantità</th>
+        <th class="big-screen">Prezzo Unitario</th>
+        <th>Prezzo</th>
+    </tr>
+    
+    {% for item in orderItems %}
+    {% set count = count + 1 %}
+        <tr>
+            <td class="big-screen">{{  count }}</td>
+            <td class="big-screen">{{  item['product_name'] }}</td>
+            <td>{{  item['quantity'] }}</td>
+            <td>{{  item['single_price'] }} €</td>
+            <td>{{  item['total_price'] }} €</td>
+        </tr>
+
+        
+    {% endfor %}
+    {% set count = 0 %}
+    <tr>
+        <th colspan="100%">
+            <h4 class="inline">Totale {{  orderTotal['total'] }} €</h4>
+        </th>
+    </tr>
+</table>
