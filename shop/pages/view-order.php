@@ -38,7 +38,8 @@ $twig = new \Twig\Environment($loader, [ ]);
 echo $twig->render('view-order.html', [
     'orderItems' => $orderItems,
     'orderTotal' => $orderTotal,
-    'count' => $count
+    'count' => $count,
+    'orderId' => $orderId
 ]);
 
 ?>
