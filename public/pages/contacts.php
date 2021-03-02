@@ -56,6 +56,6 @@ if (isset($_POST['send'])) {
 
     <form method="post">
         <input type="hidden" name="send">
-        <button class="btn btn-primary rounded-0">Invia il Messaggio</button>
+        <button class="btn btn-primary circle">Invia il Messaggio</button>
     </form>
 </form>

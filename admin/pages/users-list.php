@@ -43,7 +43,7 @@ $message = $userMgr->getCurrentContactUs();
                         <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=user'; ?>&id=<?php echo esc_html($user->id); ?>">Modifica</a>
                         <form method="post" class="right">
                             <input type="hidden" name="id" value="<?php echo esc_html($user->id); ?>">
-                            <input name="delete" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                            <input name="delete" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm mt-1" value="Elimina">
                         </form>
                     </td>
                 </tr>
@@ -76,7 +76,7 @@ $message = $userMgr->getCurrentContactUs();
                         <a class="btn btn-outline-secondary btn-sm left" href="<?php echo ROOT_URL . 'admin?page=answer'; ?>&id=<?php echo $msg['msg_id']; ?>">Rispondi</a>
                         <form method="post" class="right">
                             <input type="hidden" name="id" value="<?php echo $msg['msg_id']; ?>">
-                            <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                            <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm mt-1" value="Elimina">
                         </form>
                     </td>
 

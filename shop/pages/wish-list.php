@@ -46,19 +46,19 @@ if (isset($user)) {
                         <h5 class="card-title"><?php echo $product['name'] ?></h5>
                         <h5 class="card-title"><?php echo $product['price']; ?> €</h5>
                         <div class="mb-2">
-                            <button class="btn btn-secondary btn-sm btn-block rounded-0" onclick="location.href='<?php echo ROOT_URL . 'shop?page=view-product&id=' . $product['product_id']; ?>'">Vedi</button>
+                            <button class="btn btn-secondary btn-sm btn-block circle" onclick="location.href='<?php echo ROOT_URL . 'shop?page=view-product&id=' . $product['product_id']; ?>'">Vedi</button>
                         </div>
                         <div class="mb-2">
                             <form method="post">
                                 <input type="hidden" name="id" value="<?php echo $product['product_id'] ?>">
                                 <input type="hidden" name="id_wish" value="<?php echo $product['wish_list_id']; ?>">
-                                <input name="add_to_cart" type="submit" class="btn btn-primary btn-sm btn-block rounded-0" value="Aggiungi al carrello">
+                                <input name="add_to_cart" type="submit" class="btn btn-primary btn-sm btn-block circle" value="Aggiungi al carrello">
                             </form>
                         </div>
                         <div class="mb-2">
                             <form method="post" class="right">
                                 <input type="hidden" name="id" value="<?php echo $product['wish_list_id']; ?>">
-                                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block rounded-0" value="Rimuovi Articolo">
+                                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block circle" value="Rimuovi Articolo">
                             </form>
                         </div>
                     </div>

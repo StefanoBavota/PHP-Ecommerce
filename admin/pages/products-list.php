@@ -29,10 +29,10 @@ $products = $productMgr->getAll();
                     <h5 class="card-title"><?php echo $product->name ?></h5>
                     <h5 class="card-title"><?php echo $product->price ?> €</h5>
                     <p class="card-text"><?php echo $product->description ?></p>
-                    <a class="btn btn-primary btn-sm btn-block rounded-0" href="<?php echo ROOT_URL . 'admin?page=edit-product'; ?>&id=<?php echo esc_html($product->id); ?>">Modifica Articolo</a>
+                    <a class="btn btn-primary btn-sm btn-block circle" href="<?php echo ROOT_URL . 'admin?page=edit-product'; ?>&id=<?php echo esc_html($product->id); ?>">Modifica Articolo</a>
                     <form method="post" class="right">
                         <input type="hidden" name="id" value="<?php echo esc_html($product->id); ?>">
-                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block rounded-0" value="Rimuovi Articolo">
+                        <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm btn-block mt-2 circle" value="Rimuovi Articolo">
                     </form>
                 </div>
             </div>
