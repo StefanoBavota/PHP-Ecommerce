@@ -1,0 +1,21 @@
+<div class="jumbotron separate-top view-product-container">
+    <img src="{{ product.image }}" class="card-img-top" style="width:100%; height: 30rem; object-fit: none; object-position: 50% 75%;">
+    <div class="card-body">
+        <h1 class="display-5">{{ product.name }}</h1>
+        <p class="card-text">{{ product.description }}</p>
+        <hr class="my-4">
+        <p class="lead">Prezzo: {{ product.price }} €</p>
+        <form method="post">
+            <input name="id" type="hidden" value="{{ product.id }}">
+            <input name="add_to_cart" type="submit" class="btn btn-primary right mb-2" value="Aggiungi al carrello">
+        </form>
+
+        <form method="post">
+            <input type="hidden" name="id" value="{{ product.id }}">
+            <input type="hidden" name="add_to_wish_list">
+            {% if loggedInUser %}
+                <button class="btn btn-info">Aggiungi alla Lista</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
