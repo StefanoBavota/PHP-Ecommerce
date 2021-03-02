@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 02, 2021 alle 17:26
+-- Creato il: Mar 02, 2021 alle 21:30
 -- Versione del server: 10.4.14-MariaDB
 -- Versione PHP: 7.2.34
 
@@ -42,7 +42,14 @@ CREATE TABLE `address` (
 INSERT INTO `address` (`id`, `user_id`, `street`, `city`, `cap`) VALUES
 (3, 1, 'Strada Colle Renazzo, 25', 'Pescara', '65129'),
 (5, 9, 'stradaa', 'Pescara', '65129'),
-(6, 19, 'Strada Colle Renazzo, 26', 'Pescara', '65129');
+(7, 20, 'indirizzo 1', 'Pescara', '1234'),
+(8, 21, 'indirizzo 2', 'Pescara', '1234'),
+(9, 22, 'indirizzo 4', 'Pescara', '1234'),
+(10, 23, 'indirizzo 5', 'Pescara', '1234'),
+(11, 24, 'indirizzo 6', 'Pescara', '1234'),
+(12, 25, 'indirizzo 7', 'Pescara', '1234'),
+(13, 26, 'indirizzo 8', 'Pescara', '1234'),
+(14, 27, 'indirizzo 8', 'Pescara', '1234');
 
 -- --------------------------------------------------------
 
@@ -62,8 +69,9 @@ CREATE TABLE `answer` (
 --
 
 INSERT INTO `answer` (`id`, `msg`, `user_id`, `contact_us_id`) VALUES
-(7, 'come va?', 9, 1),
-(9, 'ciaooooooo', 1, 1);
+(10, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis. Nam pretium semper lacus, sed eleifend nulla pharetra et. Praesent finibus varius diam sit amet aliquet. Curabitur dolor mauris, placerat eget ornare sit amet, semper sit amet leo. Fusce dolor metus, feugiat vel tempus eu, imperdiet a orci. Integer dolor libero, faucibus et efficitur vel, vestibulum ac magna.', 1, 9),
+(11, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis. Nam pretium semper lacus, sed eleifend nulla pharetra et. Praesent finibus varius diam sit amet aliquet. Curabitur dolor mauris, placerat eget ornare sit amet, semper sit amet leo. Fusce dolor metus, feugiat vel tempus eu, imperdiet a orci. Integer dolor libero, faucibus et efficitur vel, vestibulum ac magna.', 1, 20),
+(12, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis. Nam pretium semper lacus, sed eleifend nulla pharetra et. Praesent finibus varius diam sit amet aliquet. Curabitur dolor mauris, placerat eget ornare sit amet, semper sit amet leo. Fusce dolor metus, feugiat vel tempus eu, imperdiet a orci. Integer dolor libero, faucibus et efficitur vel, vestibulum ac magna.', 1, 21);
 
 -- --------------------------------------------------------
 
@@ -82,7 +90,10 @@ CREATE TABLE `brand` (
 
 INSERT INTO `brand` (`id`, `name`) VALUES
 (4, 'Adidas'),
-(5, 'Puma');
+(5, 'Puma'),
+(6, 'Karl Kani'),
+(7, 'Nike'),
+(8, 'Vans');
 
 -- --------------------------------------------------------
 
@@ -111,7 +122,9 @@ INSERT INTO `cart` (`id`, `client_id`) VALUES
 (35, '7e301645a35e6dca28ad'),
 (37, 'bbe848d9033ca98b7a06'),
 (38, 'a539752ad1f91190456d'),
-(56, '6bb9b3a54297af8aa17d');
+(56, '6bb9b3a54297af8aa17d'),
+(57, '9a9d6535a5415e3dfa58'),
+(58, 'ac68f9fed768347ae282');
 
 -- --------------------------------------------------------
 
@@ -131,15 +144,11 @@ CREATE TABLE `cart_item` (
 --
 
 INSERT INTO `cart_item` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
-(47, 9, 2, 3),
-(48, 9, 11, 2),
-(49, 10, 11, 1),
-(50, 10, 1, 1),
-(55, 14, 11, 3),
-(57, 14, 2, 1),
-(58, 15, 11, 1),
-(79, 34, 11, 1),
-(103, 56, 11, 1);
+(104, 56, 33, 1),
+(105, 57, 30, 1),
+(106, 57, 35, 1),
+(107, 58, 32, 1),
+(108, 58, 33, 6);
 
 -- --------------------------------------------------------
 
@@ -157,10 +166,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'Categoria 1'),
-(2, 'Categoria 2'),
-(5, 'Categoria 3'),
-(6, 'Categoria 4');
+(1, 'Uomo'),
+(2, 'Donna');
 
 -- --------------------------------------------------------
 
@@ -182,9 +189,9 @@ CREATE TABLE `contact_us` (
 --
 
 INSERT INTO `contact_us` (`id`, `nome`, `cognome`, `email`, `msg`, `user_id`) VALUES
-(2, 'stefano', 'bavota', 'lol@gmail.it', 'asdgfgadfgadgfag', 9),
-(5, 'Stefano', 'Bavota', 'cristianobombardo@hotmail.it', 'asfasdfadfsagdga', 1),
-(6, 'Stefano', 'Bavota', 'test3@test.com', 'adsfagdaggafdgadgfghsfghdfghjdj', 1);
+(9, 'Luca', 'Evangelista', 'test2@test.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis. Nam pretium semper lacus, sed eleifend nulla pharetra et. Praesent finibus varius diam sit amet aliquet. Curabitur dolor mauris, placerat eget ornare sit amet, semper sit amet leo. Fusce dolor metus, feugiat vel tempus eu, imperdiet a orci. Integer dolor libero, faucibus et efficitur vel, vestibulum ac magna.', 9),
+(10, 'Paolo ', 'Rossi', 'tes1@test.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis. Nam pretium semper lacus, sed eleifend nulla pharetra et. Praesent finibus varius diam sit amet aliquet. Curabitur dolor mauris, placerat eget ornare sit amet, semper sit amet leo. Fusce dolor metus, feugiat vel tempus eu, imperdiet a orci. Integer dolor libero, faucibus et efficitur vel, vestibulum ac magna.', 20),
+(11, 'Luca', 'Rossi', 'tes2@test.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis. Nam pretium semper lacus, sed eleifend nulla pharetra et. Praesent finibus varius diam sit amet aliquet. Curabitur dolor mauris, placerat eget ornare sit amet, semper sit amet leo. Fusce dolor metus, feugiat vel tempus eu, imperdiet a orci. Integer dolor libero, faucibus et efficitur vel, vestibulum ac magna.', 21);
 
 -- --------------------------------------------------------
 
@@ -244,7 +251,11 @@ CREATE TABLE `newsletter` (
 
 INSERT INTO `newsletter` (`id`, `email`) VALUES
 (1, 'test10@test.com'),
-(2, 'test9@test.com');
+(2, 'test9@test.com'),
+(3, 'tes1@test.com'),
+(4, 'tes3@test.com'),
+(5, 'tes5@test.com'),
+(6, 'tes6@test.com');
 
 -- --------------------------------------------------------
 
@@ -284,16 +295,6 @@ INSERT INTO `orders` (`id`, `user_id`, `created_at`, `updated_at`, `status`, `pa
 (79, 9, '2021-02-23 09:56:48', NULL, 'pending', NULL),
 (80, 9, '2021-02-23 10:05:33', NULL, 'pending', NULL),
 (81, 9, '2021-02-23 10:05:54', NULL, 'pending', NULL),
-(82, 19, '2021-02-23 11:04:15', NULL, 'pending', NULL),
-(83, 19, '2021-02-23 11:07:34', NULL, 'pending', NULL),
-(84, 19, '2021-02-23 11:07:59', NULL, 'pending', NULL),
-(85, 19, '2021-02-23 11:08:35', NULL, 'pending', NULL),
-(86, 19, '2021-02-23 11:11:32', NULL, 'pending', NULL),
-(87, 19, '2021-02-23 11:13:51', NULL, 'pending', NULL),
-(88, 19, '2021-02-23 11:18:04', NULL, 'pending', NULL),
-(89, 19, '2021-02-23 11:19:14', NULL, 'pending', NULL),
-(90, 19, '2021-02-23 11:20:31', NULL, 'pending', NULL),
-(91, 19, '2021-02-23 11:21:34', NULL, 'pending', NULL),
 (92, 1, '2021-02-23 18:31:57', NULL, 'pending', NULL),
 (93, 1, '2021-02-26 22:10:21', NULL, 'pending', NULL),
 (94, 9, '2021-03-02 14:38:43', NULL, 'pending', NULL),
@@ -312,45 +313,6 @@ CREATE TABLE `order_items` (
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(15, 64, 2, 1),
-(16, 64, 11, 1),
-(18, 65, 2, 1),
-(19, 65, 11, 1),
-(21, 66, 2, 1),
-(22, 66, 11, 1),
-(24, 74, 2, 1),
-(25, 75, 2, 1),
-(26, 76, 1, 1),
-(27, 76, 2, 1),
-(28, 76, 11, 1),
-(29, 76, 15, 1),
-(30, 77, 2, 1),
-(31, 78, 2, 1),
-(32, 79, 2, 1),
-(33, 80, 2, 1),
-(34, 81, 1, 1),
-(35, 82, 11, 1),
-(36, 83, 11, 1),
-(37, 84, 2, 1),
-(38, 85, 1, 1),
-(39, 86, 16, 1),
-(40, 87, 11, 1),
-(41, 88, 11, 1),
-(42, 89, 2, 1),
-(43, 90, 11, 1),
-(44, 91, 11, 1),
-(45, 92, 2, 1),
-(46, 93, 11, 1),
-(47, 94, 2, 1),
-(48, 95, 1, 1),
-(49, 96, 11, 1),
-(50, 96, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -390,11 +352,15 @@ CREATE TABLE `points` (
 
 INSERT INTO `points` (`id`, `user_id`, `total`) VALUES
 (1, 9, 30),
-(2, 19, 5),
-(3, 2, 0),
-(5, 11, 0),
-(6, 12, 0),
-(7, 1, 10);
+(7, 1, 10),
+(8, 20, 0),
+(9, 21, 0),
+(10, 22, 0),
+(11, 23, 0),
+(12, 24, 0),
+(13, 25, 0),
+(14, 26, 0),
+(15, 27, 0);
 
 -- --------------------------------------------------------
 
@@ -418,11 +384,16 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `image`, `name`, `description`, `price`, `category_id`, `brand_id`, `merchant_id`) VALUES
-(1, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Prodotto 1', 'Questo è il prodotto 1', '5.99', 1, 4, 5),
-(2, 'https://images-na.ssl-images-amazon.com/images/I/7109j3QXFxL._UY625_.jpg', 'Prodotto 2', 'Questo è il prodotto 2', '19.95', 1, 5, 6),
-(11, 'https://static.nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/ti61nslwh35whirn9drr/womens-air-jordan-i-twist-release-date.jpg', 'Air Jordan', 'Air Jordan nere e bianche', '100.00', 2, NULL, NULL),
-(15, 'https://www.hypeclothinga.com/wp-content/uploads/2020/03/Nike-Air-Jordan-1-High-Retro-Court-Pruple-White-2020-Limited-Edition-555088-500-Hype-Clothinga--600x600.png', 'Jordan Purple', 'Purple', '150.00', 1, NULL, NULL),
-(16, 'https://images.vestiairecollective.com/cdn-cgi/image/w=500,h=undefined,q=80,f=auto,/produit/11400683-1_2.jpg', 'yeeze', 'yeezy costosissime', '700.00', 1, NULL, NULL);
+(30, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd48480da/1861494_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', '89 TT Sneaker', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 1, 6, 4),
+(31, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwba306804/1883852_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Max 2090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 1, 7, 4),
+(32, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw25e9a39c/1883945_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Zoom ‘92', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 2, 7, 5),
+(33, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc21bc798/1887314_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Ultraboost 4.0 DNA Laufschuh', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '159.99', 1, 4, 5),
+(34, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Force 1 Shadow', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '109.99', 2, 7, 5),
+(35, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw97418c62/1899827_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Air Vapormax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '224.99', 2, 7, 6),
+(36, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwfd0aff66/1689396_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UY Old Skool', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '49.99', 1, 8, 6),
+(37, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc37713d7/1906536_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UA Super ComfyCush Era', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 2, 8, 6),
+(38, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd43d2133/1899770_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Nike Air Max Zephyr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '179.99', 2, 7, 6),
+(39, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw66d14991/1892610_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Suede Classic XXI', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '79.99', 1, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -445,11 +416,15 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `Nome`, `Cognome`, `email`, `password`, `user_type_id`) VALUES
 (1, 'Stefano', 'Bavota', 'admin@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(2, 'Matteo ', 'Del Papa', 'regular@email.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (9, 'Luca', 'Evangelista', 'test2@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(11, 'Stefano', 'Bavota', 'test6@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(12, 'Stefano', 'Bavota', 'test5@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(19, 'Stefano', 'Bavota', 'test7@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
+(20, 'Paolo', 'Rossi', 'tes1@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(21, 'Luca', 'Rossi', 'tes2@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(22, 'Mario', 'Rossi', 'tes3@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(23, 'Fabio', 'Rossi', 'tes4@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(24, 'Marco', 'Rossi', 'tes5@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(25, 'Matteo', 'Rossi', 'tes6@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(26, 'Samuel', 'Rossi', 'tes7@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(27, 'Lorenzo', 'Rossi', 'tes8@test.com', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
 
 -- --------------------------------------------------------
 
@@ -487,7 +462,8 @@ CREATE TABLE `wish_list` (
 --
 
 INSERT INTO `wish_list` (`id`, `product_id`, `user_id`) VALUES
-(28, 15, 1);
+(30, 32, 1),
+(31, 33, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -626,31 +602,31 @@ ALTER TABLE `wish_list`
 -- AUTO_INCREMENT per la tabella `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT per la tabella `category`
@@ -662,7 +638,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT per la tabella `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `faq`
@@ -680,7 +656,7 @@ ALTER TABLE `merchants`
 -- AUTO_INCREMENT per la tabella `newsletter`
 --
 ALTER TABLE `newsletter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `orders`
@@ -704,19 +680,19 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT per la tabella `points`
 --
 ALTER TABLE `points`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT per la tabella `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT per la tabella `user_type`
@@ -728,7 +704,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT per la tabella `wish_list`
 --
 ALTER TABLE `wish_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Limiti per le tabelle scaricate
