@@ -25,7 +25,7 @@ if (isset($user)) {
 
 ?>
 
-<div class="row col-md-3">
+<div class="row col-md-3 ml-2">
     <?php if (isset($user)) : ?>
         <div>
             <div class="jumbotron" style="width: 18rem; margin-top:100px;">
@@ -61,7 +61,7 @@ if (isset($user)) {
 
                 <form class="card p-2">
                     <div class="input-group">
-                        <a href="<?php echo ROOT_URL . 'shop/?page=wish-list'; ?>" class="btn btn-primary btn-sm btn-block rounded-0">Visualizza Lista</a>
+                        <a href="<?php echo ROOT_URL . 'shop/?page=wish-list'; ?>" class="btn btn-primary btn-sm btn-block circle">Visualizza Lista</a>
                     </div>
                 </form>
             </div>

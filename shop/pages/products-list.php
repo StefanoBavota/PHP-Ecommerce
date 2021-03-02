@@ -47,6 +47,11 @@ if (isset($_POST['add_to_cart'])) {
                 <div class="card-body">
                     <h5 class="card-title centro"><?php echo $product->name ?></h5>
                     <h5 class="card-title centro"><?php echo $product->price ?> €</h5>
+
+                    <form method="post" class="centro">
+                        <input type="hidden" name="id" value="<?php echo $product->id ?>">
+                        <input name="add_to_cart" type="submit" class="btn btn-primary circle" value="Aggiungi al carrello">
+                    </form>
                 </div>
             </div>
         <?php endforeach; ?>

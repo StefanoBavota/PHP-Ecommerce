@@ -40,7 +40,7 @@ if (isset($user)) {
 <div class="row">
     <?php if ($wishlist) : ?>
             <?php foreach ($wishlist as $product) : ?>
-                <div class="card" style="width: 18rem;">
+                <div class="card ml-3 mb-3" style="width: 18rem;">
                     <img src="<?php echo $product['image']; ?>" class="card-img-top" alt="Card image cap" style="width:100%; height: 20rem; object-fit: cover;">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $product['name'] ?></h5>

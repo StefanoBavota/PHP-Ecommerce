@@ -43,8 +43,10 @@ if (!$error) {
 
 ?>
 
-<h1>Grazie per aver effettuato l'acquisto</h1>
-<p class="lead">Hai gudagnato 5 punti!</p>
-<br>
+<div class="separate-top">
+    <h1>Grazie per aver effettuato l'acquisto</h1>
+    <p class="lead">Hai gudagnato 5 punti!</p>
+    <br>
 
-<a class="back underline" href="<?php echo ROOT_URL; ?>">&laquo; Torna alla Home</a>
+    <a class="back underline" href="<?php echo ROOT_URL; ?>">&laquo; Torna alla Home</a>
+</div>

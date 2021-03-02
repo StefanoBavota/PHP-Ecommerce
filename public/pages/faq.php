@@ -28,14 +28,14 @@ $faqs = $mgr->getFaq();
 
                         <h5 class="mb-0"></h5>
 
-                        <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapse<?php echo $faq['id']; ?>" aria-expanded="true" aria-controls="collapse<?php echo $faq['id']; ?>"><?php echo $faq['title'] ?></button>
+                        <button class="btn btn-link scuro" type="button" data-toggle="collapse" data-target="#collapse<?php echo $faq['id']; ?>" aria-expanded="true" aria-controls="collapse<?php echo $faq['id']; ?>"><?php echo $faq['title'] ?></button>
 
                         <?php if ($loggedInUser && $loggedInUser->is_admin) : ?>
 
                             <a class="btn btn-outline-secondary btn-sm left ml-auto" style="float: right;" href="<?php echo ROOT_URL . 'admin?page=edit-faq'; ?>&id=<?php echo $faq['id']; ?>">Modifica</a>
                             <form method="post" class="right">
                                 <input type="hidden" name="id" value="<?php echo $faq['id']; ?>">
-                                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm rounded-0" value="Elimina" style="float: right;">
+                                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm circle" value="Elimina" style="float: right;">
                             </form>
 
                         <?php endif; ?>

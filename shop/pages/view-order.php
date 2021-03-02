@@ -31,7 +31,9 @@ if (count($orderItems) == 0) {
 $count = 0;
 ?>
 
-<a href="<?php echo ROOT_URL . 'shop?page=my-orders'; ?>" class="back underline">&laquo; I miei Ordini</a>
+<div class="separate-top">
+    <a href="<?php echo ROOT_URL . 'shop?page=my-orders'; ?>" class="back underline">&laquo; I miei Ordini</a>
+</div>
 
 <h1 cass="mb-4">Ordine #<?php echo esc_html($orderId); ?></h1>
 

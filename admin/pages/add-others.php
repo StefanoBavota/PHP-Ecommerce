@@ -84,13 +84,15 @@ if (isset($_POST['add4'])) {
 }
 ?>
 
-<h2 class="mb-5">Scegli cosa aggiungere</h2>
+<div class="separate-top">
+    <h2 class="mb-5">Scegli cosa aggiungere</h2>
+</div>
 
 <div class="accordion" id="accordionExample">
     <div class="card">
         <div class="card-header" id="heading1">
             <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                <button class="btn btn-link scuro" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                     Nuovo Brand
                 </button>
             </h5>

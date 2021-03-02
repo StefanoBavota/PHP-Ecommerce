@@ -9,7 +9,7 @@ html {
 
 body {
     margin-bottom: 6rem;
-    background-color: lightblue;
+    /* background-color: lightblue; */
 }
 
 .cart-buttons span {
@@ -40,13 +40,14 @@ body {
     position: absolute;
     bottom: 0;
     left: 0px;
-    height: 4rem;
-    background-color:  #ddb8b1 !important;
+    height: 5rem;
+    /* background-color:  #ddb8b1 !important; */
+    background-color:  black !important;
     width: 100%;
 }
 
 .color-text-footer {
-    color: black !important;
+    color: white !important;
 }
 
 .delete-container {
@@ -116,7 +117,7 @@ body {
 
 @media (min-width: 1200px) { 
     #main {
-        max-width: 1500px !important;
+        max-width: 1700px !important;
     }
 }
 
