@@ -41,6 +41,3 @@ echo $twig->render('view-order.html', [
     'count' => $count,
     'orderId' => $orderId
 ]);
-
-?>
-

@@ -1,0 +1,43 @@
+<div class="separate-top">
+    <h1 cass="mb-4">
+        I miei punti:
+        {% if points|number_format > 0 %}
+            <span class="badge bg-info rounded-pill text-white">
+                {{ points }}
+            </span>
+        {% else %}
+            <span class="badge bg-info rounded-pill text-white">0</span>
+        {% endif %}
+    </h1>
+
+    <h5 class="card-title mb-4">Ogni volta che completi un acquisto il tuo punteggio incrementa di 5 punti!</h5>
+
+    <hr>
+
+    <h1 cass="mb-4">I miei ordini</h1>
+
+    {% if pendingOrders|length > 0 %}
+        <table class="table table-bordered">
+            <tr>
+                <th class="big-screen">#</th>
+                <th>Num.Ordine</th>
+                <th>Data Invio</th>
+                <th>Azioni</th>
+            </tr>
+            {% for pend in pendingOrders %}
+            {% set count = count + 1 %}
+                <tr>
+                    <td class="big-screen">{{ count }}</td>
+                    <td>{{ pend['order_id'] }}</td>
+                    <td>{{ pend['created_date'] }}</td>
+                    <td>
+                        <a class="underline scuro" href="{{ ROOT_URL }}shop?page=view-order&id={{ pend['order_id'] }}">Vedi &raquo;</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% set count = 0 %}
+        </table>
+    {% else %}
+        <p class="separate-top">Non hai alcun ordine in lavorazione.</p>
+    {% endif %}
+</div>
