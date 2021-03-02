@@ -1,0 +1,30 @@
+<h2 class="mb-5">Tutti i nostri prodotti</h2>
+
+<div class="row">
+    {% if products %}
+        {% for product in products %}
+            <div class="card ml-3 mb-3" style="width: 18rem;">
+                <a href="{{ ROOT_URL }}shop?page=view-product&id={{ product.id }}"><img src="{{ product.image }}" class="card-img-top" alt="Card image cap" style="width:100%; height: 20rem; object-fit: cover;" ></a>
+                <div class="card-body">
+                    <h5 class="card-title centro">{{ product.name }} </h5>
+                    <h5 class="card-title centro">{{ product.price }} €</h5>
+
+                    <form method="post" class="centro">
+                        <input type="hidden" name="id" value="{{ product.id }}">
+                        <input name="add_to_cart" type="submit" class="btn btn-primary circle" value="Aggiungi al carrello">
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Nessun prodotto disponibile...</p>
+    {% endif %}
+</div>
+
+<script>
+    window.onload = () => {
+        {% if (errorMessage) %}
+            alert('{{ errorMessage }}');
+        {% endif %}
+    }
+</script>

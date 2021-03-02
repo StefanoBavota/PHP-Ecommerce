@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
     $result = $userMgr->login($email, $password);
 
     if ($result) {
-        echo '<script>location.href="' . ROOT_URL . 'public"</script>';
+        echo '<script>location.href="' . ROOT_URL . 'shop"</script>';
         exit;
     } else {
         $errMsg = 'Login Fallito...';

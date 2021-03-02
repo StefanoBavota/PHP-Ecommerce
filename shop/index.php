@@ -1,7 +1,7 @@
 <?php
+require_once '../vendor/autoload.php';
 
 $page = isset($_GET["page"]) ? $_GET["page"] : "products-list";
-
 ?>
 
 <?php include '../inc/init.php' ?>
