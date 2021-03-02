@@ -1,0 +1,81 @@
+<div class="col-12 order-md-last mb-4 separate-top">
+
+    {% if cart_items|length > 0 %}
+
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Carrello</span>
+            <span class="badge bg-secondary rounded-pill text-white">{{ cart_total['num_products'] }} elementi nel carrello</span>
+        </h4>
+
+        <ul class="list-group mb-3">
+            {% for item in cart_items %}
+                <li class="list-group-item d-flex justify-content-between lh-sm p-4">
+                    <div class="row w-100">
+                        <div class="col-lg-4 col-6">
+                            <h6 class="my-0">{{ item['name'] }}</h6>
+                        </div>
+                        <div class="col-lg-2 col-6">
+                            <span class="text-muted">€ {{ item['single_price'] }}</span>
+                        </div>
+                        <div class="col-lg-4 col-6">
+                            <form method="post">
+                                <div class="cart-buttons btn-group" role="group">
+                                    <button name="minus" type="submit" class="btn btn-sm btn-primary">-</button>
+                                    <span class="text-muted">{{ item['quantity'] }}</span>
+                                    <button name="plus" type="submit" class="btn btn-sm btn-primary">+</button>
+                                    <input type="hidden" name="id" value="{{ item['id'] }}">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-2 col-6">
+                            <strong class="text-primary">€ {{ item['total_price'] }}</strong>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+
+            <li class="cart-total list-group-item d-flex justify-content-between p-4">
+                <div class="row w-100">
+                    <div class="col-lg-4 col-6 mb-3">
+                        <span>Totale</span>
+                    </div>
+                    <div class="col-lg-6 lg-screen"></div>
+                    <div class="col-lg-2 col-6">
+                        <span>€ {{ cart_total['total'] }}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <hr>
+
+        {% if loggedInUser %}
+            <label for="category_id">Metodo di pagamento</label>
+            <div class="col-4 mb-4 mt-1">
+                <select name="payment" id="payment" type="text" class="form-control scuro" value="{{ payments['id'] }}">
+                    <option value="0"> - Seleziona un Metodo di pagamento - </option>
+                    {% if payments %}
+                        {% for payment in payments %}
+
+                            <option class="scuro" value="{{ payment['id'] }}">{{ payment['type'] }}</option>
+
+                        {% endfor %}
+                    {% else %}
+                        <p>Nessuna categoria disponibile</p>
+                    {% endif %}
+                </select>
+            </div>
+            
+            <hr>
+
+            <a onclick="return confirm('Confermi invio ordine?');" class="btn btn-primary btn-block" href="../{{ ROOT_URL }}shop?page=checkout">Invia Ordine</a>
+        {% else %}
+            <a class="btn btn-primary btn-block" href="../{{ ROOT_URL }}auth?page=register">Registrati per effettuare ordine</a>
+        {% endif %}
+
+    {% else %}
+        <p class="lead separate-top">Nessun elemento nel carrello... </p>
+        <a href="../{{ ROOT_URL }}shop/?page=products-list" class="btn btn-primary">Torna a fare acquisti &raquo;</a>
+    {% endif %}
+
+</div>

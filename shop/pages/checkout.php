@@ -4,13 +4,13 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 if (!$loggedInUser) {
     echo "<script>location.href='" . ROOT_URL . "auth?page=login&msg=login_for_checkout';</script>";
     exit;
 }
-?>
 
-<?php
 global $alertMsg;
 $error = false;
 
@@ -41,12 +41,7 @@ if (!$error) {
     exit;
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<div class="separate-top">
-    <h1>Grazie per aver effettuato l'acquisto</h1>
-    <p class="lead">Hai gudagnato 5 punti!</p>
-    <br>
-
-    <a class="back underline" href="<?php echo ROOT_URL; ?>">&laquo; Torna alla Home</a>
-</div>
+echo $twig->render('checkout.html', []);
