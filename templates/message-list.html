@@ -1,0 +1,31 @@
+<h1>Elenco Risposte</h1>
+
+{% if message|length > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="big-screen">Risposta</th>
+                <th scope="col" class="right">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in message %}
+                <tr>
+                    <td class="big-screen">{{ msg['msg'] }}</td>
+                    <td>
+                        <form method="post" class="right">
+                            <input type="hidden" name="id" value="{{ msg['id'] }}">
+                            <input name="delete" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                        </form>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Nessun Messaggio presente...</p>
+{% endif %}
+
+<h1>Richidi assistenza</h1>
+<a href="../{{ ROOT_URL }}public?page=contacts" class="btn btn-primary btn-lg mb-5 mt-3">Contattaci</a>

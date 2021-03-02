@@ -1,8 +1,9 @@
 <?php
-// Prevent from direct access
 if (!defined('ROOT_URL')) {
     die;
 }
+
+require_once('../vendor/autoload.php');
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -17,36 +18,10 @@ if (isset($_POST['delete'])) {
 }
 
 $message = $userMgr->getCurrentUserAnswer($user->id);
-?>
 
-<h1>Elenco Risposte</h1>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<?php if (count($message) > 0) : ?>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" class="big-screen">Risposta</th>
-                <th scope="col" class="right">Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($message as $msg) : ?>
-                <tr>
-                    <td class="big-screen"><?php echo $msg['msg']; ?></td>
-                    <td>
-                        <form method="post" class="right">
-                            <input type="hidden" name="id" value="<?php echo $msg['id']; ?>">
-                            <input name="delete" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
-                        </form>
-                    </td>
-
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php else : ?>
-    <p>Nessun Messaggio presente...</p>
-<?php endif; ?>
-
-<h1>Richidi assistenza</h1>
-<a href="<?php echo ROOT_URL; ?>public?page=contacts" class="btn btn-primary btn-lg mb-5 mt-3">Contattaci</a>
+echo $twig->render('message-list.html', [
+    'message' => $message
+]);

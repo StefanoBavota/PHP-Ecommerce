@@ -4,7 +4,7 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
-require_once ('../vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -37,7 +37,8 @@ if (isset($user)) {
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
-$twig = new \Twig\Environment($loader, [ ]);
+$twig = new \Twig\Environment($loader, []);
 
-echo $twig->render('wish-list.html', ['wishlist' => $wishlist]);
-?>
+echo $twig->render('wish-list.html', [
+    'wishlist' => $wishlist
+]);
