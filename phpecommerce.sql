@@ -562,3 +562,7 @@ ADD FOREIGN KEY (brand_id) REFERENCES brand(id) ON DELETE CASCADE;
 ALTER TABLE product
 ADD merchant_id int,
 ADD FOREIGN KEY (merchant_id) REFERENCES merchants(id) ON DELETE CASCADE;
+
+ALTER TABLE orders
+ADD payment_id int,
+ADD FOREIGN KEY (payment_id) REFERENCES payment(id) ON DELETE CASCADE;

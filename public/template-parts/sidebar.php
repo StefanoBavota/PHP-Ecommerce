@@ -25,7 +25,7 @@ if (isset($user)) {
 
 ?>
 
-<div class="row col-md-3">
+<div class="row col-md-3 ml-2">
     <?php if (isset($user)) : ?>
         <div style="width: 100%; margin-top:100px;">
             <div class="jumbotron" >

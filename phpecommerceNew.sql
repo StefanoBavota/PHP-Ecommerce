@@ -3,16 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 23, 2021 alle 16:55
+-- Creato il: Mar 02, 2021 alle 17:26
 -- Versione del server: 10.4.14-MariaDB
 -- Versione PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-CREATE Database phpecommerce;
-use phpecommerce;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -71,6 +68,25 @@ INSERT INTO `answer` (`id`, `msg`, `user_id`, `contact_us_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `brand`
+--
+
+CREATE TABLE `brand` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `brand`
+--
+
+INSERT INTO `brand` (`id`, `name`) VALUES
+(4, 'Adidas'),
+(5, 'Puma');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `cart`
 --
 
@@ -91,7 +107,11 @@ INSERT INTO `cart` (`id`, `client_id`) VALUES
 (14, '8db3c9fc0b663fc0f02c'),
 (15, '2a5325f03a0abc06cf57'),
 (17, '09f08f2a0efe0d092bc1'),
-(33, '67d89177b58c9d1695ac');
+(34, '67d89177b58c9d1695ac'),
+(35, '7e301645a35e6dca28ad'),
+(37, 'bbe848d9033ca98b7a06'),
+(38, 'a539752ad1f91190456d'),
+(56, '6bb9b3a54297af8aa17d');
 
 -- --------------------------------------------------------
 
@@ -116,9 +136,10 @@ INSERT INTO `cart_item` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 (49, 10, 11, 1),
 (50, 10, 1, 1),
 (55, 14, 11, 3),
-(56, 14, 20, 1),
 (57, 14, 2, 1),
-(58, 15, 11, 1);
+(58, 15, 11, 1),
+(79, 34, 11, 1),
+(103, 56, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -137,7 +158,9 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`id`, `name`) VALUES
 (1, 'Categoria 1'),
-(2, 'Categoria 2');
+(2, 'Categoria 2'),
+(5, 'Categoria 3'),
+(6, 'Categoria 4');
 
 -- --------------------------------------------------------
 
@@ -187,6 +210,26 @@ INSERT INTO `faq` (`id`, `title`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `merchants`
+--
+
+CREATE TABLE `merchants` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `merchants`
+--
+
+INSERT INTO `merchants` (`id`, `name`) VALUES
+(4, 'Prova 2'),
+(5, 'Prova 3'),
+(6, 'Prova 4');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `newsletter`
 --
 
@@ -214,42 +257,48 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
-  `status` varchar(50) NOT NULL
+  `status` varchar(50) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `created_at`, `updated_at`, `status`) VALUES
-(64, 1, '2021-02-20 21:09:01', NULL, 'pending'),
-(65, 1, '2021-02-20 21:10:53', NULL, 'pending'),
-(66, 1, '2021-02-20 21:10:55', NULL, 'pending'),
-(67, 1, '2021-02-20 21:11:49', NULL, 'pending'),
-(68, 1, '2021-02-20 21:12:29', NULL, 'pending'),
-(69, 1, '2021-02-20 21:14:28', NULL, 'pending'),
-(70, 1, '2021-02-20 21:14:31', NULL, 'pending'),
-(71, 1, '2021-02-20 21:15:35', NULL, 'pending'),
-(72, 1, '2021-02-20 21:15:37', NULL, 'pending'),
-(73, 1, '2021-02-20 21:15:38', NULL, 'pending'),
-(74, 1, '2021-02-20 21:17:19', NULL, 'pending'),
-(75, 1, '2021-02-20 21:17:32', NULL, 'pending'),
-(76, 1, '2021-02-22 20:24:07', NULL, 'pending'),
-(77, 9, '2021-02-23 09:52:16', NULL, 'pending'),
-(78, 9, '2021-02-23 09:53:57', NULL, 'pending'),
-(79, 9, '2021-02-23 09:56:48', NULL, 'pending'),
-(80, 9, '2021-02-23 10:05:33', NULL, 'pending'),
-(81, 9, '2021-02-23 10:05:54', NULL, 'pending'),
-(82, 19, '2021-02-23 11:04:15', NULL, 'pending'),
-(83, 19, '2021-02-23 11:07:34', NULL, 'pending'),
-(84, 19, '2021-02-23 11:07:59', NULL, 'pending'),
-(85, 19, '2021-02-23 11:08:35', NULL, 'pending'),
-(86, 19, '2021-02-23 11:11:32', NULL, 'pending'),
-(87, 19, '2021-02-23 11:13:51', NULL, 'pending'),
-(88, 19, '2021-02-23 11:18:04', NULL, 'pending'),
-(89, 19, '2021-02-23 11:19:14', NULL, 'pending'),
-(90, 19, '2021-02-23 11:20:31', NULL, 'pending'),
-(91, 19, '2021-02-23 11:21:34', NULL, 'pending');
+INSERT INTO `orders` (`id`, `user_id`, `created_at`, `updated_at`, `status`, `payment_id`) VALUES
+(64, 1, '2021-02-20 21:09:01', NULL, 'pending', NULL),
+(65, 1, '2021-02-20 21:10:53', NULL, 'pending', NULL),
+(66, 1, '2021-02-20 21:10:55', NULL, 'pending', NULL),
+(67, 1, '2021-02-20 21:11:49', NULL, 'pending', NULL),
+(68, 1, '2021-02-20 21:12:29', NULL, 'pending', NULL),
+(69, 1, '2021-02-20 21:14:28', NULL, 'pending', NULL),
+(70, 1, '2021-02-20 21:14:31', NULL, 'pending', NULL),
+(71, 1, '2021-02-20 21:15:35', NULL, 'pending', NULL),
+(72, 1, '2021-02-20 21:15:37', NULL, 'pending', NULL),
+(73, 1, '2021-02-20 21:15:38', NULL, 'pending', NULL),
+(74, 1, '2021-02-20 21:17:19', NULL, 'pending', NULL),
+(75, 1, '2021-02-20 21:17:32', NULL, 'pending', NULL),
+(76, 1, '2021-02-22 20:24:07', NULL, 'pending', NULL),
+(77, 9, '2021-02-23 09:52:16', NULL, 'pending', NULL),
+(78, 9, '2021-02-23 09:53:57', NULL, 'pending', NULL),
+(79, 9, '2021-02-23 09:56:48', NULL, 'pending', NULL),
+(80, 9, '2021-02-23 10:05:33', NULL, 'pending', NULL),
+(81, 9, '2021-02-23 10:05:54', NULL, 'pending', NULL),
+(82, 19, '2021-02-23 11:04:15', NULL, 'pending', NULL),
+(83, 19, '2021-02-23 11:07:34', NULL, 'pending', NULL),
+(84, 19, '2021-02-23 11:07:59', NULL, 'pending', NULL),
+(85, 19, '2021-02-23 11:08:35', NULL, 'pending', NULL),
+(86, 19, '2021-02-23 11:11:32', NULL, 'pending', NULL),
+(87, 19, '2021-02-23 11:13:51', NULL, 'pending', NULL),
+(88, 19, '2021-02-23 11:18:04', NULL, 'pending', NULL),
+(89, 19, '2021-02-23 11:19:14', NULL, 'pending', NULL),
+(90, 19, '2021-02-23 11:20:31', NULL, 'pending', NULL),
+(91, 19, '2021-02-23 11:21:34', NULL, 'pending', NULL),
+(92, 1, '2021-02-23 18:31:57', NULL, 'pending', NULL),
+(93, 1, '2021-02-26 22:10:21', NULL, 'pending', NULL),
+(94, 9, '2021-03-02 14:38:43', NULL, 'pending', NULL),
+(95, 9, '2021-03-02 14:39:33', NULL, 'pending', NULL),
+(96, 9, '2021-03-02 14:44:01', NULL, 'pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -295,7 +344,33 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
 (41, 88, 11, 1),
 (42, 89, 2, 1),
 (43, 90, 11, 1),
-(44, 91, 11, 1);
+(44, 91, 11, 1),
+(45, 92, 2, 1),
+(46, 93, 11, 1),
+(47, 94, 2, 1),
+(48, 95, 1, 1),
+(49, 96, 11, 1),
+(50, 96, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `type` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `payment`
+--
+
+INSERT INTO `payment` (`id`, `type`) VALUES
+(3, 'Maestro'),
+(4, 'Postepay'),
+(5, 'Bonifico');
 
 -- --------------------------------------------------------
 
@@ -314,12 +389,12 @@ CREATE TABLE `points` (
 --
 
 INSERT INTO `points` (`id`, `user_id`, `total`) VALUES
-(1, 9, 15),
+(1, 9, 30),
 (2, 19, 5),
 (3, 2, 0),
 (5, 11, 0),
 (6, 12, 0),
-(7, 1, 0);
+(7, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -333,20 +408,21 @@ CREATE TABLE `product` (
   `name` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `category_id` int(11) NOT NULL
+  `category_id` int(11) NOT NULL,
+  `brand_id` int(11) DEFAULT NULL,
+  `merchant_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `product`
 --
 
-INSERT INTO `product` (`id`, `image`, `name`, `description`, `price`, `category_id`) VALUES
-(1, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Prodotto 1', 'Questo è il prodotto 1', '5.99', 1),
-(2, 'https://images-na.ssl-images-amazon.com/images/I/7109j3QXFxL._UY625_.jpg', 'Prodotto 2', 'Questo è il prodotto 2', '19.95', 2),
-(11, 'https://static.nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/ti61nslwh35whirn9drr/womens-air-jordan-i-twist-release-date.jpg', 'Air Jordan', 'Air Jordan nere e bianche', '100.00', 2),
-(15, 'https://www.hypeclothinga.com/wp-content/uploads/2020/03/Nike-Air-Jordan-1-High-Retro-Court-Pruple-White-2020-Limited-Edition-555088-500-Hype-Clothinga--600x600.png', 'Jordan Purple', 'Purple', '150.00', 1),
-(16, 'https://images.vestiairecollective.com/cdn-cgi/image/w=500,h=undefined,q=80,f=auto,/produit/11400683-1_2.jpg', 'yeeze', 'yeezy costosissime', '700.00', 1),
-(20, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Jordan Purple', 'scarpa blazer off white', '400.00', 2);
+INSERT INTO `product` (`id`, `image`, `name`, `description`, `price`, `category_id`, `brand_id`, `merchant_id`) VALUES
+(1, 'https://images.vestiairecollective.com/cdn-cgi/image/w=1000,q=80,f=auto,/produit/11487631-1_1.jpg', 'Prodotto 1', 'Questo è il prodotto 1', '5.99', 1, 4, 5),
+(2, 'https://images-na.ssl-images-amazon.com/images/I/7109j3QXFxL._UY625_.jpg', 'Prodotto 2', 'Questo è il prodotto 2', '19.95', 1, 5, 6),
+(11, 'https://static.nike.com/a/images/t_prod_ss/w_960,c_limit,f_auto/ti61nslwh35whirn9drr/womens-air-jordan-i-twist-release-date.jpg', 'Air Jordan', 'Air Jordan nere e bianche', '100.00', 2, NULL, NULL),
+(15, 'https://www.hypeclothinga.com/wp-content/uploads/2020/03/Nike-Air-Jordan-1-High-Retro-Court-Pruple-White-2020-Limited-Edition-555088-500-Hype-Clothinga--600x600.png', 'Jordan Purple', 'Purple', '150.00', 1, NULL, NULL),
+(16, 'https://images.vestiairecollective.com/cdn-cgi/image/w=500,h=undefined,q=80,f=auto,/produit/11400683-1_2.jpg', 'yeeze', 'yeezy costosissime', '700.00', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -411,9 +487,7 @@ CREATE TABLE `wish_list` (
 --
 
 INSERT INTO `wish_list` (`id`, `product_id`, `user_id`) VALUES
-(15, 1, 9),
-(14, 2, 1),
-(1, 11, 1);
+(28, 15, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -433,6 +507,12 @@ ALTER TABLE `answer`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `answer_ibfk_2` (`contact_us_id`);
+
+--
+-- Indici per le tabelle `brand`
+--
+ALTER TABLE `brand`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `cart`
@@ -468,6 +548,12 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `merchants`
+--
+ALTER TABLE `merchants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `newsletter`
 --
 ALTER TABLE `newsletter`
@@ -478,7 +564,8 @@ ALTER TABLE `newsletter`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `payment_id` (`payment_id`),
+  ADD KEY `orders_ibfk_1` (`user_id`);
 
 --
 -- Indici per le tabelle `order_items`
@@ -487,6 +574,12 @@ ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
+
+--
+-- Indici per le tabelle `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `points`
@@ -500,7 +593,9 @@ ALTER TABLE `points`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `category_id` (`category_id`);
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `brand_id` (`brand_id`),
+  ADD KEY `merchant_id` (`merchant_id`);
 
 --
 -- Indici per le tabelle `user`
@@ -540,22 +635,28 @@ ALTER TABLE `answer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT per la tabella `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT per la tabella `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
 -- AUTO_INCREMENT per la tabella `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `contact_us`
@@ -570,6 +671,12 @@ ALTER TABLE `faq`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT per la tabella `merchants`
+--
+ALTER TABLE `merchants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT per la tabella `newsletter`
 --
 ALTER TABLE `newsletter`
@@ -579,13 +686,19 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT per la tabella `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT per la tabella `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT per la tabella `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `points`
@@ -597,7 +710,7 @@ ALTER TABLE `points`
 -- AUTO_INCREMENT per la tabella `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
@@ -615,7 +728,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT per la tabella `wish_list`
 --
 ALTER TABLE `wish_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Limiti per le tabelle scaricate
@@ -651,7 +764,8 @@ ALTER TABLE `contact_us`
 -- Limiti per la tabella `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `order_items`
@@ -670,7 +784,9 @@ ALTER TABLE `points`
 -- Limiti per la tabella `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`merchant_id`) REFERENCES `merchants` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `user`

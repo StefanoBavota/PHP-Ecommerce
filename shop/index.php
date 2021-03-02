@@ -14,7 +14,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "products-list";
 <div id="main" class="container-fluid" style="margin-top:50px;">
     <div class="row">
 
-        <?php if ($loggedInUser || !$page == 'wish-list') : ?>
+        <?php if ($loggedInUser) : ?>
             <div class="col-md-9 col-xs-12">
                 <?php include ROOT_PATH . 'shop/pages/' . $page . '.php' ?>
             </div>

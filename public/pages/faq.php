@@ -16,7 +16,9 @@ if (isset($_POST['remove'])) {
 $faqs = $mgr->getFaq();
 ?>
 
-<h1>Domande più frequenti</h1>
+<div class="mt-4">
+    <h1>Domande più frequenti</h1>
+</div>
 
 <div class="mt-5">
     <?php if ($faqs) : ?>

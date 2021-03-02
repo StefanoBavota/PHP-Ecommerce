@@ -43,7 +43,7 @@ if (isset($_POST['update'])) {
 
 <div style="margin-top: 70px;">
     <div class="mb-4">
-        <a href="<?php echo ROOT_URL; ?>" class="back underline separate-top scuro">&laquo; Home</a>
+        <a href="<?php echo ROOT_URL; ?>" class="back underline separate-top">&laquo; Home</a>
     </div>
 
     <h1>Modifica dati personali</h1>

@@ -1,6 +1,7 @@
 <?php
 
 $cm = new CartManager();
+$cm2 = new CartItemManager();
 $cartId = $cm->getCurrentCartId();
 
 if (isset($_POST['minus'])) {
@@ -17,6 +18,7 @@ if (isset($_POST['plus'])) {
 
 $cart_total = $cm->getCartTotal($cartId);
 $cart_items = $cm->getCartItems($cartId);
+$payments = $cm2->getAllPayment();
 
 ?>
 
@@ -60,7 +62,7 @@ $cart_items = $cm->getCartItems($cartId);
 
             <li class="cart-total list-group-item d-flex justify-content-between p-4">
                 <div class="row w-100">
-                    <div class="col-lg-4 col-6">
+                    <div class="col-lg-4 col-6 mb-3">
                         <span>Totale</span>
                     </div>
                     <div class="col-lg-6 lg-screen"></div>
@@ -75,6 +77,24 @@ $cart_items = $cm->getCartItems($cartId);
         <hr>
 
         <?php if ($loggedInUser) : ?>
+            <label for="category_id">Metodo di pagamento</label>
+            <div class="col-4 mb-4 mt-1">
+                <select name="payment" id="payment" type="text" class="form-control scuro" value="<?php echo $payments['id']; ?>">
+                    <option value="0"> - Seleziona un Metodo di pagamento - </option>
+                    <?php if ($payments) : ?>
+                        <?php foreach ($payments as $payment) : ?>
+
+                            <option class="scuro" value="<?php echo $payment['id']; ?>"><?php echo $payment['type']; ?></option>
+
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <p>Nessuna categoria disponibile</p>
+                    <?php endif; ?>
+                </select>
+            </div>
+            
+            <hr>
+
             <a onclick="return confirm('Confermi invio ordine?');" class="btn btn-primary btn-block" href="<?php echo ROOT_URL . 'shop?page=checkout' ?>">Invia Ordine</a>
         <?php else : ?>
             <a class="btn btn-primary btn-block" href="<?php echo ROOT_URL . 'auth?page=register' ?>">Registrati per effettuare ordine</a>

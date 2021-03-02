@@ -10,7 +10,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "products-list";
 <div id="main" class="container" style="margin-top:100px;">
     <div class="row">
 
-        <div class="col-md-7 col-lg-8">
+        <div class="col-md-7 col-lg-8 ml-4 mr-4">
             <?php include ROOT_PATH . 'public/pages/' . $page . '.php' ?>
         </div>
 
