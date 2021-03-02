@@ -25,10 +25,10 @@ if (isset($user)) {
 
 ?>
 
-<div class="row col-md-3 ml-2">
+<div class="row col-md-3">
     <?php if (isset($user)) : ?>
-        <div>
-            <div class="jumbotron" style="width: 18rem; margin-top:100px;">
+        <div style="width: 100%; margin-top:100px;">
+            <div class="jumbotron" >
 
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Lista dei desideri</span>
