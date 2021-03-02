@@ -55,7 +55,7 @@ $count = 0;
                     <td><?php echo esc_html($pend['order_id']); ?></td>
                     <td><?php echo esc_html($pend['created_date']); ?></td>
                     <td>
-                        <a class="underline" href="<?php echo ROOT_URL . 'shop?page=view-order&id=' . esc_html($pend['order_id']); ?>">Vedi &raquo;</a>
+                        <a class="underline scuro" href="<?php echo ROOT_URL . 'shop?page=view-order&id=' . esc_html($pend['order_id']); ?>">Vedi &raquo;</a>
                     </td>
                 </tr>
             <?php endforeach;

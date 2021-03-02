@@ -32,7 +32,7 @@ $count = 0;
 ?>
 
 <div class="separate-top">
-    <a href="<?php echo ROOT_URL . 'shop?page=my-orders'; ?>" class="back underline">&laquo; I miei Ordini</a>
+    <a href="<?php echo ROOT_URL . 'shop?page=my-orders'; ?>" class="back underline scuro">&laquo; I miei Ordini</a>
 </div>
 
 <h1 cass="mb-4">Ordine #<?php echo esc_html($orderId); ?></h1>

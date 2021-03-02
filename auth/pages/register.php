@@ -100,4 +100,4 @@ if (isset($_POST['register'])) {
     <button class="btn btn-primary mb-5 mt-3" type="submit" name="register">Register</button>
 </form>
 
-Hai già un account? <a href="<?php echo ROOT_URL ?>auth?page=login">Effettua il Login! &raquo;</a>
+Hai già un account? <a class="underline scuro" href="<?php echo ROOT_URL ?>auth?page=login">Effettua il Login! &raquo;</a>

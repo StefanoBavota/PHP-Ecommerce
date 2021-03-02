@@ -46,4 +46,4 @@
     <button class="btn btn-primary" type="submit" name="login">Login</button>
 </form>
 
-Non hai un account? <a href="<?php echo ROOT_URL ?>auth?page=register">Registrati! &raquo;</a>
+Non hai un account?  <a class="underline scuro" href="<?php echo ROOT_URL ?>auth?page=register">Registrati! &raquo;</a>
