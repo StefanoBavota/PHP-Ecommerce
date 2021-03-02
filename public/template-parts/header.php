@@ -8,7 +8,9 @@
 	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css">
 	<link rel="stylesheet" href="<?php echo ROOT_URL; ?>assets/css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-	<title>PHP E-commerce</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	<title>Foot Looser</title>
 </head>
 
 <body>

@@ -28,7 +28,6 @@ $products = $productMgr->getAll();
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $product->name ?></h5>
                     <h5 class="card-title"><?php echo $product->price ?> €</h5>
-                    <p class="card-text"><?php echo $product->description ?></p>
                     <a class="btn btn-primary btn-sm btn-block circle" href="<?php echo ROOT_URL . 'admin?page=edit-product'; ?>&id=<?php echo esc_html($product->id); ?>">Modifica Articolo</a>
                     <form method="post" class="right">
                         <input type="hidden" name="id" value="<?php echo esc_html($product->id); ?>">

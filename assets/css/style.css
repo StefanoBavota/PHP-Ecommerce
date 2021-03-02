@@ -9,6 +9,8 @@ html {
 
 body {
     margin-bottom: 6rem;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 21px;
     /* background-color: lightblue; */
 }
 
@@ -113,11 +115,30 @@ body {
 .separate-top {
     margin-top: 100px;
 }
+
+.view-product-container {
+    width: 70% !important;
+}
+
 /* media query */
 
 @media (min-width: 1200px) { 
     #main {
         max-width: 1650px !important;
+    }
+}
+
+@media (max-width: 1024px) { 
+    .view-product-container {
+        width: 100% !important;
+    }
+
+    .navbar-nav {
+        margin-left: 0px !important;
+    }
+
+    .card {
+        width: 100% !important;
     }
 }
 

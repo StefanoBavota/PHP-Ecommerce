@@ -49,8 +49,8 @@ if (!(property_exists($product, 'id'))) {
 }
 ?>
 
-<div class="jumbotron separate-top">
-    <img src="<?php echo $product->image ?>" class="card-img-top" style="width:100%; height: 25rem; object-fit: cover;">
+<div class="jumbotron separate-top view-product-container">
+    <img src="<?php echo $product->image ?>" class="card-img-top" style="width:100%; height: 30rem; object-fit: none; object-position: 50% 75%;">
     <div class="card-body">
         <h1 class="display-5"><?php echo $product->name ?></h1>
         <p class="card-text"><?php echo $product->description ?></p>

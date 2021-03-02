@@ -38,7 +38,6 @@ $payments = $cm2->getAllPayment();
                     <div class="row w-100">
                         <div class="col-lg-4 col-6">
                             <h6 class="my-0"><?php echo $item['name'] ?></h6>
-                            <small class="text-muted"><?php echo $item['description'] ?></small>
                         </div>
                         <div class="col-lg-2 col-6">
                             <span class="text-muted">€ <?php echo $item['single_price'] ?></span>
