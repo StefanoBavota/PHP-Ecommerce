@@ -30,7 +30,7 @@ if (isset($_POST['update'])) {
 ?>
 
 <div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . "public/?page=faq"; ?>" class="back underline">&laquo; FAQ</a>
+    <a href="<?php echo ROOT_URL . "public/?page=faq"; ?>" class="back underline scuro">&laquo; FAQ</a>
 </div>
 
 <h1 class="mt-3">Modifica FAQ</h1>
