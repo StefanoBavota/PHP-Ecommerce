@@ -9,7 +9,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "login";
 <div id = "main" class = "container" style = "margin-top:100px;"> 
     <div class = "row">
     
-        <div class = "col-md-9 col-xs-12">
+        <div class="col-md-7 col-lg-8 ml-4 mr-4">
             <?php include ROOT_PATH . 'auth/pages/' . $page . '.php' ?>
         </div>
 

@@ -14,7 +14,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : "dashboard";
                 <?php include ROOT_PATH . 'admin/pages/' . $page . '.php' ?>
             </div>
         <?php else : ?>
-            <div class="col-md-9 col-xs-12">
+            <div class="col-md-7 col-lg-8 ml-4 mr-4">
                 <?php include ROOT_PATH . 'admin/pages/' . $page . '.php' ?>
             </div>
         <?php endif; ?>

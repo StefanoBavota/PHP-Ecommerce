@@ -83,12 +83,21 @@ class ProductManager2 extends DBManager
 
     public function filteredByAll($category, $brand, $price)
     {
-        if ($price == 1) {
-            $sql = "SELECT * FROM product WHERE category_id = $category AND brand_id = $brand AND ORDER BY price";
-        } else {
-            $sql = "SELECT * FROM product WHERE category_id = $category AND brand_id = $brand AND ORDER BY price DESC";
+        $defaultQuery = "SELECT * FROM product WHERE 1=1 ";
+
+        if($category !== "") {
+            $defaultQuery .= " AND category_id = $category ";
         }
-        return $this->db->query($sql);
+
+        if($brand !== "") {
+            $defaultQuery .= " AND brand_id = $brand ";
+        }
+
+        if($price === "1" || $price === "2") {
+            $defaultQuery .= " ORDER BY price " . ($price == 1 ? "" : "DESC");
+        }
+
+        return $this->db->query($defaultQuery);
     }
 
     public function getAllSize()

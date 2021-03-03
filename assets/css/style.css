@@ -10,7 +10,6 @@ html {
 body {
     font-family: 'Bebas Neue', cursive;
     font-size: 21px;
-    /* background-color: lightblue; */
 }
 
 .cart-buttons span {
@@ -94,7 +93,7 @@ body {
 }
 
 .scuro {
-    color: black;
+    color: lightseagreen;
 }
 
 .table {
@@ -111,6 +110,9 @@ body {
 }
 
 /* media query */
+#main {
+    min-height: calc(100vh - 300px) !important;
+}
 
 @media (min-width: 1200px) { 
     #main {
@@ -146,6 +148,7 @@ body {
 /* ------------------------------------------------------------------------------
 	 Footer
 -------------------------------------------------------------------------------*/
+
 
 .footer {
 	text-align: left;
