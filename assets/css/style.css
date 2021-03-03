@@ -8,7 +8,6 @@ html {
 }
 
 body {
-    margin-bottom: 6rem;
     font-family: 'Bebas Neue', cursive;
     font-size: 21px;
     /* background-color: lightblue; */
@@ -36,16 +35,6 @@ body {
 .large-icon {
     font-size: 7rem;
     margin-bottom: 0.5rem;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    left: 0px;
-    height: 5rem;
-    /* background-color:  #ddb8b1 !important; */
-    background-color:  black !important;
-    width: 100%;
 }
 
 .color-text-footer {
@@ -76,6 +65,7 @@ body {
     background-size: cover;
     min-height: 650px;
     top: 0;
+    margin-right: 0 !important;
 }
 
 #header {
@@ -151,4 +141,57 @@ body {
 .hamburger-icon {
     margin-top: 2px;
     font-size: 1.7rem;
+}
+
+/* ------------------------------------------------------------------------------
+	 Footer
+-------------------------------------------------------------------------------*/
+
+.footer {
+	text-align: left;
+    margin-top: 5rem;
+}
+.footer-top {
+	background-color: #181818;
+	padding-top: 50px;
+}
+.footer-bottom {
+	background-color: #313454;
+	padding: 20px 0;
+}
+.footer .footer-col {
+	margin-bottom: 50px;
+}
+.footer h5 {
+	color: #fff;
+}
+.footer h5 {
+	margin-bottom: 20px;
+}
+.footer p {
+	color: rgba(255, 255, 255, 0.25);
+}
+.footer a {
+	color: rgba(255, 255, 255, 0.50);
+}
+.footer a:hover {
+	color: #e84545;
+}
+.footer .footer-share {
+	margin-top: 50px;
+    padding: 0 !important;
+}
+.footer .footer-share li {
+	display: inline-block;
+	float: none;
+}
+.footer .footer-share a {
+	border: none;
+	font-size: 21px;
+	color: rgba(255, 255, 255, 0.25);
+}
+.footer .fa-heart {
+	color: #e84545;
+	font-size: 11px;
+	margin: 0 2px;
 }

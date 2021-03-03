@@ -1,7 +1,25 @@
     <!-- FOOTER -->
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container">
-            <span class="text-muted color-text-footer">Place sticky footer content here.</span>
+    <footer class="footer" >
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-6">
+                        <h5>Contattaci</h5>
+                        <p>Via tirino<br>
+                            085 123456 / 333 1234567<br>
+                            support@footlooser.com</p>
+                        <p>Copyright © 2021 Stefano Bavota All Rights Reserved. </p>
+                    </div>
+                    <div class="footer-col col-md-6">
+                        <h5>Social</h5>
+                        <ul class="footer-share">
+                            <li class="mr-4"><a href="#"><i class="fab fa-facebook" style="font-size: 3em;"></i></a></li>
+                            <li class="mr-4"><a href="#"><i class="fab fa-instagram" style="font-size: 3em;"></i></a></li>
+                            <li class="mr-4"><a href="#"><i class="fab fa-youtube" style="font-size: 3em;"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
     <!-- END FOOTER -->
@@ -11,9 +29,9 @@
 
     <script src="../{{ ROOT_URL }}assets/js/main.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.js-totCartItems').html('{{ cart_total['num_products'] }}');
-            $(window).on('scroll', function() {
+            $(window).on('scroll', function () {
                 var scroll = $(window).scrollTop();
                 if (scroll >= 50) {
                     $('#header').addClass('fixed');
