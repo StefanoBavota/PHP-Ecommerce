@@ -3,13 +3,14 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
-require_once ('../vendor/autoload.php');
+require_once('../vendor/autoload.php');
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
 
 $productMgr = new ProductManager();
+$productMgr2 = new ProductManager2();
 $products = $productMgr->getAll();
 $errorMessage = null;
 if (isset($_POST['add_to_wish_list'])) {
@@ -31,7 +32,28 @@ if (isset($_POST['add_to_cart'])) {
     $cm->addToCart($productId, $cartId);
 }
 
-$loader = new \Twig\Loader\FilesystemLoader('../templates');
-$twig = new \Twig\Environment($loader, [ ]);
+if (isset($_POST['filter'])){
+    if ($_POST['category'] !== ""){
+        $products = $productMgr2->filteredByCategory($_POST['category']);
+    }
 
-echo $twig->render('products-list.html', ['products' => $products]);
+    if ($_POST['brand'] !== ""){
+        $products = $productMgr2->filteredByCategory($_POST['category']);
+    }
+
+    if ($_POST['price'] !== ""){
+        $products = $productMgr2->filteredByPrice($_POST['price']);
+    }
+}
+
+$categories = $productMgr->getAllCategory();
+$brands = $productMgr->getAllBrand();
+
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
+
+echo $twig->render('products-list.html', [
+    'products' => $products,
+    'categories' => $categories,
+    'brands' => $brands
+]);

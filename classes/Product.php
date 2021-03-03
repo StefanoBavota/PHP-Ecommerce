@@ -58,6 +58,20 @@ class ProductManager2 extends DBManager
         }
         return array('error' => '');
     }
+
+    public function filteredByCategory($category){
+        $sql = "SELECT * FROM product WHERE category_id = $category";
+        return $this->db->query($sql);
+    }
+
+    public function filteredByPrice($price){
+        if ($price == 1) {
+            $sql = "SELECT * FROM product ORDER BY price";
+        } else {
+            $sql = "SELECT * FROM product ORDER BY price DESC";
+        }
+        return $this->db->query($sql);
+    }
 }
 
 class ProductManager extends DBManager
