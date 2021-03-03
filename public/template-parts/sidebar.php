@@ -22,13 +22,13 @@ if (isset($_POST['remove'])) {
 if (isset($user)) {
     $wishlist = $productMgr->getCurrentUserWishlist($user->id);
     $productsCount = $productMgr->countCurrentUserWishlistProductsAmount($user->id)[0]['amount'];
+
+    $loader = new \Twig\Loader\FilesystemLoader('../templates');
+    $twig = new \Twig\Environment($loader, []);
+
+    echo $twig->render('sidebar.html', [
+        'wishlist' => $wishlist,
+        'productsCount' => $productsCount,
+        'user' => $user
+    ]);
 }
-
-$loader = new \Twig\Loader\FilesystemLoader('../templates');
-$twig = new \Twig\Environment($loader, []);
-
-echo $twig->render('sidebar.html', [
-    'wishlist' => $wishlist,
-    'productsCount' => $productsCount,
-    'user' => $user
-]);
