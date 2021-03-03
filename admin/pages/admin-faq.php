@@ -1,11 +1,13 @@
 <?php
 
-$errMsg = '';
-
 //evitare manipolazioni
 if (!defined('ROOT_URL')) {
     die;
 }
+
+require_once('../vendor/autoload.php');
+
+$errMsg = '';
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -32,18 +34,9 @@ if (isset($_POST['update'])) {
     }
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h1>Crea FAQ</h1>
-
-<form method="post" class="mt-4">
-    <div class="form-group">
-        <label for="title">Titolo</label>
-        <input name="title" id="title" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="text">Testo</label>
-        <textarea rows="7" name="text" id="text" type="text" class="form-control"></textarea>
-    </div>
-    <input name="update" type="submit" class="btn btn-primary mb-4" value="Crea FAQ">
-</form>
+echo $twig->render('admin-faq.html', [
+    'errMsg' => $errMsg
+]);

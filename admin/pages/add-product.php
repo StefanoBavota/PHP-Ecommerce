@@ -1,10 +1,13 @@
 <?php
-$errMsg = '';
 
 //evitare manipolazioni
 if (!defined('ROOT_URL')) {
     die;
 }
+
+require_once('../vendor/autoload.php');
+
+$errMsg = '';
 
 $productMgr = new ProductManager();
 $productMgr2 = new ProductManager2();
@@ -39,84 +42,13 @@ if (isset($_POST['add'])) {
 $categorys = $productMgr->getAllCategory();
 $brands = $productMgr->getAllBrand();
 $merchants = $productMgr->getAllMerchant();
-?>
 
-<div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . "admin/?page=products-list"; ?>" class="back underline scuro">&laquo; Lista Prodotti</a>
-</div>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h2>Aggiungi Prodotto</h2>
-
-<form method="post">
-
-    <div class="form-group">
-        <label for="image">Immagine</label>
-        <input name="image" id="image" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label for="name">Nome prodotto</label>
-        <input name="name" id="name" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label for="price">Prezzo</label>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">€</span>
-                </div>
-                <input type="text" class="form-control" name="price" id="price">
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="description">Descrizione</label>
-        <textarea rows="7" name="description" id="description" type="text" class="form-control"></textarea>
-    </div>
-
-    <label for="category_id">Categoria</label>
-    <select name="category_id" id="category_id" type="text" class="form-control" value="<?php echo $category['id']; ?>">
-        <option value="0"> - Scegli una categoria - </option>
-        <?php if ($categorys) : ?>
-            <?php foreach ($categorys as $category) : ?>
-
-                <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Nessuna categoria disponibile</p>
-        <?php endif; ?>
-    </select>
-
-    <label for="brand" class="mt-3">Brand</label>
-    <select name="brand" id="brand" type="text" class="form-control" value="<?php echo $brand['id']; ?>">
-        <option value="0"> - Scegli un Brand - </option>
-        <?php if ($brands) : ?>
-            <?php foreach ($brands as $brand) : ?>
-
-                <option value="<?php echo $brand['id']; ?>"><?php echo $brand['name']; ?></option>
-
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Nessuna Brand disponibile</p>
-        <?php endif; ?>
-    </select>
-
-    <label for="merchant" class="mt-3">Fornitore</label>
-    <select name="merchant" id="merchant" type="text" class="form-control" value="<?php echo $merchant['id']; ?>">
-        <option value="0"> - Scegli un Fornitore - </option>
-        <?php if ($merchants) : ?>
-            <?php foreach ($merchants as $merchant) : ?>
-
-                <option value="<?php echo $merchant['id']; ?>"><?php echo $merchant['name']; ?></option>
-
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Nessun Fornitore disponibile</p>
-        <?php endif; ?>
-    </select>
-
-    <button class="btn btn-primary mt-4" type="submit" name="add">Aggiungi</button>
-</form>
+echo $twig->render('add-product.html', [
+    'categorys' => $categorys,
+    'brands' => $brands,
+    'merchants' => $merchants,
+    'errMsg' => $errMsg
+]);

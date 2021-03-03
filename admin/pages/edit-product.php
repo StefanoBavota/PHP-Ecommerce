@@ -57,5 +57,9 @@ echo $twig->render('edit-product.html', [
     'categorys' => $categorys,
     'brands' => $brands,
     'merchants' => $merchants,
+    'product' => $product,
+    'merchantId' => $merchantId,
+    'brandId' => $brandId,
+    'categoryId' => $categoryId,
     'alertMsg' => $alertMsg
 ]);
