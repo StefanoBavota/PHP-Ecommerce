@@ -1,0 +1,14 @@
+<div class="mt-5 mb-4">
+    <a href="../{{ ROOT_URL }}admin?page=others-list" class="back underline scuro">&laquo; Torna alla lista delle specifiche</a>
+</div>
+
+<h1 class="mt-3">Modifica Brand</h1>
+
+<form method="post" class="mt-4">
+    <div class="form-group">
+        <label for="name">Nome Brand</label>
+        <input name="name" id="name" type="text" class="form-control" value="{{ brand['name'] }}">
+    </div>
+    <input type="hidden" name="id" value="{{ brand['id'] }}">
+    <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica Brand">
+</form>

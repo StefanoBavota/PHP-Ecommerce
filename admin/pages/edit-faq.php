@@ -4,6 +4,8 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 $mgr = new UserManager2();
 
 if (isset($_GET['id'])) {
@@ -27,23 +29,10 @@ if (isset($_POST['update'])) {
         $alertMsg = 'err';
     }
 }
-?>
 
-<div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . "public/?page=faq"; ?>" class="back underline scuro">&laquo; FAQ</a>
-</div>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h1 class="mt-3">Modifica FAQ</h1>
-
-<form method="post" class="mt-4">
-    <div class="form-group">
-        <label for="title">Titolo</label>
-        <input name="title" id="title" type="text" class="form-control" value="<?php echo $faq['title'] ?>">
-    </div>
-    <div class="form-group">
-        <label for="text">Testo</label>
-        <textarea rows="7" name="text" id="text" type="text" class="form-control"><?php echo $faq['text'] ?></textarea>
-    </div>
-    <input type="hidden" name="id" value="<?php echo $faq['id'] ?>">
-    <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica FAQ">
-</form>
+echo $twig->render('edit-faq.html', [
+    'faq' => $faq
+]);

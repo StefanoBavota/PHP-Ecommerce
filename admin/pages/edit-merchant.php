@@ -4,6 +4,8 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 $productMgr = new ProductManager();
 $productMgr2 = new ProductManager2();
 
@@ -27,19 +29,10 @@ if (isset($_POST['update'])) {
         $alertMsg = 'err';
     }
 }
-?>
 
-<div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . 'admin?page=others-list'; ?>" class="back underline">&laquo; Torna alla lista delle specifiche</a>
-</div>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h1 class="mt-3">Modifica Fornitore</h1>
-
-<form method="post" class="mt-4">
-    <div class="form-group">
-        <label for="name">Nome Fornitore</label>
-        <input name="name" id="name" type="text" class="form-control" value="<?php echo $merchant['name'] ?>">
-    </div>
-    <input type="hidden" name="id" value="<?php echo $merchant['id'] ?>">
-    <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica Fornitore">
-</form>
+echo $twig->render('edit-merchant.html', [
+    'merchant' => $merchant
+]);

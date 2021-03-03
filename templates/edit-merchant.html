@@ -1,0 +1,14 @@
+<div class="mt-5 mb-4">
+    <a href="../{{ ROOT_URL }}admin?page=others-list" class="back underline scuro">&laquo; Torna alla lista delle specifiche</a>
+</div>
+
+<h1 class="mt-3">Modifica Fornitore</h1>
+
+<form method="post" class="mt-4">
+    <div class="form-group">
+        <label for="name">Nome Fornitore</label>
+        <input name="name" id="name" type="text" class="form-control" value="{{ merchant['name'] }}">
+    </div>
+    <input type="hidden" name="id" value="{{ merchant['id'] }}">
+    <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica Fornitore">
+</form>

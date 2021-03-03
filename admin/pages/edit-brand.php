@@ -4,6 +4,8 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 $productMgr = new ProductManager();
 $productMgr2 = new ProductManager2();
 
@@ -28,19 +30,9 @@ if (isset($_POST['update'])) {
     }
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . 'admin?page=others-list'; ?>" class="back underline scuro">&laquo; Torna alla lista delle specifiche</a>
-</div>
-
-<h1 class="mt-3">Modifica Brand</h1>
-
-<form method="post" class="mt-4">
-    <div class="form-group">
-        <label for="name">Nome Brand</label>
-        <input name="name" id="name" type="text" class="form-control" value="<?php echo $brand['name'] ?>">
-    </div>
-    <input type="hidden" name="id" value="<?php echo $brand['id'] ?>">
-    <input name="update" type="submit" class="btn btn-primary mt-4" value="Modifica Brand">
-</form>
+echo $twig->render('edit-brand.html', [
+    'brand' => $brand
+]);

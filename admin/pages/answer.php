@@ -4,6 +4,8 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
@@ -27,19 +29,9 @@ if (isset($_POST['answer'])) {
     }
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline scuro">&laquo; Lista Messaggi</a>
-</div>
-
-<h1>Rispondi al Messaggio</h1>
-
-<form method="post" class="mt-5">
-    <div class="form-group">
-        <label for="msg">Risposta</label>
-        <textarea rows="7" name="msg" id="msg" type="text" class="form-control"></textarea>
-    </div>
-    <input type="hidden" name="id" value="<?php echo esc_html($user->id); ?>">
-    <input name="answer" type="submit" class="btn btn-primary" value="Rispondi">
-</form>
+echo $twig->render('answer.html', [
+    'user' => $user
+]);
