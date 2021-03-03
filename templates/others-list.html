@@ -87,48 +87,6 @@
     </div>
 
     <div class="card">
-        <div class="card-header" id="heading5">
-            <h5 class="mb-0">
-                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                    Modifica Metodo di pagamento
-                </button>
-            </h5>
-        </div>
-        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
-            <div class="card-body">
-                <div class="form-group">
-                    {% if allPayment|length > 0 %}
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="big-screen">Metodo di Pagamento</th>
-                                    <th scope="col" class="right">Azioni</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for payment in allPayment %}
-                                    <tr>
-                                        <td class="big-screen">{{ payment['type'] }}</td>
-                                        <td>
-                                            <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=edit-payment&id={{ payment['id'] }}">Modifica</a>
-                                            <form method="post" class="right">
-                                                <input type="hidden" name="id" value="{{ payment['id'] }}">
-                                                <input name="delete3" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <p>Nessun Utente presente...</p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
         <div class="card-header" id="heading7">
             <h5 class="mb-0">
                 <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">

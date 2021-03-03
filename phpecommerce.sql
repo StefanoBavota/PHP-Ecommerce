@@ -555,6 +555,17 @@ CREATE TABLE payment
   PRIMARY KEY(id)
 );
 
+CREATE TABLE shoe_size
+(
+  id int NOT NULL AUTO_INCREMENT,
+  size varchar(50) NOT NULL,
+  PRIMARY KEY(id)
+);
+
+ALTER TABLE product
+ADD size_id int,
+ADD FOREIGN KEY (size_id) REFERENCES size(id) ON DELETE CASCADE;
+
 ALTER TABLE product
 ADD brand_id int,
 ADD FOREIGN KEY (brand_id) REFERENCES brand(id) ON DELETE CASCADE;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 02, 2021 alle 21:30
+-- Creato il: Mar 03, 2021 alle 15:37
 -- Versione del server: 10.4.14-MariaDB
 -- Versione PHP: 7.2.34
 
@@ -93,7 +93,8 @@ INSERT INTO `brand` (`id`, `name`) VALUES
 (5, 'Puma'),
 (6, 'Karl Kani'),
 (7, 'Nike'),
-(8, 'Vans');
+(8, 'Vans'),
+(9, 'Off-White');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,8 @@ INSERT INTO `cart` (`id`, `client_id`) VALUES
 (38, 'a539752ad1f91190456d'),
 (56, '6bb9b3a54297af8aa17d'),
 (57, '9a9d6535a5415e3dfa58'),
-(58, 'ac68f9fed768347ae282');
+(67, 'ac68f9fed768347ae282'),
+(68, '9fb3c387ced9a3d91219');
 
 -- --------------------------------------------------------
 
@@ -147,8 +149,8 @@ INSERT INTO `cart_item` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 (104, 56, 33, 1),
 (105, 57, 30, 1),
 (106, 57, 35, 1),
-(107, 58, 32, 1),
-(108, 58, 33, 6);
+(119, 67, 33, 1),
+(120, 68, 30, 1);
 
 -- --------------------------------------------------------
 
@@ -268,38 +270,23 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL,
-  `status` varchar(50) NOT NULL,
-  `payment_id` int(11) DEFAULT NULL
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `created_at`, `updated_at`, `status`, `payment_id`) VALUES
-(64, 1, '2021-02-20 21:09:01', NULL, 'pending', NULL),
-(65, 1, '2021-02-20 21:10:53', NULL, 'pending', NULL),
-(66, 1, '2021-02-20 21:10:55', NULL, 'pending', NULL),
-(67, 1, '2021-02-20 21:11:49', NULL, 'pending', NULL),
-(68, 1, '2021-02-20 21:12:29', NULL, 'pending', NULL),
-(69, 1, '2021-02-20 21:14:28', NULL, 'pending', NULL),
-(70, 1, '2021-02-20 21:14:31', NULL, 'pending', NULL),
-(71, 1, '2021-02-20 21:15:35', NULL, 'pending', NULL),
-(72, 1, '2021-02-20 21:15:37', NULL, 'pending', NULL),
-(73, 1, '2021-02-20 21:15:38', NULL, 'pending', NULL),
-(74, 1, '2021-02-20 21:17:19', NULL, 'pending', NULL),
-(75, 1, '2021-02-20 21:17:32', NULL, 'pending', NULL),
-(76, 1, '2021-02-22 20:24:07', NULL, 'pending', NULL),
-(77, 9, '2021-02-23 09:52:16', NULL, 'pending', NULL),
-(78, 9, '2021-02-23 09:53:57', NULL, 'pending', NULL),
-(79, 9, '2021-02-23 09:56:48', NULL, 'pending', NULL),
-(80, 9, '2021-02-23 10:05:33', NULL, 'pending', NULL),
-(81, 9, '2021-02-23 10:05:54', NULL, 'pending', NULL),
-(92, 1, '2021-02-23 18:31:57', NULL, 'pending', NULL),
-(93, 1, '2021-02-26 22:10:21', NULL, 'pending', NULL),
-(94, 9, '2021-03-02 14:38:43', NULL, 'pending', NULL),
-(95, 9, '2021-03-02 14:39:33', NULL, 'pending', NULL),
-(96, 9, '2021-03-02 14:44:01', NULL, 'pending', NULL);
+INSERT INTO `orders` (`id`, `user_id`, `created_at`, `updated_at`, `status`) VALUES
+(97, 1, '2021-03-02 21:02:41', NULL, 'pending'),
+(98, 1, '2021-03-02 21:28:33', NULL, 'pending'),
+(99, 9, '2021-03-02 22:51:15', NULL, 'pending'),
+(100, 9, '2021-03-02 22:53:44', NULL, 'pending'),
+(101, 9, '2021-03-02 22:56:10', NULL, 'pending'),
+(102, 9, '2021-03-02 22:57:37', NULL, 'pending'),
+(103, 9, '2021-03-02 22:57:48', NULL, 'pending'),
+(104, 9, '2021-03-02 23:01:56', NULL, 'pending'),
+(105, 9, '2021-03-02 23:13:02', NULL, 'pending');
 
 -- --------------------------------------------------------
 
@@ -314,25 +301,21 @@ CREATE TABLE `order_items` (
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Struttura della tabella `payment`
+-- Dump dei dati per la tabella `order_items`
 --
 
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
-  `type` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `payment`
---
-
-INSERT INTO `payment` (`id`, `type`) VALUES
-(3, 'Maestro'),
-(4, 'Postepay'),
-(5, 'Bonifico');
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`) VALUES
+(52, 97, 32, 1),
+(53, 97, 33, 6),
+(55, 98, 31, 1),
+(56, 99, 30, 1),
+(57, 100, 30, 1),
+(58, 101, 31, 1),
+(59, 102, 31, 1),
+(60, 103, 32, 1),
+(61, 104, 31, 1),
+(62, 105, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -351,8 +334,8 @@ CREATE TABLE `points` (
 --
 
 INSERT INTO `points` (`id`, `user_id`, `total`) VALUES
-(1, 9, 30),
-(7, 1, 10),
+(1, 9, 20),
+(7, 1, 20),
 (8, 20, 0),
 (9, 21, 0),
 (10, 22, 0),
@@ -376,24 +359,43 @@ CREATE TABLE `product` (
   `price` decimal(10,2) NOT NULL,
   `category_id` int(11) NOT NULL,
   `brand_id` int(11) DEFAULT NULL,
-  `merchant_id` int(11) DEFAULT NULL
+  `merchant_id` int(11) DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `product`
 --
 
-INSERT INTO `product` (`id`, `image`, `name`, `description`, `price`, `category_id`, `brand_id`, `merchant_id`) VALUES
-(30, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd48480da/1861494_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', '89 TT Sneaker', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 1, 6, 4),
-(31, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwba306804/1883852_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Max 2090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 1, 7, 4),
-(32, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw25e9a39c/1883945_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Zoom ‘92', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 2, 7, 5),
-(33, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc21bc798/1887314_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Ultraboost 4.0 DNA Laufschuh', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '159.99', 1, 4, 5),
-(34, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Force 1 Shadow', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '109.99', 2, 7, 5),
-(35, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw97418c62/1899827_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Air Vapormax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '224.99', 2, 7, 6),
-(36, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwfd0aff66/1689396_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UY Old Skool', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '49.99', 1, 8, 6),
-(37, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc37713d7/1906536_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UA Super ComfyCush Era', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 2, 8, 6),
-(38, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd43d2133/1899770_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Nike Air Max Zephyr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '179.99', 2, 7, 6),
-(39, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw66d14991/1892610_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Suede Classic XXI', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '79.99', 1, 5, 5);
+INSERT INTO `product` (`id`, `image`, `name`, `description`, `price`, `category_id`, `brand_id`, `merchant_id`, `size_id`) VALUES
+(30, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd48480da/1861494_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', '89 TT Sneaker', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 1, 6, 4, 1),
+(31, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwba306804/1883852_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Max 2090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 1, 7, 4, NULL),
+(32, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw25e9a39c/1883945_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Zoom ‘92', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 2, 7, 5, NULL),
+(33, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc21bc798/1887314_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Ultraboost 4.0 DNA Laufschuh', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '159.99', 1, 4, 5, NULL),
+(34, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Force 1 Shadow', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '109.99', 2, 7, 5, NULL),
+(35, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw97418c62/1899827_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Air Vapormax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '224.99', 2, 7, 6, NULL),
+(36, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwfd0aff66/1689396_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UY Old Skool', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '49.99', 1, 8, 6, NULL),
+(37, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc37713d7/1906536_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UA Super ComfyCush Era', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 2, 8, 6, NULL),
+(38, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd43d2133/1899770_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Nike Air Max Zephyr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '179.99', 2, 7, 6, NULL),
+(39, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw66d14991/1892610_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Suede Classic XXI', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '79.99', 1, 5, 5, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `shoe_size`
+--
+
+CREATE TABLE `shoe_size` (
+  `id` int(11) NOT NULL,
+  `size` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `shoe_size`
+--
+
+INSERT INTO `shoe_size` (`id`, `size`) VALUES
+(1, '40, 41, 42');
 
 -- --------------------------------------------------------
 
@@ -462,8 +464,8 @@ CREATE TABLE `wish_list` (
 --
 
 INSERT INTO `wish_list` (`id`, `product_id`, `user_id`) VALUES
-(30, 32, 1),
-(31, 33, 1);
+(33, 30, 9),
+(30, 32, 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -540,7 +542,6 @@ ALTER TABLE `newsletter`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `payment_id` (`payment_id`),
   ADD KEY `orders_ibfk_1` (`user_id`);
 
 --
@@ -550,12 +551,6 @@ ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `product_id` (`product_id`);
-
---
--- Indici per le tabelle `payment`
---
-ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `points`
@@ -569,9 +564,16 @@ ALTER TABLE `points`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `category_id` (`category_id`),
   ADD KEY `brand_id` (`brand_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `merchant_id` (`merchant_id`),
+  ADD KEY `product_ibfk_1` (`category_id`),
+  ADD KEY `product_ibfk_4` (`size_id`);
+
+--
+-- Indici per le tabelle `shoe_size`
+--
+ALTER TABLE `shoe_size`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `user`
@@ -614,25 +616,25 @@ ALTER TABLE `answer`
 -- AUTO_INCREMENT per la tabella `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT per la tabella `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `contact_us`
@@ -662,19 +664,13 @@ ALTER TABLE `newsletter`
 -- AUTO_INCREMENT per la tabella `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT per la tabella `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT per la tabella `payment`
---
-ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT per la tabella `points`
@@ -687,6 +683,12 @@ ALTER TABLE `points`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT per la tabella `shoe_size`
+--
+ALTER TABLE `shoe_size`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `user`
@@ -704,7 +706,7 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT per la tabella `wish_list`
 --
 ALTER TABLE `wish_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Limiti per le tabelle scaricate
@@ -740,8 +742,7 @@ ALTER TABLE `contact_us`
 -- Limiti per la tabella `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `order_items`
@@ -760,9 +761,10 @@ ALTER TABLE `points`
 -- Limiti per la tabella `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`merchant_id`) REFERENCES `merchants` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`merchant_id`) REFERENCES `merchants` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `product_ibfk_4` FOREIGN KEY (`size_id`) REFERENCES `shoe_size` (`id`) ON DELETE CASCADE;
 
 --
 -- Limiti per la tabella `user`

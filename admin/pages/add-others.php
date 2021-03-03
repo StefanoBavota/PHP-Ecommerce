@@ -49,24 +49,6 @@ if (isset($_POST['add2'])) {
         $alertMsg = 'mandatory_fields';
     }
 }
-if (isset($_POST['add3'])) {
-
-    $payment = htmlspecialchars(trim($_POST['payment']));
-
-    $id = $cartMgr->addPayment($payment);
-
-    if ($payment != '') {
-
-        if ($id > 0) {
-            echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
-            exit;
-        } else {
-            $alertMsg = 'err';
-        }
-    } else {
-        $alertMsg = 'mandatory_fields';
-    }
-}
 if (isset($_POST['add4'])) {
 
     $merchant = htmlspecialchars(trim($_POST['merchant']));

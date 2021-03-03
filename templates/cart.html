@@ -50,24 +50,6 @@
         <hr>
 
         {% if loggedInUser %}
-            <label for="category_id">Metodo di pagamento</label>
-            <div class="col-4 mb-4 mt-1">
-                <select name="payment" id="payment" type="text" class="form-control scuro" value="{{ payments['id'] }}">
-                    <option value="0"> - Seleziona un Metodo di pagamento - </option>
-                    {% if payments %}
-                        {% for payment in payments %}
-
-                            <option class="scuro" value="{{ payment['id'] }}">{{ payment['type'] }}</option>
-
-                        {% endfor %}
-                    {% else %}
-                        <p>Nessuna categoria disponibile</p>
-                    {% endif %}
-                </select>
-            </div>
-            
-            <hr>
-
             <a onclick="return confirm('Confermi invio ordine?');" class="btn btn-primary btn-block" href="../{{ ROOT_URL }}shop?page=checkout">Invia Ordine</a>
         {% else %}
             <a class="btn btn-primary btn-block" href="../{{ ROOT_URL }}auth?page=register">Registrati per effettuare ordine</a>

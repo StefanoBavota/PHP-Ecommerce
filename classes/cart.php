@@ -56,37 +56,6 @@ class CartItemManager extends DBManager
         $this->tableName = 'cart_item';
     }
 
-    public function updatePayment($id, $type)
-    {
-        return $this->db->execute("UPDATE payment SET type = '$type' WHERE id = $id");
-    }
-
-    public function addPayment($payment)
-    {
-        $resultSet = $this->db->execute("INSERT INTO payment (type) VALUES ('$payment')");
-        if (!$resultSet) {
-            return array('error' => 'Hai già inserito il Metodo di pagamento');
-        }
-        return array('error' => '');
-    }
-
-    public function getAllPayment()
-    {
-        $sql = "SELECT * FROM payment";
-        return $this->db->query($sql);
-    }
-
-    public function deletePayment($id)
-    {
-        $rowsDeleted = $this->db->delete_one("payment", (int)$id);
-        return (int) $rowsDeleted;
-    }
-
-    public function getPaymentById($id)
-    {
-        $sql = "SELECT * FROM payment WHERE id = $id";
-        return $this->db->query($sql);
-    }
 }
 
 class OrderManager extends DBManager

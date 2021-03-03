@@ -17,6 +17,7 @@ if (!isset($_GET['id'])) {
 }
 
 $pm = new ProductManager();
+$pm2 = new ProductManager2();
 $cm = new CartManager();
 $errorMessage = null;
 global $loggedInUser;
@@ -43,6 +44,7 @@ if (isset($_POST['add_to_wish_list'])) {
 
 $id = htmlspecialchars(trim($_GET['id']));
 $product = $pm->get($id);
+$sizes = $pm2->getAllSize();
 
 // in caso l'id fosse errato reindirizza alla home page
 if (!(property_exists($product, 'id'))) {
@@ -50,10 +52,14 @@ if (!(property_exists($product, 'id'))) {
     exit;
 }
 
+$array = array("41", "42", "43");
+
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
 
 echo $twig->render('view-product.html', [
     'product' => $product,
-    'loggedInUser' => $loggedInUser
+    'loggedInUser' => $loggedInUser,
+    'sizes' => $sizes,
+    'array' => $array
 ]);

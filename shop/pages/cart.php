@@ -25,7 +25,6 @@ if (isset($_POST['plus'])) {
 
 $cart_total = $cm->getCartTotal($cartId);
 $cart_items = $cm->getCartItems($cartId);
-$payments = $cm2->getAllPayment();
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -33,6 +32,5 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('cart.html', [
     'cart_total' => $cart_total,
     'cart_items' => $cart_items,
-    'payments' => $payments,
     'loggedInUser' => $loggedInUser
 ]);

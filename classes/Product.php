@@ -90,6 +90,12 @@ class ProductManager2 extends DBManager
         }
         return $this->db->query($sql);
     }
+
+    public function getAllSize()
+    {
+        $sql = "SELECT * FROM shoe_size";
+        return $this->db->query($sql);
+    }
 }
 
 class ProductManager extends DBManager

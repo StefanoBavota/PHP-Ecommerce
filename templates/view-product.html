@@ -3,6 +3,32 @@
     <div class="card-body">
         <h1 class="display-5">{{ product.name }}</h1>
         <p class="card-text">{{ product.description }}</p>
+
+        <form method="post">
+            <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off" value="option1">
+            <label class="btn btn-outline-primary" for="btn-check-outlined" style="width: 60px;">39</label>
+
+            <input type="checkbox" class="btn-check" id="btn-check-outlined2" autocomplete="off" value="option2">
+            <label class="btn btn-outline-primary" for="btn-check-outlined2" style="width: 60px;">40</label>
+            {% if array %}
+                {% for arr in array %}
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined{{ arr }}" autocomplete="off" value="option{{ arr }}">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined{{ arr }}" style="width: 60px;">{{ arr }}</label>
+                {% endfor %}
+            {% else %}
+                <p>Nessun prodotto disponibile...</p>
+            {% endif %}
+
+            {% if sizes %}
+                {% for size in sizes %}
+                    <input type="checkbox" class="btn-check" id="btn-check-outlined{{ size }}" autocomplete="off" value="option{{ size }}">
+                    <label class="btn btn-outline-primary" for="btn-check-outlined{{ size }}" style="width: 60px;">{{ size }}</label>
+                {% endfor %}
+            {% else %}
+                <p>Nessun prodotto disponibile...</p>
+            {% endif %}
+        </form>
+
         <hr class="my-4">
         <p class="lead">Prezzo: {{ product.price }} €</p>
         <form method="post">

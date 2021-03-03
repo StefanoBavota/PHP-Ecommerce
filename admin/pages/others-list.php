@@ -21,11 +21,6 @@ if (isset($_POST['delete2'])) {
     $productMgr->deleteCategory($id);
 }
 
-if (isset($_POST['delete3'])) {
-    $id = trim($_POST['id']);
-    $cartMgr->deletePayment($id);
-}
-
 if (isset($_POST['delete4'])) {
     $id = trim($_POST['id']);
     $productMgr->deleteMerchant($id);
@@ -33,7 +28,6 @@ if (isset($_POST['delete4'])) {
 
 $allBrand = $productMgr->getAllBrand();
 $allCategory = $productMgr->getAllCategory();
-$allPayment = $cartMgr->getAllPayment();
 $allMerchant = $productMgr->getAllMerchant();
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
@@ -42,7 +36,6 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('others-list.html', [
     'allBrand' => $allBrand,
     'allCategory' => $allCategory,
-    'allPayment' => $allPayment,
     'allMerchant' => $allMerchant,
     'errMsg' => $errMsg
 ]);
