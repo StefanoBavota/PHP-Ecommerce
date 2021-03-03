@@ -1,0 +1,72 @@
+<h1>Elenco Utenti</h1>
+
+{% if users|length > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="big-screen">Nominativo</th>
+                <th scope="col">Email</th>
+                <th scope="col" class="big-screen">Tipo Utente</th>
+                <th scope="col" class="right">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td class="big-screen">{{ user.nome }}  {{ user.cognome }}</td>
+                    <td>{{ user.email }}</td>
+                    <td class="big-screen">
+                        {% if user.user_type_id == '1' %}
+                            {{ "Amministratore" }} 
+                        {% else %}
+                            {{ "utente" }} 
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=user&id={{ user.id }}">Modifica</a>
+                        <form method="post" class="right">
+                            <input type="hidden" name="id" value="{{ user.id }}">
+                            <input name="delete" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm mt-1" value="Elimina">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Nessun Utente presente...</p>
+{% endif %}
+
+<h1>Messaggi</h1>
+
+{% if message|length > 0 %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" class="big-screen">Nominativo</th>
+                <th scope="col">Email</th>
+                <th scope="col" class="big-screen">Messaggio</th>
+                <th scope="col" class="right">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in message %}
+                <tr>
+                    <td class="big-screen">{{ msg['nome'] }} {{ msg['cognome'] }}</td>
+                    <td>{{ msg['email'] }}</td>
+                    <td class="big-screen">{{ msg['msg'] }}</td>
+                    <td>
+                        <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=answer&id={{ msg['msg_id'] }}">Rispondi</a>
+                        <form method="post" class="right">
+                            <input type="hidden" name="id" value="{{ msg['msg_id'] }}">
+                            <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm mt-1" value="Elimina">
+                        </form>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Nessun Messaggio presente...</p>
+{% endif %}
