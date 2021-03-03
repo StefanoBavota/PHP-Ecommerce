@@ -30,11 +30,16 @@
 						<li class="nav-item">
 							<a class="nav-link" href="../{{ ROOT_URL }}public?page=faq">FAQ</a>
 						</li>
-						{% if loggedInUser and loggedInUser.is_admin %}
+						{% if loggedInUser and not loggedInUser.is_admin %}
 							<li class="nav-item">
 								<a class="nav-link" href="../{{ ROOT_URL }}user?page=message-list">Assistenza</a>
 							</li>
 
+							<li class="nav-item">
+								<a class="nav-link" href="../{{ ROOT_URL }}shop?page=wish-list">Lista dei desideri</a>
+							</li>
+						{% endif %}
+						{% if loggedInUser and loggedInUser.is_admin %}
 							<li class="nav-item">
 								<a class="nav-link" href="../{{ ROOT_URL }}shop?page=wish-list">Lista dei desideri</a>
 							</li>

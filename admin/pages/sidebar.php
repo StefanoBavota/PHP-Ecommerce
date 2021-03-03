@@ -1,5 +1,5 @@
 
-<div class = "col-3" style="margin-top: 60px;"> 
+<div class = "col-3" style="margin-top: 100px;"> 
 
 <div class="row">
     <div class="card">

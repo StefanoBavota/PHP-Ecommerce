@@ -29,6 +29,19 @@ class ProductManager2 extends DBManager
         $this->columns = array('id', 'image', 'name', 'price', 'description', 'category_id');
         $this->tableName = 'product';
     }
+    /** 
+     *  p1, p2, p3
+     *  s1, s2
+     * 
+     *  p1s1 p1s2 p2s1 p2s2 p3s1 p3s2
+     * 
+    */
+
+
+    public function getProduct($id) {
+        $sql = "SELECT * FROM product INNER JOIN shoe_size ON product.size_id = shoe_size.id WHERE product.id = $id ";
+        return $this->db->query($sql);
+    }
 
     public function updateBrand($id, $name)
     {
@@ -45,14 +58,20 @@ class ProductManager2 extends DBManager
         return $this->db->execute("UPDATE merchants SET name = '$name' WHERE id = $id");
     }
 
+    public function updateSize($id, $size)
+    {
+        return $this->db->execute("UPDATE shoe_size SET size = '$size' WHERE id = $id");
+    }
+
+
     public function updateProduct($id, $image, $name, $price, $description, $category_id, $brand, $merchant)
     {
         return $this->db->execute("UPDATE product SET image = '$image', name = '$name', price = $price, description = '$description', category_id = $category_id, brand_id = $brand, merchant_id = $merchant WHERE id = $id");
     }
 
-    public function addToProduct($image, $name, $price, $description, $category_id, $brand, $merchant)
+    public function addToProduct($image, $name, $price, $description, $category_id, $brand, $merchant, $size)
     {
-        $resultSet = $this->db->execute("INSERT INTO product (image, name, price, description, category_id, brand_id, merchant_id) VALUES ('$image', '$name', $price, '$description', $category_id, $brand, $merchant)");
+        $resultSet = $this->db->execute("INSERT INTO product (image, name, price, description, category_id, brand_id, merchant_id, size_id) VALUES ('$image', '$name', $price, '$description', $category_id, $brand, $merchant, $size)");
         if (!$resultSet) {
             return array('error' => 'Hai già inserito l\'oggetto nella wishlist');
         }
@@ -157,6 +176,14 @@ class ProductManager extends DBManager
         return array('error' => '');
     }
 
+    public function addSize($size)
+    {
+        $resultSet = $this->db->execute("INSERT INTO shoe_size (size) VALUES ('$size')");
+        if (!$resultSet) {
+            return array('error' => 'Hai già inserito la Taglia');
+        }
+        return array('error' => '');
+    }
 
     public function addMerchant($merchant)
     {
@@ -204,6 +231,12 @@ class ProductManager extends DBManager
         return (int) $rowsDeleted;
     }
 
+    public function deleteSize($id)
+    {
+        $rowsDeleted = $this->db->delete_one("shoe_size", (int)$id);
+        return (int) $rowsDeleted;
+    }
+
     public function getBrandById($id)
     {
         $sql = "SELECT * FROM brand WHERE id = $id";
@@ -225,6 +258,12 @@ class ProductManager extends DBManager
     public function getProductById($id)
     {
         $sql = "SELECT * FROM product WHERE id = $id";
+        return $this->db->query($sql);
+    }
+
+    public function getSizeById($id)
+    {
+        $sql = "SELECT * FROM shoe_size WHERE id = $id";
         return $this->db->query($sql);
     }
 }

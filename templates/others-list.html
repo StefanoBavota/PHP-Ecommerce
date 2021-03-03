@@ -3,6 +3,50 @@
 </div>
 
 <div class="accordion" id="accordionExample">
+
+    <div class="card">
+        <div class="card-header" id="heading4">
+            <h5 class="mb-0">
+                <button class="btn btn-link scuro" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                    Modifica Taglie
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-group">
+                    {% if allSize|length > 0 %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="big-screen">Taglie</th>
+                                    <th scope="col" class="right">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for size in allSize %}
+                                    <tr>
+                                        <td class="big-screen">{{ size['size'] }}</td>
+                                        <td>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=edit-size&id={{ size['id'] }}">Modifica</a>
+                                            <form method="post" class="right">
+                                                <input type="hidden" name="id" value="{{ size['id'] }}">
+                                                <input name="delete3" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Nessuna Taglia disponibile...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-header" id="heading1">
             <h5 class="mb-0">

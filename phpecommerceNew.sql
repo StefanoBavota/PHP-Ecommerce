@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 03, 2021 alle 15:37
+-- Creato il: Mar 03, 2021 alle 22:10
 -- Versione del server: 10.4.14-MariaDB
 -- Versione PHP: 7.2.34
 
@@ -126,7 +126,13 @@ INSERT INTO `cart` (`id`, `client_id`) VALUES
 (56, '6bb9b3a54297af8aa17d'),
 (57, '9a9d6535a5415e3dfa58'),
 (67, 'ac68f9fed768347ae282'),
-(68, '9fb3c387ced9a3d91219');
+(68, '9fb3c387ced9a3d91219'),
+(69, '5623f457abf154017238'),
+(70, 'f181a75fa663fb87f3a2'),
+(71, '99e3f9dcd72b37f2e082'),
+(72, 'f1142d1730a9bc6c6575'),
+(73, 'a3517d7cb4d8d30c7574'),
+(74, '133bea3fc0a59cc555d4');
 
 -- --------------------------------------------------------
 
@@ -150,7 +156,9 @@ INSERT INTO `cart_item` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 (105, 57, 30, 1),
 (106, 57, 35, 1),
 (119, 67, 33, 1),
-(120, 68, 30, 1);
+(120, 68, 30, 1),
+(122, 69, 31, 1),
+(123, 72, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -369,15 +377,15 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `image`, `name`, `description`, `price`, `category_id`, `brand_id`, `merchant_id`, `size_id`) VALUES
 (30, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd48480da/1861494_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', '89 TT Sneaker', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 1, 6, 4, 1),
-(31, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwba306804/1883852_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Max 2090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 1, 7, 4, NULL),
-(32, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw25e9a39c/1883945_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Zoom ‘92', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 2, 7, 5, NULL),
-(33, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc21bc798/1887314_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Ultraboost 4.0 DNA Laufschuh', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '159.99', 1, 4, 5, NULL),
-(34, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Force 1 Shadow', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '109.99', 2, 7, 5, NULL),
-(35, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw97418c62/1899827_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Air Vapormax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '224.99', 2, 7, 6, NULL),
-(36, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwfd0aff66/1689396_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UY Old Skool', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '49.99', 1, 8, 6, NULL),
-(37, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc37713d7/1906536_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UA Super ComfyCush Era', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 2, 8, 6, NULL),
-(38, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd43d2133/1899770_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Nike Air Max Zephyr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '179.99', 2, 7, 6, NULL),
-(39, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw66d14991/1892610_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Suede Classic XXI', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '79.99', 1, 5, 5, NULL);
+(31, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwba306804/1883852_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Max 2090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 1, 7, 4, 2),
+(32, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw25e9a39c/1883945_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Zoom ‘92', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '149.99', 2, 7, 5, 3),
+(33, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc21bc798/1887314_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Ultraboost 4.0 DNA Laufschuh', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '159.99', 1, 4, 5, 3),
+(34, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw282d0e34/1899854_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Air Force 1 Shadow', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '109.99', 2, 7, 5, 4),
+(35, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw97418c62/1899827_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'WMNS Air Vapormax', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '224.99', 2, 7, 6, 4),
+(36, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwfd0aff66/1689396_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UY Old Skool', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '49.99', 1, 8, 6, 1),
+(37, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwc37713d7/1906536_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'UA Super ComfyCush Era', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '99.99', 2, 8, 6, 1),
+(38, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dwd43d2133/1899770_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Nike Air Max Zephyr', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '179.99', 2, 7, 6, 4),
+(39, 'https://www.snipes.it/dw/image/v2/BDCB_PRD/on/demandware.static/-/Sites-snse-master-eu/default/dw66d14991/1892610_P.jpg?sw=780&amp;sh=780&amp;sm=fit&amp;sfrm=png', 'Suede Classic XXI', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lacinia vel ante eu iaculis. Fusce consequat, est in fermentum dictum, dui erat efficitur est, et hendrerit tortor justo ac mi. Sed semper congue dictum. Nam rhoncus neque orci. In ut sodales erat. Aenean volutpat in purus a mattis.', '79.99', 1, 5, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -395,7 +403,10 @@ CREATE TABLE `shoe_size` (
 --
 
 INSERT INTO `shoe_size` (`id`, `size`) VALUES
-(1, '40, 41, 42');
+(1, '40,41,42,43'),
+(2, '35,36,37,38'),
+(3, '35,36,37,38,39'),
+(4, '40.5,41,41.5,42,42.5');
 
 -- --------------------------------------------------------
 
@@ -610,25 +621,25 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT per la tabella `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT per la tabella `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT per la tabella `category`
@@ -640,13 +651,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT per la tabella `contact_us`
 --
 ALTER TABLE `contact_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT per la tabella `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `merchants`
@@ -682,13 +693,13 @@ ALTER TABLE `points`
 -- AUTO_INCREMENT per la tabella `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT per la tabella `shoe_size`
 --
 ALTER TABLE `shoe_size`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `user`

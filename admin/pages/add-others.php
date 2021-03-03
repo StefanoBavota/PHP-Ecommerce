@@ -19,7 +19,7 @@ if (isset($_POST['add1'])) {
 
     $id = $productMgr->addBrand($brand);
 
-    if ($brand != '') {
+    if ($brand != '' && $brand != '0') {
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
@@ -37,7 +37,25 @@ if (isset($_POST['add2'])) {
 
     $id = $productMgr->addCategory($category);
 
-    if ($category != '') {
+    if ($category != '' && $category != '0') {
+
+        if ($id > 0) {
+            echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
+            exit;
+        } else {
+            $alertMsg = 'err';
+        }
+    } else {
+        $alertMsg = 'mandatory_fields';
+    }
+}
+if (isset($_POST['add3'])) {
+
+    $size = htmlspecialchars(trim($_POST['size']));
+
+    $id = $productMgr->addSize($size);
+
+    if ($size != '' && $size != '0') {
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";
@@ -55,7 +73,7 @@ if (isset($_POST['add4'])) {
 
     $id = $productMgr->addMerchant($merchant);
 
-    if ($merchant != '') {
+    if ($merchant != '' && $merchant != '0') {
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=add-others&msg=created';</script>";

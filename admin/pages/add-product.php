@@ -23,10 +23,11 @@ if (isset($_POST['add'])) {
     $merchant = htmlspecialchars(trim($_POST['merchant']));
     $brand = htmlspecialchars(trim($_POST['brand']));
     $merchant = htmlspecialchars(trim($_POST['merchant']));
+    $size = htmlspecialchars(trim($_POST['size']));
 
-    if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '' && $brand != '' && $brand != '0' && $merchant != '' && $merchant != '0') {
+    if ($image != '' && $name != '' && $category_id != '' && $category_id != '0' && $description != '' && $price != '' && $brand != '' && $brand != '0' && $merchant != '' && $merchant != '0' && $size != '' && $size != '0') {
 
-        $id = $productMgr2->addToProduct($image, $name, $price, $description, $category_id, $brand, $merchant);
+        $id = $productMgr2->addToProduct($image, $name, $price, $description, $category_id, $brand, $merchant, $size);
 
         if ($id > 0) {
             echo "<script>location.href='" . ROOT_URL . "admin?page=products-list&msg=created';</script>";
@@ -42,6 +43,7 @@ if (isset($_POST['add'])) {
 $categorys = $productMgr->getAllCategory();
 $brands = $productMgr->getAllBrand();
 $merchants = $productMgr->getAllMerchant();
+$sizes = $productMgr2->getAllSize();
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -50,5 +52,6 @@ echo $twig->render('add-product.html', [
     'categorys' => $categorys,
     'brands' => $brands,
     'merchants' => $merchants,
+    'sizes' => $sizes,
     'errMsg' => $errMsg
 ]);

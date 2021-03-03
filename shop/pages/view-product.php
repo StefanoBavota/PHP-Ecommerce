@@ -33,8 +33,6 @@ if (isset($_POST['add_to_cart'])) {
 
 if (isset($_POST['add_to_wish_list'])) {
     $productId = htmlspecialchars(trim($_POST['id']));
-
-    // ($product_id, $user->id) -> DB ( wish_list )
     $addToWishlistOutcome = $pm->addToWishList($productId, $user->id);
 
     if (isset($addToWishlistOutcome)) {
@@ -43,16 +41,8 @@ if (isset($_POST['add_to_wish_list'])) {
 }
 
 $id = htmlspecialchars(trim($_GET['id']));
-$product = $pm->get($id);
-$sizes = $pm2->getAllSize();
-
-// in caso l'id fosse errato reindirizza alla home page
-if (!(property_exists($product, 'id'))) {
-    echo "<script>location.href='" . ROOT_URL . "';</script>";
-    exit;
-}
-
-$array = array("41", "42", "43");
+$product = $pm2->getProduct($id)[0];
+$sizes = explode(",", $product['size']);
 
 $loader = new \Twig\Loader\FilesystemLoader('../templates');
 $twig = new \Twig\Environment($loader, []);
@@ -60,6 +50,5 @@ $twig = new \Twig\Environment($loader, []);
 echo $twig->render('view-product.html', [
     'product' => $product,
     'loggedInUser' => $loggedInUser,
-    'sizes' => $sizes,
-    'array' => $array
+    'sizes' => $sizes
 ]);
