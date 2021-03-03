@@ -4,6 +4,8 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 global $alertMsg;
 $mgr = new UserManager();
 $user = new User(0, '', '', '', '');
@@ -38,35 +40,11 @@ if (isset($_POST['update'])) {
         $alertMsg = 'mandatory_fields';
     }
 }
-?>
 
-<div class="mt-5 mb-4">
-    <a href="<?php echo ROOT_URL . 'admin?page=users-list'; ?>" class="back underline scuro">&laquo; Lista Utenti</a>
-</div>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h1>Modifica Utente</h1>
-
-<form method="post" class="mt-4">
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input name="nome" id="nome" type="text" class="form-control" value="<?php echo esc_html($user->nome); ?>">
-    </div>
-    <div class="form-group">
-        <label for="cognome">Cognome</label>
-        <input name="cognome" id="cognome" type="text" class="form-control" value="<?php echo esc_html($user->cognome); ?>">
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text" class="form-control" value="<?php echo esc_html($user->email); ?>">
-    </div>
-    <div class="form-group">
-        <label for="user_type_id">Tipo Utente</label>
-        <select name="user_type_id" id="user_type_id" type="text" class="form-control" value="<?php echo esc_html($user->user_type_id); ?>">
-            <option value=""> - Seleziona - </option>
-            <option <?php if ($user->user_type_id == '1') echo 'selected'; ?> value="1">Amministratore</option>
-            <option <?php if ($user->user_type_id == '2') echo 'selected'; ?> value="2">Utente</option>
-        </select>
-    </div>
-    <input type="hidden" name="id" value="<?php echo esc_html($user->id); ?>">
-    <input name="update" type="submit" class="btn btn-primary" value="Modifica Utente">
-</form>
+echo $twig->render('user.html', [
+    'alertMsg' => $alertMsg,
+    'user' => $user
+]);

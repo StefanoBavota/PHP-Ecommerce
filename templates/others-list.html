@@ -1,0 +1,172 @@
+<h2 class="mb-5">Modifica Specifiche</h2>
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="heading1">
+            <h5 class="mb-0">
+                <button class="btn btn-link scuro" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                    Modifica Brand
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-group">
+                    {% if allBrand|length > 0 %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="big-screen">Nome Brand</th>
+                                    <th scope="col" class="right">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for brand in allBrand %}
+                                    <tr>
+                                        <td class="big-screen">{{ brand['name'] }}</td>
+                                        <td>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=edit-brand&id={{ brand['id'] }}">Modifica</a>
+                                            <form method="post" class="right">
+                                                <input type="hidden" name="id" value="{{ brand['id'] }}">
+                                                <input name="delete1" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Nessun Utente presente...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading3">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                    Modifica Categoria
+                </button>
+            </h5>
+        </div>
+        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-group">
+                    {% if allCategory|length > 0 %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="big-screen">Nome Categoria</th>
+                                    <th scope="col" class="right">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in allCategory %}
+                                    <tr>
+                                        <td class="big-screen">{{ category['name'] }}</td>
+                                        <td>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=edit-category&id={{ category['id'] }}">Modifica</a>
+                                            <form method="post" class="right">
+                                                <input type="hidden" name="id" value="{{ category['id'] }}">
+                                                <input name="delete2" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Nessun Utente presente...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading5">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                    Modifica Metodo di pagamento
+                </button>
+            </h5>
+        </div>
+        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-group">
+                    {% if allPayment|length > 0 %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="big-screen">Metodo di Pagamento</th>
+                                    <th scope="col" class="right">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for payment in allPayment %}
+                                    <tr>
+                                        <td class="big-screen">{{ payment['type'] }}</td>
+                                        <td>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=edit-payment&id={{ payment['id'] }}">Modifica</a>
+                                            <form method="post" class="right">
+                                                <input type="hidden" name="id" value="{{ payment['id'] }}">
+                                                <input name="delete3" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Nessun Utente presente...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="heading7">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                    Modifica Fornitore
+                </button>
+            </h5>
+        </div>
+        <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-group">
+                    {% if allMerchant|length > 0 %}
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="big-screen">Nome Fornitore</th>
+                                    <th scope="col" class="right">Azioni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for merchant in allMerchant %}
+                                    <tr>
+                                        <td class="big-screen">{{ merchant['name'] }}</td>
+                                        <td>
+                                            <a class="btn btn-outline-secondary btn-sm left" href="../{{ ROOT_URL }}admin?page=edit-merchant&id={{ merchant['id'] }}">Modifica</a>
+                                            <form method="post" class="right">
+                                                <input type="hidden" name="id" value="{{ merchant['id'] }}">
+                                                <input name="delete4" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-outline-danger btn-sm" value="Elimina">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p>Nessun Utente presente...</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
