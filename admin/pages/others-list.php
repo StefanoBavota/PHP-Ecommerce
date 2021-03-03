@@ -42,7 +42,7 @@ $allMerchant = $productMgr->getAllMerchant();
     <div class="card">
         <div class="card-header" id="heading1">
             <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                <button class="btn btn-link scuro" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                     Modifica Brand
                 </button>
             </h5>
@@ -85,7 +85,7 @@ $allMerchant = $productMgr->getAllMerchant();
     <div class="card">
         <div class="card-header" id="heading3">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                     Modifica Categoria
                 </button>
             </h5>
@@ -127,7 +127,7 @@ $allMerchant = $productMgr->getAllMerchant();
     <div class="card">
         <div class="card-header" id="heading5">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                     Modifica Metodo di pagamento
                 </button>
             </h5>
@@ -169,7 +169,7 @@ $allMerchant = $productMgr->getAllMerchant();
     <div class="card">
         <div class="card-header" id="heading7">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                <button class="btn btn-link collapsed scuro" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
                     Modifica Fornitore
                 </button>
             </h5>
