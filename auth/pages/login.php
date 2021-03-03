@@ -1,5 +1,11 @@
 <?php
 
+if (!defined('ROOT_URL')) {
+    die;
+}
+
+require_once('../vendor/autoload.php');
+
 $errMsg = '';
 
 if ($loggedInUser) {
@@ -23,29 +29,9 @@ if (isset($_POST['login'])) {
     }
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h2>Login</h2>
-
-<form method="post">
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input name="password" id="password" type="password" class="form-control">
-    </div>
-
-    <div class="text-danger">
-        <?php echo $errMsg ?>
-    </div>
-
-    <button class="btn btn-primary" type="submit" name="login">Login</button>
-</form>
-
-<div class="mt-3">
-    Non hai un account? <a class="underline scuro" href="<?php echo ROOT_URL ?>auth?page=register">Registrati! &raquo;</a>
-</div>
+echo $twig->render('login.html', [
+    'errMsg' => $errMsg
+]);
