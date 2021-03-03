@@ -24,7 +24,7 @@ if (isset($_POST['update'])) {
         $faq = $userMgr->addToFaq($title, $text);
 
         if ($faq > 0) {
-            echo '<script>location.href="' . ROOT_URL . 'public"</script>';
+            echo '<script>location.href="' . ROOT_URL . 'shop"</script>';
             exit;
         } else {
             $alertMsg = 'err';

@@ -25,7 +25,7 @@ if (isset($_POST['send'])) {
     $id = $userMgr->addToContactUs($nome, $cognome, $email, $msg, $user->id);
 
     if ($id > 0) {
-        echo '<script>location.href="' . ROOT_URL . 'public"</script>';
+        echo '<script>location.href="' . ROOT_URL . 'shop"</script>';
         exit;
     } else {
         $alertMsg = 'err';

@@ -9,7 +9,7 @@ require_once('../vendor/autoload.php');
 $errMsg = '';
 
 if ($loggedInUser) {
-    echo '<script>location.href="' . ROOT_URL . 'public"</script>';
+    echo '<script>location.href="' . ROOT_URL . 'shop"</script>';
     exit;
 }
 

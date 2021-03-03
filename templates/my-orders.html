@@ -31,7 +31,7 @@
                     <td>{{ pend['order_id'] }}</td>
                     <td>{{ pend['created_date'] }}</td>
                     <td>
-                        <a class="underline scuro" href="{{ ROOT_URL }}shop?page=view-order&id={{ pend['order_id'] }}">Vedi &raquo;</a>
+                        <a class="underline scuro" href="../{{ ROOT_URL }}shop?page=view-order&id={{ pend['order_id'] }}">Vedi &raquo;</a>
                     </td>
                 </tr>
             {% endfor %}

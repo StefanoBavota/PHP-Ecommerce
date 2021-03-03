@@ -3,45 +3,47 @@
     <h2 class="ml-3">Tutti i nostri prodotti</h2>
     </div>
 
-    <div>
-        <form method="post" class="row">
-            <div class="ml-3 mt-2 col-xs-12 col-md-2 offset-md-1">
-                <select name="category" class="form-select" aria-label="Default select example" style="width: 100px;">
-                    <option selected value="">Per chi?</option>
-                    {% if categories %}
-                        {% for category in categories %}
-                            <option value="{{ category['id'] }}">{{ category['name'] }}</option>
-                        {% endfor %}
-                    {% else %}
-                        <p>Nessuna categoria disponibile...</p>
-                    {% endif %}
-                </select>
-            </div>
+    {% if products %}
+        <div>
+            <form method="post" class="row">
+                <div class="ml-3 mt-2 col-xs-12 col-md-2 offset-md-1">
+                    <select name="category" class="form-select" aria-label="Default select example" style="width: 100px;">
+                        <option selected value="">Per chi?</option>
+                        {% if categories %}
+                            {% for category in categories %}
+                                <option value="{{ category['id'] }}">{{ category['name'] }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <p>Nessuna categoria disponibile...</p>
+                        {% endif %}
+                    </select>
+                </div>
 
-            <div class="ml-3 mt-2 col-xs-12 col-md-2">
-                <select name="brand" class="form-select" aria-label="Default select example" style="width: 100px;">
-                    <option selected value="">Brand</option>
-                    {% if brands %}
-                        {% for brand in brands %}
-                            <option value="{{ brand['id'] }}">{{ brand['name'] }}</option>
-                        {% endfor %}
-                    {% else %}
-                        <p>Nessun brand disponibile...</p>
-                    {% endif %}
-                </select>
-            </div>
+                <div class="ml-3 mt-2 col-xs-12 col-md-2">
+                    <select name="brand" class="form-select" aria-label="Default select example" style="width: 100px;">
+                        <option selected value="">Brand</option>
+                        {% if brands %}
+                            {% for brand in brands %}
+                                <option value="{{ brand['id'] }}">{{ brand['name'] }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <p>Nessun brand disponibile...</p>
+                        {% endif %}
+                    </select>
+                </div>
 
-            <div class="ml-3 mr-5 mt-2 col-xs-12 col-md-2">
-                <select name="price" class="form-select" aria-label="Default select example" style="width: 100px;">
-                    <option selected value="">Prezzo</option>
-                    <option value="1">Crescente</option>
-                    <option value="2">Decrescente</option>
-                </select>
-            </div>
+                <div class="ml-3 mr-5 mt-2 col-xs-12 col-md-2">
+                    <select name="price" class="form-select" aria-label="Default select example" style="width: 100px;">
+                        <option selected value="">Prezzo</option>
+                        <option value="1">Crescente</option>
+                        <option value="2">Decrescente</option>
+                    </select>
+                </div>
 
-            <input name="filter" type="submit" class="btn btn-primary circle mt-1 mb-3 ml-4" value="Aggiungi filtro">
-        <form>
-    </div>
+                <input name="filter" type="submit" class="btn btn-primary circle mt-1 mb-3 ml-4" value="Aggiungi filtro">
+            <form>
+        </div>
+    {% endif %}
 </div>
 
 <div class="row">
