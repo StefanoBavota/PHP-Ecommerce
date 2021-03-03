@@ -4,6 +4,7 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
 
 global $alertMsg;
 $productMgr = new ProductManager();
@@ -23,48 +24,11 @@ if (isset($user)) {
     $productsCount = $productMgr->countCurrentUserWishlistProductsAmount($user->id)[0]['amount'];
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<div class="row col-md-3 ml-2">
-    <?php if (isset($user)) : ?>
-        <div style="width: 100%; margin-top:100px;">
-            <div class="jumbotron" >
-
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Lista dei desideri</span>
-                    <span class="badge bg-secondary rounded-pill text-white"><?php echo $productsCount; ?></span>
-                </h4>
-
-                <?php if ($wishlist) : ?>
-                    <?php foreach ($wishlist as $product) : ?>
-                        <ul class="container-fluid">
-                            <li class="list-group-item d-flex justify-content-between lh-sm row">
-                                <div class="col-2 delete-container">
-                                    <form method="post">
-                                        <button class="btn" name="remove"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                        <input type="hidden" name="id" value="<?php echo esc_html($product['wish_list_id']); ?>">
-                                    </form>
-                                </div>
-
-                                <div class="col-10">
-                                    <div>
-                                        <h6 class="my-0"><?php echo $product['name'] ?></h6>
-                                    </div>
-                                    <span class="text-muted"><?php echo $product['price']; ?> €</span>
-                                </div>
-                            </li>
-                        </ul>
-                    <?php endforeach; ?>
-                <?php else : ?>
-                    <p>Nessun prodotto disponibile...</p>
-                <?php endif; ?>
-
-                <form class="card p-2">
-                    <div class="input-group">
-                        <a href="<?php echo ROOT_URL . 'shop/?page=wish-list'; ?>" class="btn btn-primary btn-sm btn-block circle">Visualizza Lista</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    <?php endif; ?>
-</div>
+echo $twig->render('sidebar.html', [
+    'wishlist' => $wishlist,
+    'productsCount' => $productsCount,
+    'user' => $user
+]);

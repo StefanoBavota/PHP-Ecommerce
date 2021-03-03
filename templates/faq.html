@@ -1,0 +1,40 @@
+<div class="mt-4">
+    <h1>Domande più frequenti</h1>
+</div>
+
+<div class="mt-5">
+    {% if faqs %}
+        {% for faq in faqs %}
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="heading{{ faq['id'] }}">
+
+                        <h5 class="mb-0"></h5>
+
+                        <button class="btn btn-link scuro" type="button" data-toggle="collapse" data-target="#collapse{{ faq['id'] }}" aria-expanded="true" aria-controls="collapse{{ faq['id'] }}">{{ faq['title'] }}</button>
+
+                        {% if loggedInUser and loggedInUser.is_admin %}
+
+                            <a class="btn btn-outline-secondary btn-sm left ml-auto" style="float: right;" href="../{{ ROOT_URL }}admin?page=edit-faq&id={{ faq['id'] }}">Modifica</a>
+                            <form method="post" class="right">
+                                <input type="hidden" name="id" value="{{ faq['id'] }}">
+                                <input name="remove" onclick="return confirm('Procedere ad eliminare?');" type="submit" class="btn btn-danger btn-sm circle" value="Elimina" style="float: right;">
+                            </form>
+
+                        {% endif %}
+                    </div>
+
+                    <div id="collapse{{ faq['id'] }}" class="collapse" aria-labelledby="heading{{ faq['id'] }}" data-parent="#accordionExample">
+                        <div class="card-body">
+                            {{ faq['text'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    {% else %}
+        <p class="separate-top">Nessuna FAQ presente</p>
+    {% endif %}
+</div>

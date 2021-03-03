@@ -44,7 +44,7 @@ class ProductManager2 extends DBManager
     {
         return $this->db->execute("UPDATE merchants SET name = '$name' WHERE id = $id");
     }
-    
+
     public function updateProduct($id, $image, $name, $price, $description, $category_id, $brand, $merchant)
     {
         return $this->db->execute("UPDATE product SET image = '$image', name = '$name', price = $price, description = '$description', category_id = $category_id, brand_id = $brand, merchant_id = $merchant WHERE id = $id");
@@ -59,16 +59,34 @@ class ProductManager2 extends DBManager
         return array('error' => '');
     }
 
-    public function filteredByCategory($category){
+    public function filteredByCategory($category)
+    {
         $sql = "SELECT * FROM product WHERE category_id = $category";
         return $this->db->query($sql);
     }
 
-    public function filteredByPrice($price){
+    public function filteredByBrand($brand)
+    {
+        $sql = "SELECT * FROM product WHERE brand_id = $brand";
+        return $this->db->query($sql);
+    }
+
+    public function filteredByPrice($price)
+    {
         if ($price == 1) {
             $sql = "SELECT * FROM product ORDER BY price";
         } else {
             $sql = "SELECT * FROM product ORDER BY price DESC";
+        }
+        return $this->db->query($sql);
+    }
+
+    public function filteredByAll($category, $brand, $price)
+    {
+        if ($price == 1) {
+            $sql = "SELECT * FROM product WHERE category_id = $category AND brand_id = $brand AND ORDER BY price";
+        } else {
+            $sql = "SELECT * FROM product WHERE category_id = $category AND brand_id = $brand AND ORDER BY price DESC";
         }
         return $this->db->query($sql);
     }

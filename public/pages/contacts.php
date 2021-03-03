@@ -7,6 +7,8 @@ if (!defined('ROOT_URL')) {
     die;
 }
 
+require_once('../vendor/autoload.php');
+
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
@@ -30,32 +32,7 @@ if (isset($_POST['send'])) {
     }
 }
 
-?>
+$loader = new \Twig\Loader\FilesystemLoader('../templates');
+$twig = new \Twig\Environment($loader, []);
 
-<h1 class="separate-top">Contattaci</h1>
-
-<form method="post">
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input name="nome" id="nome" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="cognome">Cognome</label>
-        <input name="cognome" id="cognome" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" id="email" type="text" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="msg">Messaggio</label>
-        <textarea rows="7" name="msg" id="msg" type="text" class="form-control"></textarea>
-    </div>
-
-    <hr class=mb-4>
-
-    <form method="post">
-        <input type="hidden" name="send">
-        <button class="btn btn-primary circle">Invia il Messaggio</button>
-    </form>
-</form>
+echo $twig->render('contacts.html', []);

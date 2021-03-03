@@ -38,11 +38,15 @@ if (isset($_POST['filter'])){
     }
 
     if ($_POST['brand'] !== ""){
-        $products = $productMgr2->filteredByCategory($_POST['category']);
+        $products = $productMgr2->filteredByBrand($_POST['brand']);
     }
 
     if ($_POST['price'] !== ""){
         $products = $productMgr2->filteredByPrice($_POST['price']);
+    }
+
+    if ($_POST['category'] !== "" && $_POST['brand'] !== "" && $_POST['price'] !== ""){
+        $products = $productMgr2->filteredByAll($_POST['category'], $_POST['brand'], $_POST['price']);
     }
 }
 
