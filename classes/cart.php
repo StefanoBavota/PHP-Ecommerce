@@ -304,13 +304,11 @@ class CartManager extends DBManager
     private function removeItem($productId, $cartId)
     {
         return $this->db->execute("DELETE FROM cart_item WHERE cart_id = '$cartId' AND product_id = '$productId'");
-    }
+    } 
 
-    private function clearUserCart()
+    public function clearUserCart($userId)
     {
-        if ($this->userId) {
-            $this->db->execute('DELETE cart, cart_item FROM cart INNER JOIN cart_item ON cart.id = cart_item.cart_id WHERE cart.user_id = ' . $this->userId);
-        }
+        $this->db->execute("DELETE FROM cart WHERE client_id = '$userId'");
     }
 
     public function addToCart($productId, $cartId)

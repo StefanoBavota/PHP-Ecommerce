@@ -39,7 +39,7 @@ class ProductManager2 extends DBManager
 
 
     public function getProduct($id) {
-        $sql = "SELECT * FROM product INNER JOIN shoe_size ON product.size_id = shoe_size.id WHERE product.id = $id ";
+        $sql = "SELECT product.id, product.image, product.name, product.description, product.price, shoe_size.size FROM product INNER JOIN shoe_size ON product.size_id = shoe_size.id WHERE product.id = $id ";
         return $this->db->query($sql);
     }
 
@@ -139,7 +139,9 @@ class ProductManager extends DBManager
     // public Methods
     public function addToWishList($productId, $userId)
     {
-        $resultSet = $this->db->execute("INSERT INTO wish_list (product_id, user_id) VALUES ($productId, $userId)");
+        
+        $sql = "INSERT INTO wish_list (product_id, user_id) VALUES ($productId, $userId)";
+        $resultSet = $this->db->execute($sql);
         if (!$resultSet) {
             return array('error' => 'Hai già inserito l\'oggetto nella wishlist');
         }

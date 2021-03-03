@@ -50,9 +50,9 @@
         <hr>
 
         {% if loggedInUser %}
-            <a onclick="return confirm('Confermi invio ordine?');" class="btn btn-primary btn-block" href="../{{ ROOT_URL }}shop?page=checkout">Invia Ordine</a>
+            <a onclick="return confirm('Confermi invio ordine?');" class="btn btn-primary" href="../{{ ROOT_URL }}shop?page=checkout">Invia Ordine</a>
         {% else %}
-            <a class="btn btn-primary btn-block" href="../{{ ROOT_URL }}auth?page=register">Registrati per effettuare ordine</a>
+            <a class="btn btn-primary" href="../{{ ROOT_URL }}auth?page=register">Registrati per effettuare l'ordine</a>
         {% endif %}
 
     {% else %}
