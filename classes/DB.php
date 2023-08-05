@@ -2,51 +2,50 @@
 
 class DB
 {
+    private $pdo;
 
-    private $conn;
-    public $pdo;
+    public function __construct() {
+        // Imposta le informazioni di connessione al database
+        $dbHost = DB_HOST;
+        $dbName = DB_NAME;
+        $dbUser = DB_USER;
+        $dbPass = DB_PASS;
 
-    public function __construct()
-    {
+        // echo phpinfo();
+        // Connessione al database
+        $this->conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
-        global $conn;
-        $this->conn = $conn;
-        if (mysqli_connect_errno()) {
-            echo 'Failed to connect to MySql ' . mysqli_connect_errno();
+        if ($this->conn->connect_error) {
+            die('Errore di connessione al database: ' . $this->conn->connect_error);
         }
-        $this->pdo = new PDO('mysql:dbname=' . DB_NAME . ';host=' . DB_HOST, DB_USER, DB_PASS);
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $this->conn->set_charset("utf8mb4");
     }
 
     public function query($sql)
     {
-        $q = $this->pdo->query($sql);
-        if (!$q) {
-            return $this->pdo->errorInfo();
+        $result = $this->conn->query($sql);
+        if (!$result) {
+            return $this->conn->error;
         }
 
-        $data = $q->fetchAll();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        $result->free();
+
         return $data;
     }
 
     public function execute($sql)
     {
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            return true;
-        } catch (PDOException $e) {
-            return false;
-        }
+        $result = $this->conn->query($sql);
+        return $result !== false;
     }
 
     public function select_all($tableName, $columns = array())
     {
-
         $query = 'SELECT ';
 
         $strCol = '';
-        //var_dump($columns); die;
         foreach ($columns as $colName) {
             $strCol .= ' ' . esc($colName) . ',';
         }
@@ -54,12 +53,15 @@ class DB
 
         $query .= $strCol . ' FROM ' . $tableName;
 
-        $result = mysqli_query($this->conn, $query);
-        $resultArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $result = $this->conn->query($query);
+        if (!$result) {
+            return $this->conn->error;
+        }
 
-        mysqli_free_result($result);
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        $result->free();
 
-        return $resultArray;
+        return $data;
     }
 
     public function select_one($tableName, $columns = array(), $id)
